@@ -1,6 +1,6 @@
 package com.github.caijh.framework.redis.autoconfigure;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import com.github.caijh.framework.redis.Redis;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -8,11 +8,9 @@ import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactor
 import org.springframework.data.redis.core.RedisTemplate;
 
 @Configuration
-@ConditionalOnMissingBean(value = {RedisConnectionFactory.class, RedisTemplate.class})
 public class RedisAutoConfiguration {
 
     @Bean
-    @ConditionalOnMissingBean
     public RedisConnectionFactory redisConnectionFactory() {
         return new LettuceConnectionFactory();
     }
@@ -23,6 +21,11 @@ public class RedisAutoConfiguration {
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         redisTemplate.setEnableTransactionSupport(true);
         return redisTemplate;
+    }
+
+    @Bean
+    public Redis redis(RedisTemplate<String, Object> redisTemplate) {
+        return new Redis(redisTemplate);
     }
 
 }
