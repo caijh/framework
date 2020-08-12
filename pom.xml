@@ -5,9 +5,11 @@
     <groupId>com.github.caijh</groupId>
     <artifactId>framework</artifactId>
     <packaging>pom</packaging>
+    <version>2.3.2-SNAPSHOT</version>
 
     <modules>
         <module>framework-parent</module>
         <module>framework-orm</module>
+        <module>framework-redis</module>
     </modules>
 </project>
