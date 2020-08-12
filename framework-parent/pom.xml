@@ -19,6 +19,7 @@
     <properties>
         <lombok.version>1.18.12</lombok.version>
         <spring-cloud.version>Hoxton.SR6</spring-cloud.version>
+        <framework.version>2.3.2-SNAPSHOT</framework.version>
     </properties>
 
     <licenses>
