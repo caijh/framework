@@ -1,6 +1,7 @@
 package com.github.caijh.framework.orm.model;
 
 import java.io.Serializable;
+import javax.persistence.MappedSuperclass;
 
 import com.vladmihalcea.hibernate.type.array.IntArrayType;
 import com.vladmihalcea.hibernate.type.array.StringArrayType;
@@ -16,6 +17,7 @@ import org.hibernate.annotations.TypeDef;
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 @TypeDef(name = "json-node", typeClass = JsonNodeStringType.class)
 @TypeDef(name = "jsonb-node", typeClass = JsonNodeBinaryType.class)
-public interface BaseEntity<T extends Serializable> extends PersistentObject<T> {
+@MappedSuperclass
+public abstract class BaseEntity<T extends Serializable> implements PersistentObject<T> {
 
 }
