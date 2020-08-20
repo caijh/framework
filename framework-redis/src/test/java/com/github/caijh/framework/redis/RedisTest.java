@@ -7,9 +7,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
@@ -21,10 +22,13 @@ class RedisTest {
 
     private Redis redis;
 
-    @BeforeAll
+    @BeforeEach
     public void setUp() {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
-        LettuceConnectionFactory connectionFactory = new LettuceConnectionFactory("127.0.0.1", 6379);
+        String host = "127.0.0.1";
+        int port = 6379;
+        RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration(host, port);
+        LettuceConnectionFactory connectionFactory = new LettuceConnectionFactory(redisStandaloneConfiguration);
         connectionFactory.afterPropertiesSet();
         redisTemplate.setConnectionFactory(connectionFactory);
         redisTemplate.setKeySerializer(new StringRedisSerializer());
@@ -33,13 +37,13 @@ class RedisTest {
         redis = new Redis(redisTemplate);
     }
 
-    @AfterAll
+    @AfterEach
     public void tearDown() {
         redis = null;
     }
 
     @Test
-    public void test() {
+    void test() {
         redis.set("integer", 1);
 
         Integer integer = redis.get("integer", Integer.class);
@@ -69,8 +73,11 @@ class RedisTest {
         assertEquals(list21.size(), list2.size());
         assertEquals(list21.get(0), list2.get(0));
 
-        redis.del("integer");
-        redis.del(Arrays.asList("list", "map", "list2"));
+        Boolean delResult = redis.del("integer");
+        assertTrue(delResult);
+
+        Long num = redis.del(Arrays.asList("list", "map", "list2"));
+        assertEquals(3, num);
 
         redis.set("test", "test", 0L);
         redis.del("test");

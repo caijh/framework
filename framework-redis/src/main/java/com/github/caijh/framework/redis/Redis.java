@@ -79,6 +79,8 @@ public class Redis {
     }
 
     /**
+     * set list to redis.
+     *
      * @param key    redis key
      * @param list   list
      * @param clazz  the class of element in list
@@ -146,17 +148,29 @@ public class Redis {
         return ProtoStuffSerializerUtils.deserializeList(result, clazz);
     }
 
-    public void del(String key) {
-        redisTemplate.delete(key);
+    /**
+     * delete the key.
+     *
+     * @param key key
+     * @return true, if delete successful.
+     */
+    public Boolean del(String key) {
+        return redisTemplate.delete(key);
+    }
+
+    /**
+     * delete keys.
+     *
+     * @param keys keys to delete
+     * @return how much keys is deleted
+     */
+    public Long del(Collection<String> keys) {
+        return redisTemplate.delete(keys);
     }
 
     public void delBatch(String pattern) {
         Set<String> keys = redisTemplate.keys(pattern);
         del(keys);
-    }
-
-    public void del(Collection<String> keys) {
-        redisTemplate.delete(keys);
     }
 
 }
