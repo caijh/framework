@@ -44,9 +44,9 @@ public class YamlUtils {
         }
     }
 
-    public static <T> T toJava(File file, Class<T> type) {
+    public static <T> T toJava(File yamlFile, Class<T> type) {
         try {
-            return YAML_READER.readValue(file, type);
+            return YAML_READER.readValue(yamlFile, type);
         } catch (IOException e) {
             throw new YamlParseException(e);
         }
