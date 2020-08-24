@@ -21,6 +21,8 @@ public class ConfigFileEnvironmentPostProcessor implements EnvironmentPostProces
      */
     private static final String DEFAULT_PROPERTIES = "defaultProperties";
 
+    private static final String PROPERTIES_PROPERTY_SOURCE_NAME = "starterProperties";
+
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
         MutablePropertySources propertySources = environment.getPropertySources();
@@ -30,7 +32,7 @@ public class ConfigFileEnvironmentPostProcessor implements EnvironmentPostProces
         yaml.setResources(classPathResource);
         Properties properties = yaml.getObject();
         if (properties != null) {
-            PropertiesPropertySource propertySource = new PropertiesPropertySource(DEFAULT_PROPERTIES, properties);
+            PropertiesPropertySource propertySource = new PropertiesPropertySource(PROPERTIES_PROPERTY_SOURCE_NAME, properties);
             if (propertySources.contains(DEFAULT_PROPERTIES)) {
                 propertySources.addAfter(DEFAULT_PROPERTIES, propertySource);
             } else {
