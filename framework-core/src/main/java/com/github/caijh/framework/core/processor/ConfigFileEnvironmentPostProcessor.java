@@ -32,8 +32,9 @@ public class ConfigFileEnvironmentPostProcessor implements EnvironmentPostProces
         yaml.setResources(classPathResource);
         Properties properties = yaml.getObject();
         if (properties != null) {
-            PropertiesPropertySource propertySource = new PropertiesPropertySource(PROPERTIES_PROPERTY_SOURCE_NAME, properties);
+            PropertiesPropertySource propertySource = new PropertiesPropertySource(DEFAULT_PROPERTIES, properties);
             if (propertySources.contains(DEFAULT_PROPERTIES)) {
+                propertySource = new PropertiesPropertySource(PROPERTIES_PROPERTY_SOURCE_NAME, properties);
                 propertySources.addAfter(DEFAULT_PROPERTIES, propertySource);
             } else {
                 propertySources.addLast(propertySource);
