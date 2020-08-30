@@ -2,6 +2,8 @@ package com.github.caijh.framework.core.processor;
 
 import java.util.Properties;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.context.config.ConfigFileApplicationListener;
@@ -10,9 +12,12 @@ import org.springframework.core.Ordered;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.MutablePropertySources;
 import org.springframework.core.env.PropertiesPropertySource;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 
-public class ConfigFileEnvironmentPostProcessor implements EnvironmentPostProcessor, Ordered {
+public abstract class ConfigFileEnvironmentPostProcessor implements EnvironmentPostProcessor, Ordered {
+
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     public static final int DEFAULT_ORDER = ConfigFileApplicationListener.DEFAULT_ORDER - 1;
     private static final String CONFIG_FILE_LOCATION = "META-INF/application.yml";
@@ -25,13 +30,14 @@ public class ConfigFileEnvironmentPostProcessor implements EnvironmentPostProces
 
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
-        MutablePropertySources propertySources = environment.getPropertySources();
-        YamlPropertiesFactoryBean yaml = new YamlPropertiesFactoryBean();
+        Resource resource = getResource();
 
-        ClassPathResource classPathResource = new ClassPathResource(getLocation());
-        yaml.setResources(classPathResource);
+        YamlPropertiesFactoryBean yaml = new YamlPropertiesFactoryBean();
+        yaml.setResources(resource);
+
         Properties properties = yaml.getObject();
         if (properties != null) {
+            MutablePropertySources propertySources = environment.getPropertySources();
             PropertiesPropertySource propertySource = new PropertiesPropertySource(DEFAULT_PROPERTIES, properties);
             if (propertySources.contains(DEFAULT_PROPERTIES)) {
                 propertySource = new PropertiesPropertySource(PROPERTIES_PROPERTY_SOURCE_NAME, properties);
@@ -40,6 +46,10 @@ public class ConfigFileEnvironmentPostProcessor implements EnvironmentPostProces
                 propertySources.addLast(propertySource);
             }
         }
+    }
+
+    public Resource getResource() {
+        return new UrlResource(getClass().getClassLoader().getResource(getLocation()));
     }
 
     @Override
