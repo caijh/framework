@@ -12,3 +12,9 @@ management:
     web:
       exposure:
         include: health, info, shutdown
+  health:
+    readynessstate:
+      enabled: true
+    livenessstate:
+      enabled: true
+
