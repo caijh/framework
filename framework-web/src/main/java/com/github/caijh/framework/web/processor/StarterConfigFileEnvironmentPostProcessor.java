@@ -4,10 +4,4 @@ import com.github.caijh.framework.core.processor.ConfigFileEnvironmentPostProces
 
 public class StarterConfigFileEnvironmentPostProcessor extends ConfigFileEnvironmentPostProcessor {
 
-//    @Override
-//    public Resource getResource() {
-//        URL url = getClass().getClassLoader().getResource(getLocation());
-//        return new UrlResource(url);
-//    }
-
 }

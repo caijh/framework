@@ -1,9 +1,9 @@
 package com.github.caijh.framework.core.processor;
 
+import java.io.FileNotFoundException;
 import java.util.Properties;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.github.caijh.framework.exception.ConfigFileNotFoundException;
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.context.config.ConfigFileApplicationListener;
@@ -12,12 +12,15 @@ import org.springframework.core.Ordered;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.MutablePropertySources;
 import org.springframework.core.env.PropertiesPropertySource;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.util.ResourceUtils;
+
+import static org.springframework.util.ResourceUtils.JAR_URL_PREFIX;
+import static org.springframework.util.ResourceUtils.JAR_URL_SEPARATOR;
 
 public abstract class ConfigFileEnvironmentPostProcessor implements EnvironmentPostProcessor, Ordered {
-
-    private Logger logger = LoggerFactory.getLogger(getClass());
 
     public static final int DEFAULT_ORDER = ConfigFileApplicationListener.DEFAULT_ORDER - 1;
     private static final String CONFIG_FILE_LOCATION = "META-INF/application.yml";
@@ -49,7 +52,21 @@ public abstract class ConfigFileEnvironmentPostProcessor implements EnvironmentP
     }
 
     public Resource getResource() {
-        return new UrlResource(getClass().getClassLoader().getResource(getLocation()));
+        String url = getClass().getResource(getClass().getSimpleName() + ".class").toString();
+        String location = getLocation();
+
+        Resource resource;
+        if (url.startsWith(JAR_URL_PREFIX)) {
+            location = url.substring(0, url.lastIndexOf("!")) + JAR_URL_SEPARATOR + location;
+            try {
+                resource = new UrlResource(ResourceUtils.getURL(location));
+            } catch (FileNotFoundException e) {
+                throw new ConfigFileNotFoundException(location);
+            }
+        } else {
+            resource = new ClassPathResource(location);
+        }
+        return resource;
     }
 
     @Override
