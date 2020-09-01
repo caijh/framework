@@ -1,4 +1,4 @@
-package com.github.caijh.framework.exception;
+package com.github.caijh.framework.core.exception;
 
 public class YamlParseException extends RuntimeException {
 

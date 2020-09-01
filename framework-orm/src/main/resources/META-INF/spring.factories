@@ -1,2 +1,2 @@
 org.springframework.boot.env.EnvironmentPostProcessor=\
-com.github.caijh.framework.orm.processor.StarterConfigFileEnvironmentPostProcessor
+  com.github.caijh.framework.orm.processor.StarterConfigFileEnvironmentPostProcessor

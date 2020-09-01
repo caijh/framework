@@ -14,7 +14,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 @Configuration
 @EnableConfigurationProperties(RedisProperties.class)
 @AutoConfigureAfter(value = {RedisAutoConfiguration.class})
-public class RedisAutoConfig {
+public class RedisAutoConfigure {
 
     @Bean
     public RedisTemplate<String, Object> stringObjectRedisTemplate(RedisConnectionFactory redisConnectionFactory) {

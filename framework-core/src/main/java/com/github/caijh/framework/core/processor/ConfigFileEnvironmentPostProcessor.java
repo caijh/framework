@@ -3,7 +3,7 @@ package com.github.caijh.framework.core.processor;
 import java.io.FileNotFoundException;
 import java.util.Properties;
 
-import com.github.caijh.framework.exception.ConfigFileNotFoundException;
+import com.github.caijh.framework.core.exception.ConfigFileNotFoundException;
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.context.config.ConfigFileApplicationListener;
