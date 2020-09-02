@@ -21,6 +21,7 @@
         <module>framework-redis</module>
         <module>framework-utils</module>
         <module>framework-web</module>
+        <module>framework-microservice</module>
     </modules>
 
     <properties>
