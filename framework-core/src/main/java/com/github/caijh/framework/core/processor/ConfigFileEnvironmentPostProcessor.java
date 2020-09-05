@@ -1,7 +1,9 @@
 package com.github.caijh.framework.core.processor;
 
 import java.io.FileNotFoundException;
+import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import com.github.caijh.framework.core.exception.ConfigFileNotFoundException;
@@ -30,7 +32,20 @@ public abstract class ConfigFileEnvironmentPostProcessor implements EnvironmentP
      */
     private static final String DEFAULT_PROPERTIES = "defaultProperties";
 
-    private static final AtomicInteger INDEX = new AtomicInteger(1);
+    private static final Map<ConfigurableEnvironment, AtomicInteger> INDEX_MAP = new ConcurrentHashMap<>();
+    private static final Map<ConfigurableEnvironment, String> LAST_PROPERTY_SOURCE_NAME_MAP = new ConcurrentHashMap<>();
+
+    private static synchronized AtomicInteger getIndex(ConfigurableEnvironment environment) {
+        return INDEX_MAP.computeIfAbsent(environment, env -> new AtomicInteger(1));
+    }
+
+    private static synchronized void setLastPropertySourceName(ConfigurableEnvironment environment, String propertySourceName) {
+        LAST_PROPERTY_SOURCE_NAME_MAP.put(environment, propertySourceName);
+    }
+
+    private static synchronized String getLastPropertySourceName(ConfigurableEnvironment environment) {
+        return LAST_PROPERTY_SOURCE_NAME_MAP.computeIfAbsent(environment, env -> DEFAULT_PROPERTIES);
+    }
 
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
@@ -44,8 +59,10 @@ public abstract class ConfigFileEnvironmentPostProcessor implements EnvironmentP
             MutablePropertySources propertySources = environment.getPropertySources();
             PropertiesPropertySource propertySource;
             if (propertySources.contains(DEFAULT_PROPERTIES)) {
-                propertySource = new PropertiesPropertySource(DEFAULT_PROPERTIES + INDEX.getAndIncrement(), properties);
-                propertySources.addAfter(DEFAULT_PROPERTIES, propertySource);
+                String propertySourceName = DEFAULT_PROPERTIES + "-" + getIndex(environment).getAndIncrement();
+                propertySource = new PropertiesPropertySource(propertySourceName, properties);
+                propertySources.addAfter(getLastPropertySourceName(environment), propertySource);
+                setLastPropertySourceName(environment, propertySourceName);
             } else {
                 propertySource = new PropertiesPropertySource(DEFAULT_PROPERTIES, properties);
                 propertySources.addLast(propertySource);
