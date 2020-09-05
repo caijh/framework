@@ -2,6 +2,7 @@ package com.github.caijh.framework.core.processor;
 
 import java.io.FileNotFoundException;
 import java.util.Properties;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import com.github.caijh.framework.core.exception.ConfigFileNotFoundException;
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
@@ -29,7 +30,7 @@ public abstract class ConfigFileEnvironmentPostProcessor implements EnvironmentP
      */
     private static final String DEFAULT_PROPERTIES = "defaultProperties";
 
-    private static final String PROPERTIES_PROPERTY_SOURCE_NAME = "starterProperties";
+    private static final AtomicInteger INDEX = new AtomicInteger(1);
 
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
@@ -41,11 +42,12 @@ public abstract class ConfigFileEnvironmentPostProcessor implements EnvironmentP
         Properties properties = yaml.getObject();
         if (properties != null) {
             MutablePropertySources propertySources = environment.getPropertySources();
-            PropertiesPropertySource propertySource = new PropertiesPropertySource(DEFAULT_PROPERTIES, properties);
+            PropertiesPropertySource propertySource;
             if (propertySources.contains(DEFAULT_PROPERTIES)) {
-                propertySource = new PropertiesPropertySource(PROPERTIES_PROPERTY_SOURCE_NAME, properties);
+                propertySource = new PropertiesPropertySource(DEFAULT_PROPERTIES + INDEX.getAndIncrement(), properties);
                 propertySources.addAfter(DEFAULT_PROPERTIES, propertySource);
             } else {
+                propertySource = new PropertiesPropertySource(DEFAULT_PROPERTIES, properties);
                 propertySources.addLast(propertySource);
             }
         }
