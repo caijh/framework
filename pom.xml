@@ -18,6 +18,7 @@
     <modules>
         <module>framework-core</module>
         <module>framework-orm</module>
+        <module>framework-mybatis</module>
         <module>framework-redis</module>
         <module>framework-utils</module>
         <module>framework-web</module>

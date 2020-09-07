@@ -1,0 +1,5 @@
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
