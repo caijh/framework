@@ -8,10 +8,9 @@ import java.util.Optional;
 import java.util.Set;
 
 import com.github.caijh.framework.redis.exception.RedisException;
-import com.github.caijh.framework.redis.util.ProtoStuffSerializerUtils;
-import com.github.caijh.framework.redis.util.Wrapper;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.RedisSerializer;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
@@ -21,13 +20,14 @@ public class Redis {
     private static final long ENTITY_EXPIRED_SECONDS = 60 * 60 * 24L; // 1天
 
     private final RedisTemplate<String, Object> redisTemplate;
+    private final RedisSerializer<String> keySerializer;
+    private final RedisSerializer<Object> valueSerializer;
 
+    @SuppressWarnings("unchecked")
     public Redis(RedisTemplate<String, Object> redisTemplate) {
         this.redisTemplate = redisTemplate;
-    }
-
-    public RedisTemplate<String, Object> getRedisTemplate() {
-        return redisTemplate;
+        keySerializer = (RedisSerializer<String>) this.redisTemplate.getKeySerializer();
+        valueSerializer = (RedisSerializer<Object>) this.redisTemplate.getValueSerializer();
     }
 
     /**
@@ -51,31 +51,49 @@ public class Redis {
      */
     @SuppressWarnings("unchecked")
     public <T> void set(String key, T obj, Long expire) {
-        Class<T> clazz = (Class<T>) obj.getClass();
-        if (clazz.isArray() || Collection.class.isAssignableFrom(clazz) || Map.class.isAssignableFrom(clazz)) {
-            Wrapper<T> wrapper = new Wrapper<>(obj);
-            set(key, wrapper, Wrapper.class, expire != null ? expire : LIST_EXPIRED_SECONDS);
-        } else {
-            set(key, obj, clazz, expire != null ? expire : ENTITY_EXPIRED_SECONDS);
+        final byte[] keyBytes = keySerializer.serialize(key);
+        byte[] serialize = valueSerializer.serialize(obj);
+        if (expire == null) {
+            Class<T> clazz = ((Class<T>) obj.getClass());
+            if (clazz.isArray() || Collection.class.isAssignableFrom(clazz) || Map.class.isAssignableFrom(clazz)) {
+                expire = LIST_EXPIRED_SECONDS;
+            } else {
+                expire = ENTITY_EXPIRED_SECONDS;
+            }
         }
-    }
 
-    private <T> void set(String key, T obj, Class<T> typeClass, Long expire) {
-        final byte[] keyBytes = key.getBytes(UTF_8);
-        byte[] serialize = ProtoStuffSerializerUtils.serialize(obj, typeClass);
         setEx(keyBytes, serialize, expire);
     }
+
+
+    /**
+     * get cache object.
+     *
+     * @param key key
+     * @param <T> parameter type of class
+     * @return T the has been cache object.
+     */
+    @SuppressWarnings("unchecked")
+    public <T> T get(String key) {
+        byte[] keyBytes = keySerializer.serialize(key);
+        byte[] result = redisTemplate.execute((RedisConnection redisConnection) -> redisConnection.get(keyBytes));
+        if (result == null) {
+            return null;
+        }
+
+        return (T) valueSerializer.deserialize(result);
+    }
+
 
     /**
      * save list to redis.
      *
-     * @param key   redis key
-     * @param list  list
-     * @param clazz the class of element in list
-     * @param <T>   type of class
+     * @param key  redis key
+     * @param list list
+     * @param <T>  type of class
      */
-    public <T> void setList(String key, List<T> list, Class<T> clazz) {
-        setList(key, list, clazz, LIST_EXPIRED_SECONDS);
+    public <T> void setList(String key, List<T> list) {
+        setList(key, list, LIST_EXPIRED_SECONDS);
     }
 
     /**
@@ -83,13 +101,12 @@ public class Redis {
      *
      * @param key    redis key
      * @param list   list
-     * @param clazz  the class of element in list
      * @param expire expire seconds
      * @param <T>    type name of element in list
      */
-    public <T> void setList(String key, List<T> list, Class<T> clazz, Long expire) {
-        final byte[] keyBytes = key.getBytes(UTF_8);
-        byte[] serialize = ProtoStuffSerializerUtils.serialize(list, clazz);
+    public <T> void setList(String key, List<T> list, Long expire) {
+        final byte[] keyBytes = keySerializer.serialize(key);
+        byte[] serialize = valueSerializer.serialize(list);
         setEx(keyBytes, serialize, expire);
     }
 
@@ -109,43 +126,21 @@ public class Redis {
     }
 
     /**
-     * get cache object.
-     *
-     * @param key   key
-     * @param clazz value的对象的class
-     * @param <T>   parameter type of class
-     * @return T the has been cache object.
-     */
-    @SuppressWarnings("unchecked")
-    public <T> T get(String key, Class<T> clazz) {
-        byte[] result = getRedisTemplate().execute((RedisConnection redisConnection) -> redisConnection.get(key.getBytes(UTF_8)));
-        if (result == null) {
-            return null;
-        }
-
-        if (clazz.isArray() || Collection.class.isAssignableFrom(clazz) || Map.class.isAssignableFrom(clazz)) {
-            return (T) ProtoStuffSerializerUtils.deserialize(result, Wrapper.class).getData();
-        }
-
-        return ProtoStuffSerializerUtils.deserialize(result, clazz);
-    }
-
-    /**
      * get the cached list.
      *
-     * @param key   the key of object
-     * @param clazz the list element type
-     * @param <T>   parameter type name of clazz
+     * @param key the key of object
+     * @param <T> parameter type name of clazz
      * @return list contains object of class T
      */
-    public <T> List<T> getList(String key, Class<T> clazz) {
+    @SuppressWarnings("unchecked")
+    public <T> List<T> getList(String key) {
         byte[] result = redisTemplate.execute((RedisConnection redisConnection) -> redisConnection.get(key.getBytes(UTF_8)));
 
         if (result == null) {
             return Collections.emptyList();
         }
 
-        return ProtoStuffSerializerUtils.deserializeList(result, clazz);
+        return (List<T>) valueSerializer.deserialize(result);
     }
 
     /**
@@ -171,6 +166,10 @@ public class Redis {
     public void delBatch(String pattern) {
         Set<String> keys = redisTemplate.keys(pattern);
         del(keys);
+    }
+
+    public RedisTemplate<String, Object> getRedisTemplate() {
+        return redisTemplate;
     }
 
 }

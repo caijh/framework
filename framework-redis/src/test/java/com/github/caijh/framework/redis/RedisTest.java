@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.github.caijh.framework.redis.serializer.ProtobufSerializer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,13 +26,15 @@ class RedisTest {
     @BeforeEach
     public void setUp() {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
-        String host = "127.0.0.1";
-        int port = 6379;
+        String host = "10.38.2.12";
+        int port = 30379;
         RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration(host, port);
         LettuceConnectionFactory connectionFactory = new LettuceConnectionFactory(redisStandaloneConfiguration);
         connectionFactory.afterPropertiesSet();
         redisTemplate.setConnectionFactory(connectionFactory);
         redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setValueSerializer(new ProtobufSerializer());
+        redisTemplate.setHashValueSerializer(new ProtobufSerializer());
         redisTemplate.setEnableTransactionSupport(true);
         redisTemplate.afterPropertiesSet();
         redis = new Redis(redisTemplate);
@@ -46,21 +49,21 @@ class RedisTest {
     void test() {
         redis.set("integer", 1);
 
-        Integer integer = redis.get("integer", Integer.class);
+        Integer integer = redis.get("integer");
         assertEquals(1, (int) integer);
 
         List<String> list = new ArrayList<>();
         list.add("a");
         list.add("b");
         redis.set("list", list);
-        List list1 = redis.get("list", list.getClass());
+        List list1 = redis.get("list");
         assertEquals("a", list1.get(0));
 
         Map<String, Integer> map = new HashMap<>();
         map.put("a", 1);
         map.put("b", 2);
         redis.set("map", map);
-        Map map1 = redis.get("map", Map.class);
+        Map map1 = redis.get("map");
         assertEquals(map.size(), map1.size());
         assertEquals(1, map1.get("a"));
         assertEquals(2, map1.get("b"));
@@ -68,8 +71,8 @@ class RedisTest {
         List<Integer> list2 = new ArrayList<>();
         list2.add(1);
         list2.add(2);
-        redis.setList("list2", list2, Integer.class);
-        List<Integer> list21 = redis.getList("list2", Integer.class);
+        redis.setList("list2", list2);
+        List<Integer> list21 = redis.getList("list2");
         assertEquals(list21.size(), list2.size());
         assertEquals(list21.get(0), list2.get(0));
 

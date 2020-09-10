@@ -1,4 +1,4 @@
-package com.github.caijh.framework.redis.processor;
+package com.github.caijh.framework.redis.autoconfigure.processor;
 
 import com.github.caijh.framework.core.processor.ConfigFileEnvironmentPostProcessor;
 
