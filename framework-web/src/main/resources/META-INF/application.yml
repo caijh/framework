@@ -1,6 +1,10 @@
 server:
   port: 8080
 
+spring:
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:./doc
+
 management:
   endpoint:
     health:
