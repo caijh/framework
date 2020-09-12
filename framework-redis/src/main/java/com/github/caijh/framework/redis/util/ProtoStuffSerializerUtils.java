@@ -7,7 +7,7 @@ import io.protostuff.runtime.RuntimeSchema;
 
 public class ProtoStuffSerializerUtils {
 
-    public static final Schema<Wrapper> SCHEMA = RuntimeSchema.getSchema(Wrapper.class);
+    private static final Schema<Wrapper> SCHEMA = RuntimeSchema.getSchema(Wrapper.class);
 
     private ProtoStuffSerializerUtils() {
     }
