@@ -9,6 +9,7 @@ import com.power.doc.model.ApiConfig;
 import com.power.doc.model.ApiErrorCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -30,7 +31,8 @@ public class DocInitializer implements ApplicationListener<ApplicationStartedEve
         config.setAdoc(true);
         config.setStrict(true);
         config.setProjectName(applicationContext.getApplicationName());
-        config.setServerUrl("http://127.0.0.1:" + applicationContext.getEnvironment().getProperty("server.port"));
+        ServerProperties serverProperties = applicationContext.getBeanFactory().getBean(ServerProperties.class);
+        config.setServerUrl("http://127.0.0.1:" + serverProperties.getPort());
         config.setOutPath("doc/api");
         List<ApiErrorCode> errorCodeList = new ArrayList<>();
         for (HttpCodeEnum codeEnum : HttpCodeEnum.values()) {

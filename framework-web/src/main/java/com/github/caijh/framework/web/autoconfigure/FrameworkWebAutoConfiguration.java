@@ -9,6 +9,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 public class FrameworkWebAutoConfiguration {
 
+
     @Bean
     public DocInitializer docInitializer() {
         return new DocInitializer();
