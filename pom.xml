@@ -131,6 +131,36 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>com.github.caijh</groupId>
+                <artifactId>framework-orm</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.caijh</groupId>
+                <artifactId>framework-mybatis</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.caijh</groupId>
+                <artifactId>framework-redis</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.caijh</groupId>
+                <artifactId>framework-utils</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.caijh</groupId>
+                <artifactId>framework-web</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.caijh</groupId>
+                <artifactId>framework-microservice</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
