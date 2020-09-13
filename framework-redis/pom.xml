@@ -30,6 +30,7 @@
         <dependency>
             <groupId>com.github.caijh</groupId>
             <artifactId>framework-core</artifactId>
+            <version>${framework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
