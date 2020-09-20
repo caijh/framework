@@ -1,18 +1,29 @@
 package com.github.caijh.framework.web.autoconfigure;
 
 import com.github.caijh.framework.web.init.DocInitializer;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.web.ServerProperties;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @Configuration
 @EnableAspectJAutoProxy(proxyTargetClass = true)
+@EnableConfigurationProperties(ServerProperties.class)
 public class FrameworkWebAutoConfiguration {
-
 
     @Bean
     public DocInitializer docInitializer() {
         return new DocInitializer();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    @ConfigurationProperties(prefix = "server")
+    public ServerProperties serverProperties() {
+        return new ServerProperties();
     }
 
 }

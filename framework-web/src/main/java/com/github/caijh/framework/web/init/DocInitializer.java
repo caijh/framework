@@ -10,16 +10,16 @@ import com.power.doc.model.ApiErrorCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
-import org.springframework.boot.context.event.ApplicationStartedEvent;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.ConfigurableApplicationContext;
 
-public class DocInitializer implements ApplicationListener<ApplicationStartedEvent> {
+public class DocInitializer implements ApplicationListener<ApplicationReadyEvent> {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
-    public void onApplicationEvent(ApplicationStartedEvent event) {
+    public void onApplicationEvent(ApplicationReadyEvent event) {
         logger.info("Initializing smart-doc");
         init(event.getApplicationContext());
     }
