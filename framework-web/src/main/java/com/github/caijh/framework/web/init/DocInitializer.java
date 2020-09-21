@@ -35,7 +35,7 @@ public class DocInitializer implements ApplicationListener<ApplicationReadyEvent
         config.setAdoc(true);
         config.setStrict(true);
         config.setProjectName(applicationContext.getApplicationName());
-        ServerProperties serverProperties = applicationContext.getBeanFactory().getBean(ServerProperties.class);
+        ServerProperties serverProperties = applicationContext.getBean(ServerProperties.class);
         config.setServerUrl("http://127.0.0.1:" + serverProperties.getPort());
         config.setOutPath("doc/api");
         List<ApiErrorCode> errorCodeList = new ArrayList<>();
