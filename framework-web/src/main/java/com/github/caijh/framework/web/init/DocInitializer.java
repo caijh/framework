@@ -9,7 +9,6 @@ import com.power.doc.model.ApiConfig;
 import com.power.doc.model.ApiErrorCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeansException;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
@@ -21,6 +20,9 @@ public class DocInitializer implements ApplicationListener<ApplicationReadyEvent
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
+        if (event.getApplicationContext().getParent() == null) {
+            return;
+        }
         logger.info("Initializing smart-doc");
         init(event.getApplicationContext());
     }
@@ -32,12 +34,8 @@ public class DocInitializer implements ApplicationListener<ApplicationReadyEvent
         config.setAdoc(true);
         config.setStrict(true);
         config.setProjectName(applicationContext.getApplicationName());
-        try {
-            ServerProperties serverProperties = applicationContext.getBeanFactory().getBean(ServerProperties.class);
-            config.setServerUrl("http://127.0.0.1:" + serverProperties.getPort());
-        } catch (BeansException e) {
-            config.setServerUrl("http://127.0.0.1:" + applicationContext.getEnvironment().getProperty("server.port"));
-        }
+        ServerProperties serverProperties = applicationContext.getBeanFactory().getBean(ServerProperties.class);
+        config.setServerUrl("http://127.0.0.1:" + serverProperties.getPort());
         config.setOutPath("doc/api");
         List<ApiErrorCode> errorCodeList = new ArrayList<>();
         for (HttpCodeEnum codeEnum : HttpCodeEnum.values()) {
