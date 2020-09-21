@@ -9,6 +9,7 @@ import com.power.doc.model.ApiConfig;
 import com.power.doc.model.ApiErrorCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
@@ -20,7 +21,7 @@ public class DocInitializer implements ApplicationListener<ApplicationReadyEvent
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
-        if (event.getApplicationContext().getParent() == null) {
+        if (WebApplicationType.NONE == event.getSpringApplication().getWebApplicationType()) {
             return;
         }
         logger.info("Initializing smart-doc");
