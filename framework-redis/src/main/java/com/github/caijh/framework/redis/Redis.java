@@ -2,15 +2,20 @@ package com.github.caijh.framework.redis;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Consumer;
 
 import com.github.caijh.framework.redis.exception.RedisException;
 import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.Cursor;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ScanOptions;
 import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.util.Assert;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
@@ -76,6 +81,7 @@ public class Redis {
     @SuppressWarnings("unchecked")
     public <T> T get(String key) {
         byte[] keyBytes = keySerializer.serialize(key);
+        Assert.notNull(keyBytes, "key must not be null");
         byte[] result = redisTemplate.execute((RedisConnection redisConnection) -> redisConnection.get(keyBytes));
         if (result == null) {
             return null;
@@ -149,7 +155,7 @@ public class Redis {
      * @param key key
      * @return true, if delete successful.
      */
-    public Boolean del(String key) {
+    public Boolean delete(String key) {
         return redisTemplate.delete(key);
     }
 
@@ -159,13 +165,34 @@ public class Redis {
      * @param keys keys to delete
      * @return how much keys is deleted
      */
-    public Long del(Collection<String> keys) {
+    public Long delete(Collection<String> keys) {
         return redisTemplate.delete(keys);
     }
 
-    public void delBatch(String pattern) {
-        Set<String> keys = redisTemplate.keys(pattern);
-        del(keys);
+    /**
+     * delete keys match pattern.
+     *
+     * @param pattern pattern
+     */
+    public void batchDelete(String pattern) {
+        Set<String> keys = new HashSet<>();
+        this.scan(pattern, bytes -> {
+            String key = keySerializer.deserialize(bytes);
+            keys.add(key);
+        });
+        delete(keys);
+    }
+
+    public void scan(String pattern, Consumer<byte[]> consumer) {
+        redisTemplate.execute((RedisConnection connection) -> {
+            try (Cursor<byte[]> cursor = connection.scan(ScanOptions.scanOptions().count(Long.MAX_VALUE).match(pattern).build())) {
+                cursor.forEachRemaining(consumer);
+                return null;
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     public RedisTemplate<String, Object> getRedisTemplate() {

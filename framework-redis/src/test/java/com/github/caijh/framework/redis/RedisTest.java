@@ -56,14 +56,14 @@ class RedisTest {
         list.add("a");
         list.add("b");
         redis.set("list", list);
-        List list1 = redis.get("list");
+        List<String> list1 = redis.get("list");
         assertEquals("a", list1.get(0));
 
         Map<String, Integer> map = new HashMap<>();
         map.put("a", 1);
         map.put("b", 2);
         redis.set("map", map);
-        Map map1 = redis.get("map");
+        Map<String, Integer> map1 = redis.get("map");
         assertEquals(map.size(), map1.size());
         assertEquals(1, map1.get("a"));
         assertEquals(2, map1.get("b"));
@@ -76,18 +76,18 @@ class RedisTest {
         assertEquals(list21.size(), list2.size());
         assertEquals(list21.get(0), list2.get(0));
 
-        Boolean delResult = redis.del("integer");
+        Boolean delResult = redis.delete("integer");
         assertTrue(delResult);
 
-        Long num = redis.del(Arrays.asList("list", "map", "list2"));
+        Long num = redis.delete(Arrays.asList("list", "map", "list2"));
         assertEquals(3, num);
 
         redis.set("test", "test", 0L);
-        redis.del("test");
+        redis.delete("test");
 
         redis.set("u:1", 1);
         redis.set("u:2", 2);
-        redis.delBatch("*");
+        redis.batchDelete("*");
         Set<String> keys = redis.getRedisTemplate().keys("*");
         assertTrue(keys == null || keys.isEmpty());
     }
