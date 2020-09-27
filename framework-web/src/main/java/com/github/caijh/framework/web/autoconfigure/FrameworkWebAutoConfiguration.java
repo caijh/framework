@@ -12,11 +12,19 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Scope;
+import org.springframework.web.client.RestTemplate;
 
 @Configuration
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableConfigurationProperties(ServerProperties.class)
 public class FrameworkWebAutoConfiguration {
+
+    @Bean
+    @ConditionalOnMissingBean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+
 
     @Bean
     public DocInitializer docInitializer() {
