@@ -25,7 +25,6 @@ public class FrameworkWebAutoConfiguration {
         return new RestTemplate();
     }
 
-
     @Bean
     public DocInitializer docInitializer() {
         return new DocInitializer();
