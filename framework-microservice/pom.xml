@@ -6,7 +6,7 @@
         <groupId>com.github.caijh</groupId>
         <artifactId>framework-parent</artifactId>
         <version>2.3.2-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>framework-microservice</artifactId>
     <name>framework-microservice</name>
