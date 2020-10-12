@@ -183,14 +183,13 @@ public class Redis {
         delete(keys);
     }
 
-    public void scan(String pattern, Consumer<byte[]> consumer) {
+    public void scan(final String pattern, Consumer<byte[]> consumer) {
         redisTemplate.execute((RedisConnection connection) -> {
             try (Cursor<byte[]> cursor = connection.scan(ScanOptions.scanOptions().count(2000).match(pattern).build())) {
                 cursor.forEachRemaining(consumer);
                 return null;
             } catch (Exception e) {
-                e.printStackTrace();
-                throw new RuntimeException(e);
+                throw new RedisException(e);
             }
         });
     }
