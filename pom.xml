@@ -167,6 +167,11 @@
                 <artifactId>framework-microservice</artifactId>
                 <version>${framework.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.github.caijh</groupId>
+                <artifactId>framework-log</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
