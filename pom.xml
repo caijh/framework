@@ -169,7 +169,7 @@
             </dependency>
             <dependency>
                 <groupId>com.github.caijh</groupId>
-                <artifactId>framework-log</artifactId>
+                <artifactId>framework-logging</artifactId>
                 <version>${framework.version}</version>
             </dependency>
         </dependencies>
