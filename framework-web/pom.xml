@@ -12,6 +12,9 @@
 
     <artifactId>framework-web</artifactId>
 
+    <properties>
+        <smart.doc.version>1.9.7</smart.doc.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>com.github.caijh</groupId>
@@ -31,7 +34,7 @@
         <dependency>
             <groupId>com.github.shalousun</groupId>
             <artifactId>smart-doc</artifactId>
-            <version>1.9.6</version>
+            <version>${smart.doc.version}</version>
         </dependency>
     </dependencies>
 
