@@ -23,7 +23,7 @@
         <module>framework-utils</module>
         <module>framework-web</module>
         <module>framework-microservice</module>
-        <module>framework-log</module>
+        <module>framework-logging</module>
     </modules>
 
     <properties>
