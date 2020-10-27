@@ -1,4 +1,4 @@
-package com.github.caijh.framework.orm.model;
+package com.github.caijh.framework.core.model;
 
 import java.io.Serializable;
 import javax.persistence.MappedSuperclass;

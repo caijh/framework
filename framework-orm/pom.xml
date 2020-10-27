@@ -15,6 +15,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.github.caijh</groupId>
+            <artifactId>framework-model</artifactId>
+        </dependency>
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
