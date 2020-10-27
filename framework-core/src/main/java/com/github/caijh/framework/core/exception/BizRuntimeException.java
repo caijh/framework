@@ -10,6 +10,10 @@ public class BizRuntimeException extends RuntimeException {
         super(e);
     }
 
+    public BizRuntimeException(String message) {
+        super(message);
+    }
+
     public BizRuntimeException(String message, Throwable cause) {
         super(message, cause);
     }
