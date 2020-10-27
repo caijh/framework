@@ -3,7 +3,7 @@ logging:
     path: logs
     max-size: 10MB
     max-history: 7
-    name: ${spring.application.name}.log
+    name: "${logging.file.path}/${spring.application.name}.log"
   pattern:
     dateformat: "yyyy-MM-dd HH:mm:ss.SSS"
     console: "%d{yyyy-dd-MM HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{36}.%M [tr=%X{TRACE_ID:-0}] - %msg%n"
