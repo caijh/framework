@@ -3,8 +3,6 @@ package com.github.caijh.framework.microservice.autoconfigure;
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
 import com.netflix.hystrix.HystrixCommandProperties;
-import feign.Contract;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.cloud.client.circuitbreaker.Customizer;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
@@ -17,12 +15,6 @@ import org.springframework.context.annotation.Configuration;
 //@EnableFeignClients
 @EnableHystrix
 public class FrameworkMicroserviceAutoConfiguration {
-
-    @Bean
-    @ConditionalOnMissingBean
-    public Contract feignContract() {
-        return new feign.Contract.Default();
-    }
 
     @Bean
     public Customizer<HystrixCircuitBreakerFactory> defaultConfig() {
