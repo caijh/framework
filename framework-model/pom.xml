@@ -6,17 +6,10 @@
         <artifactId>framework-parent</artifactId>
         <groupId>com.github.caijh</groupId>
         <version>2.3.2-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>framework-core</artifactId>
+    <artifactId>framework-model</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.github.caijh</groupId>
-            <artifactId>framework-model</artifactId>
-        </dependency>
-    </dependencies>
 
 </project>
