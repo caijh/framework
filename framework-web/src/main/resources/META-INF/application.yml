@@ -15,7 +15,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health, info, shutdown
+        include: '*'
   health:
     readynessstate:
       enabled: true
