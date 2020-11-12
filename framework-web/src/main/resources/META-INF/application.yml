@@ -4,6 +4,8 @@ server:
 spring:
   resources:
     static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:./doc
+  jackson:
+    property-naming-strategy: SNAKE_CASE
 
 management:
   endpoint:
@@ -21,4 +23,3 @@ management:
       enabled: true
     livenessstate:
       enabled: true
-
