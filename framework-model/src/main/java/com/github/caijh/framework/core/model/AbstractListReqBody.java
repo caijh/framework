@@ -1,7 +1,7 @@
 package com.github.caijh.framework.core.model;
 
 /**
- * 抽换列表请求对象.
+ * 抽象列表请求对象.
  */
 public abstract class AbstractListReqBody implements ReqBody {
 
