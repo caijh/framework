@@ -9,12 +9,10 @@ class RTest {
 
     @Test
     void builder() {
-        R<Void> ok = R.of("ok");
+        R<Void> ok = new R<Void>().setCode("ok").setMessage("everything is ok");
         assertEquals("ok", ok.getCode());
-
-        R<Void> aNull = R.of("ok", "everything is ok");
-        assertEquals("everything is ok", aNull.getMessage());
-        assertNull(aNull.getData());
+        assertEquals("everything is ok", ok.getMessage());
+        assertNull(ok.getData());
     }
 
 }
