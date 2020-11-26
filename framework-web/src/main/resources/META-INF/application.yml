@@ -6,6 +6,9 @@ spring:
     static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:./doc
   jackson:
     property-naming-strategy: SNAKE_CASE
+  messages:
+    basename: i18n/messages
+    encoding: utf-8
 
 management:
   endpoint:
