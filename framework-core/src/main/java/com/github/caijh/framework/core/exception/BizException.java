@@ -3,6 +3,9 @@ package com.github.caijh.framework.core.exception;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * 业务异常类.
+ */
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class BizException extends RuntimeException {
