@@ -13,4 +13,16 @@ public class R<T> {
     private String message;
     private T data;
 
+    public static R<Void> of(String code) {
+        return of(code, null);
+    }
+
+    public static R<Void> of(String code, String message) {
+        return new R<Void>().setCode(code).setMessage(message);
+    }
+
+    public static <T> R<T> of(String code, String message, T data) {
+        return new R<T>().setCode(code).setMessage(message).setData(data);
+    }
+
 }
