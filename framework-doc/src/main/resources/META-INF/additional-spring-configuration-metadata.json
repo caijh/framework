@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "swagger.enable",
+      "type": "java.lang.Boolean",
+      "description": "Set true to enable swagger."
+    }
+  ]
+}

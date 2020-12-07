@@ -1,4 +1,4 @@
-package com.github.caijh.framework.web.init;
+package com.github.caijh.framework.doc.init;
 
 import java.util.ArrayList;
 import java.util.List;

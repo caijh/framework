@@ -1,0 +1,11 @@
+swagger:
+  enabled: false
+  title: ${spring.application.name}
+  description: ${spring.application.name}
+smart-doc:
+  enabled: true
+springfox:
+  documentation:
+    enabled: ${swagger.enabled}
+    open-api:
+      enabled: ${swagger.enabled}

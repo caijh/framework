@@ -1,7 +1,6 @@
 package com.github.caijh.framework.web.autoconfigure;
 
 import com.github.caijh.framework.web.filter.ThreadLocalStoreFilter;
-import com.github.caijh.framework.web.init.DocInitializer;
 import com.github.caijh.framework.web.interceptor.ThreadLocalStoreInterceptor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
@@ -44,11 +43,6 @@ public class FrameworkWebAutoConfiguration implements WebMvcConfigurer {
     @ConditionalOnMissingBean
     public RestTemplate restTemplate() {
         return new RestTemplate();
-    }
-
-    @Bean
-    public DocInitializer docInitializer() {
-        return new DocInitializer();
     }
 
     @Bean

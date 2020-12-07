@@ -25,6 +25,7 @@
         <module>framework-web</module>
         <module>framework-microservice</module>
         <module>framework-logging</module>
+        <module>framework-doc</module>
     </modules>
 
     <properties>
@@ -186,6 +187,11 @@
             <dependency>
                 <groupId>com.github.caijh</groupId>
                 <artifactId>framework-logging</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.caijh</groupId>
+                <artifactId>framework-doc</artifactId>
                 <version>${framework.version}</version>
             </dependency>
         </dependencies>
