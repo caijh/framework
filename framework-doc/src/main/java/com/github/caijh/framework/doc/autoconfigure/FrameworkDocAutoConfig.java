@@ -26,7 +26,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 /**
  * 默认使用smart-doc作为文档生成工具.
  * <p>
- * 要使用swagger, 自行配置swagger.enabled=true. SpringApplication类上加{@code @EnableOpenApi}.
+ * 要使用swagger, 自行配置swagger.enabled=true.
  * </p>
  */
 @Configuration
