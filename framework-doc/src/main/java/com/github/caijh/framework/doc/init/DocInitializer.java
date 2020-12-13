@@ -25,7 +25,10 @@ public class DocInitializer implements ApplicationListener<ApplicationReadyEvent
             return;
         }
         logger.info("Initializing smart-doc");
+
         init(event.getApplicationContext());
+
+        logger.info("Initialized smart-doc");
     }
 
     public void init(ConfigurableApplicationContext applicationContext) {
