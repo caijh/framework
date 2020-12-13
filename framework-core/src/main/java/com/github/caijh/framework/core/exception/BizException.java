@@ -21,13 +21,11 @@ public class BizException extends RuntimeException {
     private final transient Object[] params;
 
     public BizException() {
-        super();
         this.code = null;
         this.params = null;
     }
 
     public BizException(String code, Object... params) {
-        super();
         this.code = code;
         this.params = params;
     }
