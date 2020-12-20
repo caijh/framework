@@ -146,6 +146,11 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
+                <groupId>com.vladmihalcea</groupId>
+                <artifactId>hibernate-types-52</artifactId>
+                <version>2.9.13</version>
+            </dependency>
+            <dependency>
                 <groupId>com.github.caijh</groupId>
                 <artifactId>framework-model</artifactId>
                 <version>${framework.version}</version>
