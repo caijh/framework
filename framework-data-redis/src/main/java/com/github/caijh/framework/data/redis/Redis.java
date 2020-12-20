@@ -1,4 +1,4 @@
-package com.github.caijh.framework.redis;
+package com.github.caijh.framework.data.redis;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Consumer;
 
-import com.github.caijh.framework.redis.exception.RedisException;
+import com.github.caijh.framework.data.redis.exception.RedisException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.Cursor;
 import org.springframework.data.redis.core.RedisTemplate;

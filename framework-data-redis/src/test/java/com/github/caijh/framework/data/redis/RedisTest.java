@@ -1,4 +1,4 @@
-package com.github.caijh.framework.redis;
+package com.github.caijh.framework.data.redis;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.github.caijh.framework.redis.serializer.ProtobufSerializer;
+import com.github.caijh.framework.data.redis.serializer.ProtobufSerializer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

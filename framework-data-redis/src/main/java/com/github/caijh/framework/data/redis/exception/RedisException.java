@@ -1,4 +1,4 @@
-package com.github.caijh.framework.redis.exception;
+package com.github.caijh.framework.data.redis.exception;
 
 public class RedisException extends RuntimeException {
 

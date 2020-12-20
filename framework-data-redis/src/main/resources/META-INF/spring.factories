@@ -1,4 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.github.caijh.framework.redis.autoconfigure.FrameworkRedisAutoConfiguration
+  com.github.caijh.framework.data.redis.autoconfigure.FrameworkRedisAutoConfiguration
 org.springframework.boot.env.EnvironmentPostProcessor=\
-  com.github.caijh.framework.redis.autoconfigure.processor.StarterConfigFileEnvironmentPostProcessor
+  com.github.caijh.framework.data.redis.autoconfigure.processor.StarterConfigFileEnvironmentPostProcessor

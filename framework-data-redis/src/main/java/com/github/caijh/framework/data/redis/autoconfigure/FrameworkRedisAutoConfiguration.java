@@ -1,7 +1,7 @@
-package com.github.caijh.framework.redis.autoconfigure;
+package com.github.caijh.framework.data.redis.autoconfigure;
 
-import com.github.caijh.framework.redis.Redis;
-import com.github.caijh.framework.redis.serializer.ProtobufSerializer;
+import com.github.caijh.framework.data.redis.Redis;
+import com.github.caijh.framework.data.redis.serializer.ProtobufSerializer;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;

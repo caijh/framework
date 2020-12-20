@@ -1,4 +1,4 @@
-package com.github.caijh.framework.redis.util;
+package com.github.caijh.framework.data.redis.util;
 
 import io.protostuff.LinkedBuffer;
 import io.protostuff.ProtostuffIOUtil;

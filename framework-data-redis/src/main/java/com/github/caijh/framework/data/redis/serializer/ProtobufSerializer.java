@@ -1,13 +1,12 @@
-package com.github.caijh.framework.redis.serializer;
+package com.github.caijh.framework.data.redis.serializer;
 
-import com.github.caijh.framework.redis.util.ProtoStuffSerializerUtils;
+import com.github.caijh.framework.data.redis.util.ProtoStuffSerializerUtils;
 import org.springframework.data.redis.serializer.RedisSerializer;
-import org.springframework.data.redis.serializer.SerializationException;
 
 public class ProtobufSerializer implements RedisSerializer<Object> {
 
     @Override
-    public byte[] serialize(Object o) throws SerializationException {
+    public byte[] serialize(Object o) {
         if (o == null) {
             return new byte[]{};
         }
@@ -15,7 +14,7 @@ public class ProtobufSerializer implements RedisSerializer<Object> {
     }
 
     @Override
-    public Object deserialize(byte[] bytes) throws SerializationException {
+    public Object deserialize(byte[] bytes) {
         if (bytes == null || bytes.length == 0) {
             return null;
         }
