@@ -1,4 +1,4 @@
-package com.github.caijh.framework.orm.mysql;
+package com.github.caijh.framework.data.mysql;
 
 import java.sql.Types;
 

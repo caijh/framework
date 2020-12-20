@@ -1,4 +1,4 @@
-package com.github.caijh.framework.orm.processor;
+package com.github.caijh.framework.data.processor;
 
 import com.github.caijh.framework.core.processor.ConfigFileEnvironmentPostProcessor;
 
