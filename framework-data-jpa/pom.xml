@@ -9,7 +9,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>framework-orm</artifactId>
+    <artifactId>framework-data-jpa</artifactId>
     <name>framework-orm</name>
     <description>A project for Spring Boot</description>
 
