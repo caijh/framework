@@ -162,17 +162,17 @@
             </dependency>
             <dependency>
                 <groupId>com.github.caijh</groupId>
-                <artifactId>framework-orm</artifactId>
+                <artifactId>framework-data-jpa</artifactId>
                 <version>${framework.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.caijh</groupId>
-                <artifactId>framework-mybatis</artifactId>
+                <artifactId>framework-data-mybatis</artifactId>
                 <version>${framework.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.caijh</groupId>
-                <artifactId>framework-redis</artifactId>
+                <artifactId>framework-data-redis</artifactId>
                 <version>${framework.version}</version>
             </dependency>
             <dependency>
