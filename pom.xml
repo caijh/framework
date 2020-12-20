@@ -19,8 +19,8 @@
         <module>framework-model</module>
         <module>framework-core</module>
         <module>framework-orm</module>
-        <module>framework-mybatis</module>
-        <module>framework-redis</module>
+        <module>framework-data-mybatis</module>
+        <module>framework-data-redis</module>
         <module>framework-utils</module>
         <module>framework-web</module>
         <module>framework-microservice</module>
