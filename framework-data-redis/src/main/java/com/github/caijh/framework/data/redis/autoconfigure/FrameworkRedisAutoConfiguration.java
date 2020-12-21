@@ -2,8 +2,6 @@ package com.github.caijh.framework.data.redis.autoconfigure;
 
 import com.github.caijh.framework.data.redis.Redis;
 import com.github.caijh.framework.data.redis.serializer.ProtobufSerializer;
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
-import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -15,7 +13,6 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
 @EnableConfigurationProperties(RedisProperties.class)
-@AutoConfigureAfter(value = {RedisAutoConfiguration.class})
 public class FrameworkRedisAutoConfiguration {
 
     @Bean
