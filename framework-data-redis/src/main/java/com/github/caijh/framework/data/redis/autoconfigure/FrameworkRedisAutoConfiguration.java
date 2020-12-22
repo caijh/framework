@@ -3,7 +3,6 @@ package com.github.caijh.framework.data.redis.autoconfigure;
 import com.github.caijh.framework.data.redis.Redis;
 import com.github.caijh.framework.data.redis.serializer.ProtobufSerializer;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -22,7 +21,6 @@ public class FrameworkRedisAutoConfiguration {
 
     @Primary
     @Bean
-    @ConditionalOnMissingBean
     public RedisTemplate<String, Object> stringObjectRedisTemplate(RedisConnectionFactory redisConnectionFactory) {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
