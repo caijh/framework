@@ -194,6 +194,10 @@ public class Redis {
         });
     }
 
+    public boolean hasKey(String key) {
+        return getRedisTemplate().hasKey(key);
+    }
+
     public RedisTemplate<String, Object> getRedisTemplate() {
         return redisTemplate;
     }
