@@ -1,8 +1,6 @@
 package com.github.caijh.framework.data.redis;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
 
 import com.github.caijh.framework.core.DistributedLock;
 import org.redisson.Redisson;
@@ -14,9 +12,8 @@ import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 
 public class RedisLock implements DistributedLock {
 
-    public static final String LOCK = "LOCK";
+    private static final String LOCK = "LOCK";
     private final RedissonClient redissonClient;
-    private final Map<String, RedissonRedLock> locks = new ConcurrentHashMap<>();
 
     public RedisLock(RedisProperties redisProperties) {
         Config config = new Config();
@@ -44,35 +41,19 @@ public class RedisLock implements DistributedLock {
     }
 
     @Override
-    public void acquire() throws Exception {
-        this.acquire(LOCK, -1, null);
+    public Lock get() {
+        return this.get(LOCK);
     }
 
     @Override
-    public boolean acquire(long time, TimeUnit timeUnit) throws Exception {
-        return this.acquire(LOCK, time, timeUnit);
-    }
-
-    @Override
-    public boolean acquire(String key, long time, TimeUnit timeUnit) throws Exception {
-        return this.getRedissonRedLock(key).tryLock(time, timeUnit);
-    }
-
-    @Override
-    public void release() {
-        this.release(LOCK);
-    }
-
-    @Override
-    public void release(String key) {
-        this.getRedissonRedLock(key).unlock();
+    public Lock get(String key) {
+        return this.getRedissonRedLock(key);
     }
 
     private RedissonRedLock getRedissonRedLock(String key) {
-        return locks.computeIfAbsent(key, s -> {
-            RLock lock = redissonClient.getLock(key);
-            return new RedissonRedLock(lock);
-        });
+        RLock lock = redissonClient.getLock(key);
+        return new RedissonRedLock(lock);
     }
+
 
 }

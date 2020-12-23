@@ -1,17 +1,11 @@
 package com.github.caijh.framework.core;
 
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
 
 public interface DistributedLock {
 
-    void acquire() throws Exception;
+    Lock get();
 
-    boolean acquire(long time, TimeUnit timeUnit) throws Exception;
-
-    boolean acquire(String key, long time, TimeUnit timeUnit) throws Exception;
-
-    void release() throws Exception;
-
-    void release(String key) throws Exception;
+    Lock get(String key);
 
 }
