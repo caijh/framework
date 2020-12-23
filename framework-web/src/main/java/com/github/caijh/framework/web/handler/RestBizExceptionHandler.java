@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
  * 统一处理业务异常，返回国际化信息.
  */
 @RestControllerAdvice(annotations = RestController.class)
-public class RestExceptionHandler extends ResponseEntityExceptionHandler {
+public class RestBizExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Inject
     private MessageSource messageSource;
