@@ -195,7 +195,8 @@ public class Redis {
     }
 
     public boolean hasKey(String key) {
-        return getRedisTemplate().hasKey(key);
+        Boolean hasKey = getRedisTemplate().hasKey(key);
+        return Optional.ofNullable(hasKey).orElse(false);
     }
 
     public RedisTemplate<String, Object> getRedisTemplate() {
