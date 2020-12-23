@@ -48,6 +48,7 @@ class RedisTest {
     @Test
     void test() {
         redis.set("integer", 1);
+        assertTrue(redis.hasKey("integer"));
 
         Integer integer = redis.get("integer");
         assertEquals(1, (int) integer);
