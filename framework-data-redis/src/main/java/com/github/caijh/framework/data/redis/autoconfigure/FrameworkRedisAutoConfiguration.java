@@ -1,6 +1,7 @@
 package com.github.caijh.framework.data.redis.autoconfigure;
 
 import com.github.caijh.framework.data.redis.Redis;
+import com.github.caijh.framework.data.redis.RedisLock;
 import com.github.caijh.framework.data.redis.serializer.ProtobufSerializer;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
@@ -35,6 +36,11 @@ public class FrameworkRedisAutoConfiguration {
     @Bean
     public Redis redis(RedisTemplate<String, Object> stringObjectRedisTemplate) {
         return new Redis(stringObjectRedisTemplate);
+    }
+
+    @Bean
+    public RedisLock redisLock(RedisProperties redisProperties) {
+        return new RedisLock(redisProperties);
     }
 
 }
