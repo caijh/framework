@@ -14,7 +14,7 @@ class ValidatorUtilsTest {
 
     @Test
     void isMobile() {
-        assertTrue(ValidatorUtils.isMobile("18928786149"));
+        assertTrue(ValidatorUtils.isMobile("18928711111"));
     }
 
     @Test
