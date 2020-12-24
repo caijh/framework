@@ -27,6 +27,7 @@
         <module>framework-logging</module>
         <module>framework-doc</module>
         <module>framework-cache</module>
+        <module>framework-message-kafka</module>
     </modules>
 
     <properties>
