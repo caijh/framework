@@ -1,5 +1,9 @@
 package com.github.caijh.framework.web.autoconfigure;
 
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import javax.annotation.Nonnull;
+
 import com.github.caijh.framework.web.filter.ThreadLocalStoreFilter;
 import com.github.caijh.framework.web.interceptor.ThreadLocalStoreInterceptor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -10,6 +14,8 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -18,6 +24,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableConfigurationProperties(ServerProperties.class)
 public class FrameworkWebAutoConfiguration implements WebMvcConfigurer {
+
+    @Bean
+    public HttpMessageConverter<String> charsetConverter() {
+        return new StringHttpMessageConverter(StandardCharsets.UTF_8);
+    }
 
     /**
      * use threadLocalStoreFilter to clean thread local store.
@@ -50,6 +61,11 @@ public class FrameworkWebAutoConfiguration implements WebMvcConfigurer {
     @ConfigurationProperties(prefix = "server")
     public ServerProperties serverProperties() {
         return new ServerProperties();
+    }
+
+    @Override
+    public void configureMessageConverters(@Nonnull List<HttpMessageConverter<?>> converters) {
+        converters.add(charsetConverter());
     }
 
 }
