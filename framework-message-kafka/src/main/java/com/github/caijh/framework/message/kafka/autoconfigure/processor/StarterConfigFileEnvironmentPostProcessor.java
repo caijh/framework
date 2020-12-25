@@ -1,4 +1,6 @@
 package com.github.caijh.framework.message.kafka.autoconfigure.processor;
 
-public class StarterConfigFileEnvironmentPostProcessor {
+import com.github.caijh.framework.core.processor.ConfigFileEnvironmentPostProcessor;
+
+public class StarterConfigFileEnvironmentPostProcessor extends ConfigFileEnvironmentPostProcessor {
 }
