@@ -3,6 +3,7 @@ package com.github.caijh.framework.microservice.autoconfigure;
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
 import com.netflix.hystrix.HystrixCommandProperties;
+import feign.Logger;
 import org.springframework.cloud.client.circuitbreaker.Customizer;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
@@ -16,6 +17,12 @@ import org.springframework.context.annotation.Configuration;
 @EnableFeignClients
 @EnableHystrix
 public class FrameworkMicroserviceAutoConfiguration {
+
+    @Bean
+    Logger.Level feignLoggerLevel() {
+        //这里记录所有，根据实际情况选择合适的日志level
+        return Logger.Level.FULL;
+    }
 
     @Bean
     public Customizer<HystrixCircuitBreakerFactory> defaultConfig() {
