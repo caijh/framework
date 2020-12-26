@@ -217,6 +217,16 @@
                 <artifactId>framework-doc</artifactId>
                 <version>${framework.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.github.caijh</groupId>
+                <artifactId>framework-message-kafka</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.caijh</groupId>
+                <artifactId>framework-message-websocket</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
