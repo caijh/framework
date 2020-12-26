@@ -28,6 +28,7 @@
         <module>framework-doc</module>
         <module>framework-cache</module>
         <module>framework-message-kafka</module>
+        <module>framework-message-websocket</module>
     </modules>
 
     <properties>
