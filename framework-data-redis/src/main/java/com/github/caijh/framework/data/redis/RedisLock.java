@@ -32,7 +32,11 @@ public class RedisLock implements DistributedLock {
                       .setDatabase(redisProperties.getDatabase()).setMasterName(sentinel.getMaster()).setScanInterval(5000)
                       .setConnectTimeout((int) (redisProperties.getTimeout().getSeconds() * 1000));
             } else {
-                config.useSingleServer().setAddress(redisProperties.getHost() + ":" + redisProperties.getPort())
+                String address = redisProperties.getUrl();
+                if (address == null) {
+                    address = "redis://" + redisProperties.getHost() + ":" + redisProperties.getPort();
+                }
+                config.useSingleServer().setAddress(address)
                       .setClientName(redisProperties.getClientName()).setPassword(redisProperties.getPassword())
                       .setDatabase(redisProperties.getDatabase()).setConnectTimeout((int) (redisProperties.getTimeout().getSeconds() * 1000));
             }
