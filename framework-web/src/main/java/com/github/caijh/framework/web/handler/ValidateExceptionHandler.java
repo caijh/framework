@@ -2,8 +2,8 @@ package com.github.caijh.framework.web.handler;
 
 import java.util.List;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.caijh.framework.core.model.R;
-import com.google.gson.JsonObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -27,9 +27,9 @@ public class ValidateExceptionHandler {
         }
         if (bindingResult != null) {
             List<FieldError> fieldErrors = bindingResult.getFieldErrors();
-            JsonObject errMsg = new JsonObject();
+            JSONObject errMsg = new JSONObject();
             for (FieldError error : fieldErrors) {
-                errMsg.addProperty(error.getField(), error.getDefaultMessage());
+                errMsg.put(error.getField(), error.getDefaultMessage());
             }
             R<Void> result = new R<>();
             result.setMessage(errMsg.toString());

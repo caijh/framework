@@ -3,7 +3,7 @@ package com.github.caijh.framework.web.util;
 import javax.servlet.http.HttpServletRequest;
 
 import com.github.caijh.framework.web.constant.Constants;
-import org.apache.commons.lang3.StringUtils;
+import io.micrometer.core.instrument.util.StringUtils;
 
 public class IpUtil {
 
