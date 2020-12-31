@@ -17,12 +17,11 @@ import org.springframework.data.redis.core.ScanOptions;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.util.Assert;
 
+import static com.github.caijh.framework.data.redis.Redis.Expired.ENTITY_EXPIRED_SECONDS;
+import static com.github.caijh.framework.data.redis.Redis.Expired.LIST_EXPIRED_SECONDS;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class Redis {
-
-    private static final long LIST_EXPIRED_SECONDS = 30; // 30秒
-    private static final long ENTITY_EXPIRED_SECONDS = 60 * 60 * 24L; // 1天
 
     private final RedisTemplate<String, Object> redisTemplate;
     private final RedisSerializer<String> keySerializer;
@@ -201,6 +200,18 @@ public class Redis {
 
     public RedisTemplate<String, Object> getRedisTemplate() {
         return redisTemplate;
+    }
+
+    public static class Expired {
+
+        public static final long NOT_EXPIRED = -1;
+        public static final long LIST_EXPIRED_SECONDS = 30; // 30秒
+        public static final long ENTITY_EXPIRED_SECONDS = 60 * 60 * 24L;
+
+        private Expired() {
+
+        }
+
     }
 
 }

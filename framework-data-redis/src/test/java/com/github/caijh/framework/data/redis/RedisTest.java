@@ -47,7 +47,7 @@ class RedisTest {
 
     @Test
     void test() {
-        redis.set("integer", 1);
+        redis.set("integer", 1, Redis.Expired.NOT_EXPIRED);
         assertTrue(redis.hasKey("integer"));
 
         Integer integer = redis.get("integer");
