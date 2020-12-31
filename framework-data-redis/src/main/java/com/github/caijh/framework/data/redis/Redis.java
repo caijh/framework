@@ -1,7 +1,6 @@
 package com.github.caijh.framework.data.redis;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +18,6 @@ import org.springframework.util.Assert;
 
 import static com.github.caijh.framework.data.redis.Redis.Expired.ENTITY_EXPIRED_SECONDS;
 import static com.github.caijh.framework.data.redis.Redis.Expired.LIST_EXPIRED_SECONDS;
-import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class Redis {
 
@@ -69,27 +67,6 @@ public class Redis {
         setEx(keyBytes, serialize, expire);
     }
 
-
-    /**
-     * get cache object.
-     *
-     * @param key key
-     * @param <T> parameter type of class
-     * @return T the has been cache object.
-     */
-    @SuppressWarnings("unchecked")
-    public <T> T get(String key) {
-        byte[] keyBytes = keySerializer.serialize(key);
-        Assert.notNull(keyBytes, "key must not be null");
-        byte[] result = redisTemplate.execute((RedisConnection redisConnection) -> redisConnection.get(keyBytes));
-        if (result == null) {
-            return null;
-        }
-
-        return (T) valueSerializer.deserialize(result);
-    }
-
-
     /**
      * save list to redis.
      *
@@ -112,6 +89,9 @@ public class Redis {
     public <T> void setList(String key, List<T> list, Long expire) {
         final byte[] keyBytes = keySerializer.serialize(key);
         byte[] serialize = valueSerializer.serialize(list);
+        if (expire == null) {
+            expire = LIST_EXPIRED_SECONDS;
+        }
         setEx(keyBytes, serialize, expire);
     }
 
@@ -131,6 +111,25 @@ public class Redis {
     }
 
     /**
+     * get cache object.
+     *
+     * @param key key
+     * @param <T> parameter type of class
+     * @return T the has been cache object.
+     */
+    @SuppressWarnings("unchecked")
+    public <T> T get(String key) {
+        byte[] keyBytes = keySerializer.serialize(key);
+        Assert.notNull(keyBytes, "key must not be null");
+        byte[] result = redisTemplate.execute((RedisConnection redisConnection) -> redisConnection.get(keyBytes));
+        if (result == null) {
+            return null;
+        }
+
+        return (T) valueSerializer.deserialize(result);
+    }
+
+    /**
      * get the cached list.
      *
      * @param key the key of object
@@ -139,12 +138,9 @@ public class Redis {
      */
     @SuppressWarnings("unchecked")
     public <T> List<T> getList(String key) {
-        byte[] result = redisTemplate.execute((RedisConnection redisConnection) -> redisConnection.get(key.getBytes(UTF_8)));
-
-        if (result == null) {
-            return Collections.emptyList();
-        }
-
+        byte[] keyBytes = keySerializer.serialize(key);
+        Assert.notNull(keyBytes, "key must not be null");
+        byte[] result = redisTemplate.execute((RedisConnection redisConnection) -> redisConnection.get(keyBytes));
         return (List<T>) valueSerializer.deserialize(result);
     }
 
@@ -205,8 +201,8 @@ public class Redis {
     public static class Expired {
 
         public static final long NOT_EXPIRED = -1;
-        public static final long LIST_EXPIRED_SECONDS = 30; // 30秒
-        public static final long ENTITY_EXPIRED_SECONDS = 60 * 60 * 24L;
+        public static final long LIST_EXPIRED_SECONDS = 30; // 列表默认缓存30秒
+        public static final long ENTITY_EXPIRED_SECONDS = 60 * 60 * 24L; // 实体对象默认缓存一天
 
         private Expired() {
 
