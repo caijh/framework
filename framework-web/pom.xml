@@ -26,10 +26,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.github.caijh</groupId>
-            <artifactId>framework-doc</artifactId>
-        </dependency>
     </dependencies>
 
 </project>
