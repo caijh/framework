@@ -25,11 +25,6 @@ public class BizException extends RuntimeException {
         this.params = null;
     }
 
-    public BizException(String code, Object... params) {
-        this.code = code;
-        this.params = params;
-    }
-
     public BizException(Exception e) {
         super(e);
         this.code = null;
@@ -46,6 +41,15 @@ public class BizException extends RuntimeException {
         super(message, cause);
         this.code = null;
         this.params = null;
+    }
+
+    private BizException(String code, Object... params) {
+        this.code = code;
+        this.params = params;
+    }
+
+    public static BizException of(String code, Object... params) {
+        return new BizException(code, params);
     }
 
 }
