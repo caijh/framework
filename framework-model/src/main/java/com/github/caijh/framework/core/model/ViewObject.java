@@ -1,5 +1,7 @@
 package com.github.caijh.framework.core.model;
 
-interface ViewObject {
+import java.io.Serializable;
+
+interface ViewObject extends Serializable {
 
 }
