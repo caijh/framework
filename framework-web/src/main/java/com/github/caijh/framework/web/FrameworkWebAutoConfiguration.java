@@ -4,8 +4,10 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import javax.annotation.Nonnull;
 
+import com.github.caijh.framework.web.autoconfigure.CorsAutoConfiguration;
 import com.github.caijh.framework.web.filter.ThreadLocalStoreFilter;
 import com.github.caijh.framework.web.interceptor.ThreadLocalStoreInterceptor;
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -25,6 +27,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @ComponentScan
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableConfigurationProperties(ServerProperties.class)
+@ImportAutoConfiguration(value = {CorsAutoConfiguration.class})
 public class FrameworkWebAutoConfiguration implements WebMvcConfigurer {
 
     @Bean
