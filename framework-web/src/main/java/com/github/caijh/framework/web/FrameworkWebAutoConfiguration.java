@@ -1,4 +1,4 @@
-package com.github.caijh.framework.web.autoconfigure;
+package com.github.caijh.framework.web;
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -12,6 +12,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
+@ComponentScan
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableConfigurationProperties(ServerProperties.class)
 public class FrameworkWebAutoConfiguration implements WebMvcConfigurer {
