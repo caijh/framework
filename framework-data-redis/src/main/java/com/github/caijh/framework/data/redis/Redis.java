@@ -121,12 +121,9 @@ public class Redis {
     public <T> T get(String key) {
         byte[] keyBytes = keySerializer.serialize(key);
         Assert.notNull(keyBytes, "key must not be null");
-        byte[] result = redisTemplate.execute((RedisConnection redisConnection) -> redisConnection.get(keyBytes));
-        if (result == null) {
-            return null;
-        }
+        byte[] valueBytes = redisTemplate.execute((RedisConnection redisConnection) -> redisConnection.get(keyBytes));
 
-        return (T) valueSerializer.deserialize(result);
+        return (T) valueSerializer.deserialize(valueBytes);
     }
 
     /**
@@ -140,8 +137,8 @@ public class Redis {
     public <T> List<T> getList(String key) {
         byte[] keyBytes = keySerializer.serialize(key);
         Assert.notNull(keyBytes, "key must not be null");
-        byte[] result = redisTemplate.execute((RedisConnection redisConnection) -> redisConnection.get(keyBytes));
-        return (List<T>) valueSerializer.deserialize(result);
+        byte[] valueBytes = redisTemplate.execute((RedisConnection redisConnection) -> redisConnection.get(keyBytes));
+        return (List<T>) valueSerializer.deserialize(valueBytes);
     }
 
     /**
