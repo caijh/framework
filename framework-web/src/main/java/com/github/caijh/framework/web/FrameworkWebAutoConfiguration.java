@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Nonnull;
 
 import com.github.caijh.framework.web.autoconfigure.CorsAutoConfiguration;
-import com.github.caijh.framework.web.autoconfigure.JacksonConfiguration;
+import com.github.caijh.framework.web.autoconfigure.JacksonAutoConfiguration;
 import com.github.caijh.framework.web.filter.ThreadLocalStoreFilter;
 import com.github.caijh.framework.web.interceptor.ThreadLocalStoreInterceptor;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
@@ -28,7 +28,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @ComponentScan
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableConfigurationProperties(ServerProperties.class)
-@ImportAutoConfiguration(value = {CorsAutoConfiguration.class, JacksonConfiguration.class})
+@ImportAutoConfiguration(value = {CorsAutoConfiguration.class, JacksonAutoConfiguration.class})
 public class FrameworkWebAutoConfiguration implements WebMvcConfigurer {
 
     @Bean
