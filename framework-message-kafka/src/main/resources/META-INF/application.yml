@@ -2,7 +2,7 @@ spring:
   kafka:
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:127.0.0.1:9092}
     producer:
-      client-id: ${spring.application.name}
+      client-id: ${spring.application.name:kafka-producer}
       batch-size: 16384 #每次批量发送消息的数量,produce积累到一定数据，一次发送
       buffer-memory: 33554432 # produce积累数据一次发送，缓存大小达到buffer.memory就发送数据
       # 写入失败时，重试次数。当leader节点失效，一个repli节点会替代成为leader节点，此时可能出现写入失败，
@@ -17,7 +17,7 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
     consumer:
-      client-id: ${spring.application.name}
+      client-id: ${spring.application.name:kafka-consumer}
       group-id: test # 指定默认消费者group id --> 由于在kafka中，同一组中的consumer不会读取到同一个消息，依靠groud.id设置组名
       # enable.auto.commit:true --> 设置自动提交offset
       enable-auto-commit: true
