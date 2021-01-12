@@ -43,4 +43,9 @@ class ValidatorUtilsTest {
         assertTrue(ValidatorUtils.isIpAddr("127.0.0.1"));
     }
 
+    @Test
+    void isTel() {
+        assertTrue(ValidatorUtils.isTel("020-88888888"));
+    }
+
 }

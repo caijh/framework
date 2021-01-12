@@ -12,6 +12,9 @@ public class ValidatorUtils {
      * 正则表达式：验证手机号
      */
     public static final String REGEX_MOBILE = "^(1[0-9])\\d{9}$";
+
+    public static final String REGEX_TEL = "^\\d{3,4}-?\\d{7,9}$";
+
     /**
      * 正则表达式：验证邮箱
      */
@@ -53,6 +56,14 @@ public class ValidatorUtils {
      */
     public static boolean isMobile(String mobile) {
         return Pattern.matches(REGEX_MOBILE, mobile);
+    }
+
+    /**
+     * @param tel tel
+     * @return true, if string is tel.
+     */
+    public static boolean isTel(String tel) {
+        return Pattern.matches(REGEX_TEL, tel);
     }
 
     /**
