@@ -6,12 +6,17 @@ public class RequestUtils {
 
     private RequestUtils() {}
 
-    public static String extractHeader(HttpServletRequest request, String headerName) {
-        String headValue = request.getParameter(headerName);
+    /**
+     * @param request HttpServletRequest
+     * @param param   参数
+     * @return 查找请求是否有参数，有返回；无则查找header。
+     */
+    public static String extractHeader(HttpServletRequest request, String param) {
+        String headValue = request.getParameter(param);
         if (null != headValue) {
             return headValue;
         }
-        return request.getHeader(headerName);
+        return request.getHeader(param);
     }
 
 }
