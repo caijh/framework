@@ -66,7 +66,7 @@ public class MessageConstantsProcessor extends AbstractProcessor {
                 propertyKeys.addAll(properties.stringPropertyNames());
             }
 
-            final String fullName = fullClassName.replace("\\.", "/");
+            final String fullName = fullClassName.replace(".", "/");
 
             final byte[] bytes = new MessageConstantsCodeGenerator().genCode(fullName, propertyKeys);
 
