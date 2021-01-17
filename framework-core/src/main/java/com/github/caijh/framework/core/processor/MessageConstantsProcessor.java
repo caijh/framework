@@ -15,6 +15,9 @@ import java.util.stream.Stream;
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.RoundEnvironment;
+import javax.annotation.processing.SupportedAnnotationTypes;
+import javax.annotation.processing.SupportedSourceVersion;
+import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 
@@ -22,6 +25,8 @@ import com.github.caijh.framework.core.annotation.EnableMessageConstants;
 import com.github.caijh.framework.core.exception.MessageConstantsException;
 import org.springframework.util.FileCopyUtils;
 
+@SupportedAnnotationTypes("com.github.caijh.framework.core.annotation.EnableMessageConstants")
+@SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class MessageConstantsProcessor extends AbstractProcessor {
 
     private TypeElement typeElement;
