@@ -1,4 +1,4 @@
-package com.github.caijh.framework.web.processor;
+package com.github.caijh.framework.core.processor;
 
 import java.io.File;
 import java.io.FileReader;
@@ -18,8 +18,8 @@ import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 
-import com.github.caijh.framework.web.annotation.EnableMessageConstants;
-import com.github.caijh.framework.web.exception.MessageConstantsException;
+import com.github.caijh.framework.core.annotation.EnableMessageConstants;
+import com.github.caijh.framework.core.exception.MessageConstantsException;
 import org.springframework.util.FileCopyUtils;
 
 public class MessageConstantsProcessor extends AbstractProcessor {
@@ -34,7 +34,7 @@ public class MessageConstantsProcessor extends AbstractProcessor {
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
-        typeElement = processingEnv.getElementUtils().getTypeElement("com.github.caijh.framework.web.annotation.EnableMessageConstants");
+        typeElement = processingEnv.getElementUtils().getTypeElement("com.github.caijh.framework.core.annotation.EnableMessageConstants");
     }
 
     @Override

@@ -12,10 +12,24 @@
 
     <artifactId>framework-core</artifactId>
 
+    <properties>
+        <asm.version>9.0</asm.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.github.caijh</groupId>
             <artifactId>framework-model</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm</artifactId>
+            <version>${asm.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm-util</artifactId>
+            <version>${asm.version}</version>
         </dependency>
     </dependencies>
 

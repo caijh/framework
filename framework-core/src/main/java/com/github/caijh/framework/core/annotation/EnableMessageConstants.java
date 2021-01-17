@@ -1,5 +1,4 @@
-package com.github.caijh.framework.web.annotation;
-
+package com.github.caijh.framework.core.annotation;
 
 public @interface EnableMessageConstants {
 

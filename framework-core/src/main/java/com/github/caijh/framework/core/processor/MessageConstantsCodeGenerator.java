@@ -1,4 +1,4 @@
-package com.github.caijh.framework.web.processor;
+package com.github.caijh.framework.core.processor;
 
 import java.util.Set;
 

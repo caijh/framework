@@ -1,4 +1,4 @@
-package com.github.caijh.framework.web.exception;
+package com.github.caijh.framework.core.exception;
 
 public class MessageConstantsException extends RuntimeException {
 
