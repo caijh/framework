@@ -12,6 +12,10 @@
 
     <artifactId>framework-web</artifactId>
 
+    <properties>
+        <asm.version>9.0</asm.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.github.caijh</groupId>
@@ -31,6 +35,16 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.74</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm</artifactId>
+            <version>${asm.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm-util</artifactId>
+            <version>${asm.version}</version>
         </dependency>
     </dependencies>
 
