@@ -13,6 +13,10 @@
     <artifactId>framework-utils</artifactId>
     <packaging>jar</packaging>
 
+    <properties>
+        <org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.github.caijh.commons</groupId>
@@ -23,6 +27,12 @@
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-yaml</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${org.mapstruct.version}</version>
         </dependency>
 
     </dependencies>
