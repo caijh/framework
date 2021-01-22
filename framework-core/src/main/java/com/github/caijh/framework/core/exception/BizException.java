@@ -25,8 +25,8 @@ public class BizException extends RuntimeException {
         this.params = null;
     }
 
-    public BizException(Exception e) {
-        super(e);
+    public BizException(Throwable cause) {
+        super(cause);
         this.code = null;
         this.params = null;
     }
