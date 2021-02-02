@@ -12,12 +12,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice(annotations = Controller.class)
 public class ValidateExceptionHandler {
 
     @ExceptionHandler(value = {BindException.class, MethodArgumentNotValidException.class})
+    @ResponseBody
     public ResponseEntity<R<Void>> validExceptionHandler(Exception e) {
         BindingResult bindingResult = null;
         if (e instanceof BindException) {
@@ -25,17 +27,18 @@ public class ValidateExceptionHandler {
         } else if (e instanceof MethodArgumentNotValidException) {
             bindingResult = ((MethodArgumentNotValidException) e).getBindingResult();
         }
+        R<Void> result = new R<>();
         if (bindingResult != null) {
             List<FieldError> fieldErrors = bindingResult.getFieldErrors();
             JSONObject errMsg = new JSONObject();
             for (FieldError error : fieldErrors) {
                 errMsg.put(error.getField(), error.getDefaultMessage());
             }
-            R<Void> result = new R<>();
             result.setMessage(errMsg.toString());
-            return new ResponseEntity<>(result, HttpStatus.OK);
+        } else {
+            result.setMessage(e.getLocalizedMessage());
         }
-        return null;
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
 }
