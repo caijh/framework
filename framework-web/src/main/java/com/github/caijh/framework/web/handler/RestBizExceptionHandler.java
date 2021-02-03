@@ -6,6 +6,7 @@ import com.github.caijh.framework.core.exception.BizException;
 import com.github.caijh.framework.core.model.R;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 /**
  * 统一处理业务异常，返回国际化信息.
  */
+@Order(1)
 @RestControllerAdvice(annotations = RestController.class)
 public class RestBizExceptionHandler extends ResponseEntityExceptionHandler {
 
