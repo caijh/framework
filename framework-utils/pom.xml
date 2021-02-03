@@ -13,10 +13,6 @@
     <artifactId>framework-utils</artifactId>
     <packaging>jar</packaging>
 
-    <properties>
-        <org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.github.caijh.commons</groupId>
@@ -39,6 +35,7 @@
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-processor</artifactId>
             <version>${org.mapstruct.version}</version>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>
