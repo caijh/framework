@@ -11,7 +11,7 @@
 
     <artifactId>framework-doc</artifactId>
     <properties>
-        <smart.doc.version>2.0.6</smart.doc.version>
+        <smart.doc.version>2.0.7</smart.doc.version>
     </properties>
     <dependencies>
         <dependency>
