@@ -3,6 +3,9 @@ package com.github.caijh.framework.core.enums;
 import java.util.NoSuchElementException;
 import javax.annotation.Nonnull;
 
+/**
+ * 有索引顺序的enum.
+ */
 public interface IndexEnum {
 
     /**
