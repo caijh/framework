@@ -20,4 +20,9 @@ class CommonStatusTest {
         Assertions.assertNotNull(commonStatus);
     }
 
+    @Test
+    void indexValues() {
+        Assertions.assertTrue(IndexEnum.indexValues(CommonStatus.class).contains(0));
+    }
+
 }
