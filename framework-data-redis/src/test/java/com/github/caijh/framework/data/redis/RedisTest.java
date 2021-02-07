@@ -26,8 +26,8 @@ class RedisTest {
     @BeforeEach
     public void setUp() {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
-        String host = "10.38.2.12";
-        int port = 30379;
+        String host = "127.0.0.1";
+        int port = 6379;
         RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration(host, port);
         LettuceConnectionFactory connectionFactory = new LettuceConnectionFactory(redisStandaloneConfiguration);
         connectionFactory.afterPropertiesSet();
@@ -91,6 +91,17 @@ class RedisTest {
         redis.batchDelete("*");
         Set<String> keys = redis.getRedisTemplate().keys("*");
         assertTrue(keys == null || keys.isEmpty());
+    }
+
+    @Test
+    void bitCount() {
+        String key = "bit-test";
+        redis.getRedisTemplate().opsForValue().setBit(key, 0, false);
+        redis.getRedisTemplate().opsForValue().setBit(key, 1, true);
+        redis.getRedisTemplate().opsForValue().setBit(key, 2, false);
+
+        int count = redis.bitCount(key);
+        assertEquals(1, count);
     }
 
 }

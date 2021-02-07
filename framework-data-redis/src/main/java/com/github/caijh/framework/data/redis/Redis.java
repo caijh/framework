@@ -11,6 +11,7 @@ import java.util.function.Consumer;
 import com.github.caijh.framework.data.redis.exception.RedisException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.Cursor;
+import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ScanOptions;
 import org.springframework.data.redis.serializer.RedisSerializer;
@@ -189,6 +190,14 @@ public class Redis {
     public boolean hasKey(String key) {
         Boolean hasKey = getRedisTemplate().hasKey(key);
         return Optional.ofNullable(hasKey).orElse(false);
+    }
+
+    public int bitCount(String key) {
+        byte[] keyByte = keySerializer.serialize(key);
+        Assert.notNull(keyByte, "key 不能为空");
+        Long count = getRedisTemplate()
+                .execute((RedisCallback<Long>) con -> con.bitCount(keyByte));
+        return count != null ? count.intValue() : 0;
     }
 
     public RedisTemplate<String, Object> getRedisTemplate() {
