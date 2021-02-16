@@ -14,10 +14,22 @@ public class LogUtils {
 
     }
 
+    /**
+     * get the logger of name.
+     *
+     * @param name log name
+     * @return Logger
+     */
     public static Logger getLogger(String name) {
         return LoggerFactory.getLogger(name);
     }
 
+    /**
+     * get logger of the class.
+     *
+     * @param clazz class name
+     * @return Logger
+     */
     public static Logger getLogger(Class<?> clazz) {
         return LoggerFactory.getLogger(clazz);
     }
