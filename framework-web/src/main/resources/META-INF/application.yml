@@ -4,6 +4,8 @@ server:
     encoding:
       enabled: true
       charset: UTF-8
+  compression:
+    enabled: true
 
 
 spring:
