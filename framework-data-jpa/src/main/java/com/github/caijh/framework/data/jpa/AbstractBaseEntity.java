@@ -19,6 +19,6 @@ import org.hibernate.annotations.TypeDef;
 @TypeDef(name = "json-node", typeClass = JsonNodeStringType.class)
 @TypeDef(name = "jsonb-node", typeClass = JsonNodeBinaryType.class)
 @MappedSuperclass
-public abstract class BaseEntity<T extends Serializable> implements PersistentObject<T> {
+public abstract class AbstractBaseEntity<T extends Serializable> implements PersistentObject<T> {
 
 }
