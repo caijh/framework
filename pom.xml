@@ -202,11 +202,6 @@
                 <version>${framework.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.mapstruct</groupId>
-                <artifactId>mapstruct-processor</artifactId>
-                <version>${org.mapstruct.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.github.caijh</groupId>
                 <artifactId>framework-web</artifactId>
                 <version>${framework.version}</version>
@@ -240,6 +235,17 @@
                 <groupId>com.github.caijh</groupId>
                 <artifactId>framework-schedule</artifactId>
                 <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${org.mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${org.mapstruct.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
