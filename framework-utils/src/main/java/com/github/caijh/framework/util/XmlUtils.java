@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.namespace.QName;
 
 import com.github.caijh.framework.util.exception.ObjectToXmlException;
+import org.springframework.lang.Nullable;
 
 public class XmlUtils {
 
@@ -18,11 +19,12 @@ public class XmlUtils {
      * parse object to xml string.
      *
      * @param object the object to xml string
+     * @param name   root xml name
      * @param <T>    class type
      * @return xml string of object
      */
     @SuppressWarnings("unchecked")
-    public static <T> String toXml(T object) {
+    public static <T> String toXml(T object, @Nullable String name) {
         JAXBContext jaxbContext;
         try {
             Class<T> clazz = ((Class<T>) object.getClass());
@@ -36,7 +38,8 @@ public class XmlUtils {
             if (xmlRootElementPresent) {
                 marshaller.marshal(object, writer);
             } else {
-                JAXBElement<T> jaxbElement = new JAXBElement<>(new QName("", clazz.getSimpleName().toLowerCase()), clazz, object);
+                JAXBElement<T> jaxbElement = new JAXBElement<>(
+                        new QName("", name != null ? name : clazz.getSimpleName().toLowerCase()), clazz, object);
                 marshaller.marshal(jaxbElement, writer);
             }
 
@@ -44,6 +47,10 @@ public class XmlUtils {
         } catch (JAXBException e) {
             throw new ObjectToXmlException(e);
         }
+    }
+
+    public static <T> String toXml(T object) {
+        return toXml(object, null);
     }
 
 }
