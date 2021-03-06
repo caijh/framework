@@ -30,6 +30,7 @@
         <module>framework-message-kafka</module>
         <module>framework-message-websocket</module>
         <module>framework-schedule</module>
+        <module>framework-wechat</module>
     </modules>
 
     <properties>
