@@ -16,7 +16,6 @@ class WechatApisImpl : WechatApis {
         val url =
             WechatConstants.API_URL + WechatConstants.API_TOKEN_URI + "&appid=${wechatApp.appId}&secret=${wechatApp.secret}"
         val respBody = HttpClientUtils.get(url)
-        println(respBody)
         val data = JSON.parseObject(respBody, WechatRespBody::class.java)
         if (!data.success()) {
             throw WechatApiException(data.errcode(), data.errmsg())
