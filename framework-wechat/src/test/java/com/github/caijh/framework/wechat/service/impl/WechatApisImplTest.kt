@@ -7,9 +7,12 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 internal class WechatApisImplTest {
+    private val wechatApp = WechatApp("wx3122a2651783fb93", "36e1aec13f873b5965a9f85e4e56c6c4")
+    private lateinit var wechatApisImpl: WechatApisImpl
 
     @BeforeEach
     fun setUp() {
+        wechatApisImpl = WechatApisImpl()
     }
 
     @AfterEach
@@ -18,10 +21,15 @@ internal class WechatApisImplTest {
 
     @Test
     fun getAccessToken() {
-        val wechatApp = WechatApp("wx3122a2651783fb93", "36e1aec13f873b5965a9f85e4e56c6c4")
-        val wechatApisImpl = WechatApisImpl()
         val accessToken = wechatApisImpl.getAccessToken(wechatApp)
         Assertions.assertNotNull(accessToken.token)
+    }
+
+    @Test
+    fun getJsTicket() {
+        val jsApiTicket = wechatApisImpl.getJsApiTicket(wechatApp)
+        println(jsApiTicket)
+
     }
 
 }

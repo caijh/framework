@@ -12,4 +12,8 @@ public class AccessToken {
     @JSONField(name = "expires_in")
     private Integer expiresIn;
 
+    public String token() {
+        return this.token;
+    }
+
 }

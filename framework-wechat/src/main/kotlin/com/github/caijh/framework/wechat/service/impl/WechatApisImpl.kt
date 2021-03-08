@@ -15,11 +15,24 @@ class WechatApisImpl : WechatApis {
     override fun getAccessToken(wechatApp: WechatApp): AccessToken {
         val url =
             WechatConstants.API_URL + WechatConstants.API_TOKEN_URI + "&appid=${wechatApp.appId}&secret=${wechatApp.secret}"
+        val respBody = doGet(url)
+        return JSON.parseObject(respBody, AccessToken::class.java)
+    }
+
+    override fun getJsApiTicket(wechatApp: WechatApp): String {
+        val accessToken = this.getAccessToken(wechatApp)
+        val url =
+            "${WechatConstants.API_URL}${WechatConstants.API_JS_API_TICKET}?&access_token=${accessToken.token()}&type=jsapi"
+        val respBody = doGet(url)
+        return JSON.parseObject(respBody).getString("ticket")
+    }
+
+    private fun doGet(url: String): String? {
         val respBody = HttpClientUtils.get(url)
         val data = JSON.parseObject(respBody, WechatRespBody::class.java)
         if (!data.success()) {
             throw WechatApiException(data.errcode(), data.errmsg())
         }
-        return JSON.parseObject(respBody, AccessToken::class.java)
+        return respBody
     }
 }

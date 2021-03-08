@@ -5,4 +5,6 @@ import com.github.caijh.framework.wechat.model.WechatApp
 
 interface WechatApis {
     fun getAccessToken(wechatApp: WechatApp): AccessToken
+
+    fun getJsApiTicket(wechatApp: WechatApp): String
 }
