@@ -3,6 +3,7 @@ package com.github.caijh.framework.wechat.service.impl
 import com.alibaba.fastjson.JSON
 import com.github.caijh.commons.util.HttpClientUtils
 import com.github.caijh.framework.wechat.constants.WechatConstants
+import com.github.caijh.framework.wechat.enums.WechatType
 import com.github.caijh.framework.wechat.exception.WechatApiException
 import com.github.caijh.framework.wechat.model.AccessToken
 import com.github.caijh.framework.wechat.model.WechatApp
@@ -27,7 +28,18 @@ class WechatApisImpl : WechatApis {
         return JSON.parseObject(respBody).getString("ticket")
     }
 
-    private fun doGet(url: String): String? {
+    override fun login(wechatApp: WechatApp, code: String): String {
+        val url = when (wechatApp.type) {
+            WechatType.MINI -> WechatConstants.API_URL + WechatConstants.API_MINI_AUTHORIZE + "?appid=" + wechatApp.appId + "&secret=" + wechatApp.secret + "&js_code=" + code + "&grant_type=authorization_code"
+            WechatType.PUBLIC -> WechatConstants.API_URL + WechatConstants.API_PUBLIC_AUTHORIZE + "?appid=" + wechatApp.appId + "&secret=" + wechatApp.secret + "&code=" + code + "&grant_type=authorization_code"
+            else ->
+                throw IllegalArgumentException("wechat type not supported")
+
+        }
+        return doGet(url)
+    }
+
+    private fun doGet(url: String): String {
         val respBody = HttpClientUtils.get(url)
         val data = JSON.parseObject(respBody, WechatRespBody::class.java)
         if (!data.success()) {

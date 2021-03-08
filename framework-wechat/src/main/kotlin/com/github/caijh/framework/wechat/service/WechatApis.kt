@@ -7,4 +7,6 @@ interface WechatApis {
     fun getAccessToken(wechatApp: WechatApp): AccessToken
 
     fun getJsApiTicket(wechatApp: WechatApp): String
+
+    fun login(wechatApp: WechatApp, code: String): String
 }
