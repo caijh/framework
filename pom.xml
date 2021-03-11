@@ -250,6 +250,11 @@
                 <artifactId>framework-schedule</artifactId>
                 <version>${framework.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.github.caijh</groupId>
+                <artifactId>framework-wechat</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.mapstruct</groupId>
