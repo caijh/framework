@@ -31,13 +31,14 @@ public class FrameworkCacheAutoConfiguration implements EnvironmentAware {
     public CacheManager cacheManager(RedisTemplate<String, Object> redisTemplate) {
         String appName = env.getProperty("spring.application.name", "UNKNOWN");
 
-        RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
-                                                                                 .serializeKeysWith(RedisSerializationContext.SerializationPair
-                                                                                         .fromSerializer(redisTemplate.getStringSerializer()))
-                                                                                 .serializeValuesWith(RedisSerializationContext.SerializationPair
-                                                                                         .fromSerializer(redisTemplate.getValueSerializer()))
-                                                                                 .entryTtl(Duration.ofMinutes(1))
-                                                                                 .computePrefixWith(cacheName -> "APP:" + appName + ":caching:" + cacheName);
+        RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration
+                .defaultCacheConfig()
+                .serializeKeysWith(RedisSerializationContext.SerializationPair
+                        .fromSerializer(redisTemplate.getStringSerializer()))
+                .serializeValuesWith(RedisSerializationContext.SerializationPair
+                        .fromSerializer(redisTemplate.getValueSerializer()))
+                .entryTtl(Duration.ofMinutes(1))
+                .computePrefixWith(cacheName -> "APP:" + appName + ":caching:" + cacheName);
 
         RedisConnectionFactory connectionFactory = redisTemplate.getConnectionFactory();
         if (connectionFactory == null) {
