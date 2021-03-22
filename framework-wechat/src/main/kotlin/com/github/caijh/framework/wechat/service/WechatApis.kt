@@ -5,7 +5,8 @@ import com.github.caijh.framework.wechat.model.WechatApp
 
 interface WechatApis {
     /**
-     * get wechat api invoke access token.
+     * Get wechat api invoke access token.
+     * @param wechatApp WechatApp
      * @return AccessToken
      */
     fun getAccessToken(wechatApp: WechatApp): AccessToken
