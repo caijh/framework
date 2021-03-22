@@ -207,8 +207,20 @@ public class Redis {
     public static class Expired {
 
         public static final long NOT_EXPIRED = -1;
-        public static final long LIST_EXPIRED_SECONDS = 30; // 列表默认缓存30秒
-        public static final long ENTITY_EXPIRED_SECONDS = 60 * 60 * 24L; // 实体对象默认缓存一天
+        /**
+         * 列表默认缓存30秒
+         */
+        public static final long LIST_EXPIRED_SECONDS = 30;
+
+        /**
+         * 1分钟，单位秒.
+         */
+        public static final long M_1_SECONDS = 60L;
+
+        /**
+         * 实体对象默认缓存一天
+         */
+        public static final long ENTITY_EXPIRED_SECONDS = M_1_SECONDS * 60 * 24;
 
         private Expired() {
 
