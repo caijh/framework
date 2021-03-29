@@ -1,9 +1,11 @@
 package com.github.caijh.framework.wechat.model;
 
+import java.io.Serializable;
+
 import lombok.Data;
 
 @Data
-public class WechatRespBody {
+public class WechatRespBody implements Serializable {
 
     private Integer errcode = 0;
     private String errmsg;

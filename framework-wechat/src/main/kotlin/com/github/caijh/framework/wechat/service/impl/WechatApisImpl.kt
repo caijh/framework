@@ -8,6 +8,7 @@ import com.github.caijh.framework.wechat.exception.WechatApiException
 import com.github.caijh.framework.wechat.model.AccessToken
 import com.github.caijh.framework.wechat.model.WechatApp
 import com.github.caijh.framework.wechat.model.WechatRespBody
+import com.github.caijh.framework.wechat.model.WechatUserInfo
 import com.github.caijh.framework.wechat.service.WechatApis
 import org.springframework.stereotype.Service
 
@@ -37,6 +38,15 @@ class WechatApisImpl : WechatApis {
 
         }
         return doGet(url)
+    }
+
+    override fun getWechatUserInfo(wechatApp: WechatApp, openid: String): WechatUserInfo {
+        val accessToken = getAccessToken(wechatApp)
+
+        val url =
+            "${WechatConstants.API_URL}/${WechatConstants.API_USERINFO}?access_token=${accessToken}&openid=${wechatApp.appId}&lang=zh_CN"
+        val respBody = this.doGet(url)
+        return JSON.parseObject(respBody, WechatUserInfo::class.java)
     }
 
     private fun doGet(url: String): String {
