@@ -44,7 +44,7 @@ class WechatApisImpl : WechatApis {
         val accessToken = getAccessToken(wechatApp)
 
         val url =
-            "${WechatConstants.API_URL}/${WechatConstants.API_USERINFO}?access_token=${accessToken}&openid=${wechatApp.appId}&lang=zh_CN"
+            "${WechatConstants.API_URL}${WechatConstants.API_USERINFO}?access_token=${accessToken}&openid=${wechatApp.appId}&lang=zh_CN"
         val respBody = this.doGet(url)
         return JSON.parseObject(respBody, WechatUserInfo::class.java)
     }
