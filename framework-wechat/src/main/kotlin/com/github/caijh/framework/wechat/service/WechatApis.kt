@@ -2,6 +2,7 @@ package com.github.caijh.framework.wechat.service
 
 import com.github.caijh.framework.wechat.model.AccessToken
 import com.github.caijh.framework.wechat.model.WechatApp
+import com.github.caijh.framework.wechat.model.WechatJsSdkConfig
 import com.github.caijh.framework.wechat.model.WechatUserInfo
 
 interface WechatApis {
@@ -17,4 +18,6 @@ interface WechatApis {
     fun login(wechatApp: WechatApp, code: String): String
 
     fun getWechatUserInfo(wechatApp: WechatApp, openid: String): WechatUserInfo
+
+    fun getWechatJsSdkConfig(wechatApp: WechatApp, url: String): WechatJsSdkConfig
 }

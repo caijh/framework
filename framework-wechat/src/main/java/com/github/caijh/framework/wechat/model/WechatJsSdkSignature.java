@@ -6,9 +6,7 @@ import java.security.NoSuchAlgorithmException;
 
 import com.github.caijh.commons.util.HexUtils;
 import com.github.caijh.framework.wechat.exception.WechatJsSdkSignatureException;
-import lombok.Getter;
 
-@Getter
 public class WechatJsSdkSignature {
 
     private final String ticket;
@@ -39,6 +37,26 @@ public class WechatJsSdkSignature {
         } catch (NoSuchAlgorithmException e) {
             throw new WechatJsSdkSignatureException(e);
         }
+    }
+
+    public String getTicket() {
+        return ticket;
+    }
+
+    public String getNonceStr() {
+        return nonceStr;
+    }
+
+    public Integer getTimestamp() {
+        return timestamp;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getSignature() {
+        return signature;
     }
 
 }

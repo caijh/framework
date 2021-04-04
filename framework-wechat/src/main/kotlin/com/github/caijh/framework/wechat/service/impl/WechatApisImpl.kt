@@ -1,14 +1,15 @@
 package com.github.caijh.framework.wechat.service.impl
 
 import com.alibaba.fastjson.JSON
+import com.github.caijh.commons.util.DateUtils
 import com.github.caijh.commons.util.HttpClientUtils
+import com.github.caijh.commons.util.Strings
+import com.github.caijh.commons.util.UuidUtils
 import com.github.caijh.framework.wechat.constants.WechatConstants
+import com.github.caijh.framework.wechat.constants.WechatConstants.Companion.API_JS_API_SDK_LIST
 import com.github.caijh.framework.wechat.enums.WechatType
 import com.github.caijh.framework.wechat.exception.WechatApiException
-import com.github.caijh.framework.wechat.model.AccessToken
-import com.github.caijh.framework.wechat.model.WechatApp
-import com.github.caijh.framework.wechat.model.WechatRespBody
-import com.github.caijh.framework.wechat.model.WechatUserInfo
+import com.github.caijh.framework.wechat.model.*
 import com.github.caijh.framework.wechat.service.WechatApis
 import org.springframework.stereotype.Service
 
@@ -27,6 +28,21 @@ class WechatApisImpl : WechatApis {
             "${WechatConstants.API_URL}${WechatConstants.API_JS_API_TICKET}?&access_token=${accessToken.token()}&type=jsapi"
         val respBody = doGet(url)
         return JSON.parseObject(respBody).getString("ticket")
+    }
+
+    override fun getWechatJsSdkConfig(wechatApp: WechatApp, url: String): WechatJsSdkConfig {
+        val ticket = this.getJsApiTicket(wechatApp)
+        val jsSdkSignature =
+            WechatJsSdkSignature(ticket, UuidUtils.uuid(), DateUtils.currentTimestamp().toInt(), url)
+        return WechatJsSdkConfig(
+            wechatApp.appId,
+            jsSdkSignature.ticket,
+            jsSdkSignature.url,
+            jsSdkSignature.nonceStr,
+            jsSdkSignature.timestamp,
+            jsSdkSignature.signature,
+            Strings.toListByComma(API_JS_API_SDK_LIST)
+        )
     }
 
     override fun login(wechatApp: WechatApp, code: String): String {
