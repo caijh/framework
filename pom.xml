@@ -10,7 +10,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.github.caijh</groupId>
+    <groupId>com.github.caijh.framework</groupId>
     <artifactId>framework-parent</artifactId>
     <packaging>pom</packaging>
     <version>2.3.2-SNAPSHOT</version>
@@ -82,6 +82,12 @@
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-reflect</artifactId>
             <version>${kotlin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-maven-allopen</artifactId>
+            <version>${kotlin.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -266,12 +272,6 @@
                 <artifactId>mapstruct-processor</artifactId>
                 <version>${org.mapstruct.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-maven-allopen</artifactId>
-                <version>${kotlin.version}</version>
-                <scope>provided</scope>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -316,11 +316,11 @@
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
                 <version>${kotlin.version}</version>
-                <!--<configuration>
+                <configuration>
                     <compilerPlugins>
                         <plugin>spring</plugin>
                     </compilerPlugins>
-                </configuration>-->
+                </configuration>
                 <executions>
                     <execution>
                         <id>kapt</id>
