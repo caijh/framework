@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>framework-parent</artifactId>
-        <groupId>com.github.caijh</groupId>
+        <groupId>com.github.caijh.framework</groupId>
         <version>2.3.2-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -13,7 +13,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.caijh</groupId>
+            <groupId>com.github.caijh.framework</groupId>
             <artifactId>framework-core</artifactId>
         </dependency>
 

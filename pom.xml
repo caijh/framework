@@ -182,22 +182,22 @@
                 <version>2.9.13</version>
             </dependency>
             <dependency>
-                <groupId>com.github.caijh</groupId>
+                <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-model</artifactId>
                 <version>${framework.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.caijh</groupId>
+                <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-core</artifactId>
                 <version>${framework.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.caijh</groupId>
+                <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-data-jpa</artifactId>
                 <version>${framework.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.caijh</groupId>
+                <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-data-mybatis</artifactId>
                 <version>${framework.version}</version>
             </dependency>
@@ -207,57 +207,57 @@
                 <version>3.8.2</version>
             </dependency>
             <dependency>
-                <groupId>com.github.caijh</groupId>
+                <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-data-redis</artifactId>
                 <version>${framework.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.caijh</groupId>
+                <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-cache</artifactId>
                 <version>${framework.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.caijh</groupId>
+                <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-utils</artifactId>
                 <version>${framework.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.caijh</groupId>
+                <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-web</artifactId>
                 <version>${framework.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.caijh</groupId>
+                <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-microservice</artifactId>
                 <version>${framework.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.caijh</groupId>
+                <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-logging</artifactId>
                 <version>${framework.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.caijh</groupId>
+                <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-doc</artifactId>
                 <version>${framework.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.caijh</groupId>
+                <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-message-kafka</artifactId>
                 <version>${framework.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.caijh</groupId>
+                <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-message-websocket</artifactId>
                 <version>${framework.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.caijh</groupId>
+                <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-schedule</artifactId>
                 <version>${framework.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.caijh</groupId>
+                <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-wechat</artifactId>
                 <version>${framework.version}</version>
             </dependency>
