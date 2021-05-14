@@ -1,5 +1,7 @@
 package com.github.caijh.framework.data.redis;
 
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.locks.Lock;
 
 import com.github.caijh.framework.core.DistributedLock;
@@ -38,7 +40,9 @@ public class RedisLock implements DistributedLock {
                 }
                 config.useSingleServer().setAddress(address)
                       .setClientName(redisProperties.getClientName()).setPassword(redisProperties.getPassword())
-                      .setDatabase(redisProperties.getDatabase()).setConnectTimeout((int) (redisProperties.getTimeout().getSeconds() * 1000));
+                      .setDatabase(redisProperties.getDatabase())
+                      .setConnectTimeout((int)Optional.ofNullable(redisProperties.getTimeout()).orElseGet(() -> Duration.ofSeconds(10)).getSeconds() * 1000)
+                ;
             }
         }
         redissonClient = Redisson.create(config);
