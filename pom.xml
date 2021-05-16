@@ -485,6 +485,17 @@
                     <includeTestSourceDirectory>false</includeTestSourceDirectory>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <arguments>-DskipTests -P release</arguments>
+                    <scmCommentPrefix>「版本发布」</scmCommentPrefix>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
