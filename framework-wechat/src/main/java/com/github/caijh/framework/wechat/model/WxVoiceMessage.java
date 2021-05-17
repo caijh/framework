@@ -1,5 +1,6 @@
 package com.github.caijh.framework.wechat.model;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -27,8 +28,9 @@ public class WxVoiceMessage extends BaseWxMessage {
     }
 
     @Data
-    public static class Voice {
+    public static class Voice implements Serializable {
 
+        private static final long serialVersionUID = -799623981028913842L;
         @XmlElement(name = "MediaId")
         private String mediaId;
 

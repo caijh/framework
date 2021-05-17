@@ -1,5 +1,6 @@
 package com.github.caijh.framework.wechat.model;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -32,15 +33,17 @@ public class WxNewsMessage extends BaseWxMessage {
     }
 
     @Data
-    public static class News {
+    public static class News implements Serializable {
 
+        private static final long serialVersionUID = 8168778278188230336L;
         private NewsItem item;
 
     }
 
     @Data
-    public static class NewsItem {
+    public static class NewsItem implements Serializable {
 
+        private static final long serialVersionUID = -1645458179564012858L;
         @XmlElement(name = "Title")
         private String title;
 
