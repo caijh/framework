@@ -1,6 +1,8 @@
 package com.github.caijh.framework.wechat.model;
 
-public interface WxMessage {
+import java.io.Serializable;
+
+public interface WxMessage extends Serializable {
 
     String type();
 
