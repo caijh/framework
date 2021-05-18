@@ -10,6 +10,7 @@ class WechatConstants {
 
 
         const val API_PUBLIC_AUTHORIZE = "/sns/oauth2/access_token"
+        const val API_PUBLIC_MEDIA_UPLOAD = "/cgi-bin/material/add_material"
         const val API_MINI_AUTHORIZE = "/sns/jscode2session"
         const val API_USERINFO = "/sns/userinfo"
     }

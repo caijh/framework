@@ -1,9 +1,7 @@
 package com.github.caijh.framework.wechat.service
 
-import com.github.caijh.framework.wechat.model.AccessToken
-import com.github.caijh.framework.wechat.model.WechatApp
-import com.github.caijh.framework.wechat.model.WechatJsSdkConfig
-import com.github.caijh.framework.wechat.model.WechatUserInfo
+import com.github.caijh.framework.wechat.model.*
+import java.io.File
 
 interface WechatApis {
     /**
@@ -20,4 +18,6 @@ interface WechatApis {
     fun getWechatUserInfo(wechatApp: WechatApp, openid: String): WechatUserInfo
 
     fun getWechatJsSdkConfig(wechatApp: WechatApp, url: String): WechatJsSdkConfig
+
+    fun uploadMedia(wechatApp: WechatApp, type: String, file: File): WechatMedia
 }

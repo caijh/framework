@@ -12,6 +12,7 @@ import com.github.caijh.framework.wechat.exception.WechatApiException
 import com.github.caijh.framework.wechat.model.*
 import com.github.caijh.framework.wechat.service.WechatApis
 import org.springframework.stereotype.Service
+import java.io.File
 
 @Service
 class WechatApisImpl : WechatApis {
@@ -65,12 +66,26 @@ class WechatApisImpl : WechatApis {
         return JSON.parseObject(respBody, WechatUserInfo::class.java)
     }
 
+    override fun uploadMedia(wechatApp: WechatApp, type: String, file: File): WechatMedia {
+        val accessToken = getAccessToken(wechatApp)
+        val url =
+            "${WechatConstants.API_URL}${WechatConstants.API_PUBLIC_MEDIA_UPLOAD}?access_token=${accessToken}&type=${type}"
+
+        val upload = HttpClientUtils.upload(url, file)
+        this.assertIsSuccess(upload.string())
+        return JSON.parseObject(upload.string(), WechatMedia::class.java)
+    }
+
     private fun doGet(url: String): String {
         val respBody = HttpClientUtils.get(url)
+        assertIsSuccess(respBody)
+        return respBody
+    }
+
+    private fun assertIsSuccess(respBody: String?) {
         val data = JSON.parseObject(respBody, WechatRespBody::class.java)
         if (!data.success()) {
             throw WechatApiException(data.errcode(), data.errmsg())
         }
-        return respBody
     }
 }
