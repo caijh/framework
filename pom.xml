@@ -32,6 +32,8 @@
         <module>framework-schedule</module>
         <module>framework-wechat</module>
         <module>framework-config-apollo</module>
+
+        <module>framework-demo</module>
     </modules>
 
     <properties>
@@ -196,6 +198,11 @@
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-core</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.caijh.framework</groupId>
+                <artifactId>framework-config-apollo</artifactId>
                 <version>${framework.version}</version>
             </dependency>
             <dependency>
