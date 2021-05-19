@@ -31,6 +31,7 @@
         <module>framework-message-websocket</module>
         <module>framework-schedule</module>
         <module>framework-wechat</module>
+        <module>framework-config-apollo</module>
     </modules>
 
     <properties>

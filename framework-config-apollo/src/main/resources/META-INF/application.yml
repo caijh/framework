@@ -1,0 +1,5 @@
+app:
+  id: ${spring.application.name}
+apollo:
+  bootstrap:
+    enabled: true
