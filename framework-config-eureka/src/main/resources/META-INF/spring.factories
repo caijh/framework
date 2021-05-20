@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.github.caijh.framework.config.FrameworkConfigEurekaAutoConfiguration
+org.springframework.boot.env.EnvironmentPostProcessor=\
+  com.github.caijh.framework.config.processor.StarterConfigFileEnvironmentPostProcessor
