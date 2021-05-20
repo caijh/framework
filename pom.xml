@@ -13,7 +13,7 @@
     <groupId>com.github.caijh.framework</groupId>
     <artifactId>framework-parent</artifactId>
     <packaging>pom</packaging>
-    <version>${framework.version}</version>
+    <version>${revision}</version>
 
     <modules>
         <module>framework-model</module>
@@ -45,7 +45,7 @@
         <lombok.version>1.18.16</lombok.version>
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
         <spring-cloud.version>Hoxton.SR6</spring-cloud.version>
-        <framework.version>2.3.2-SNAPSHOT</framework.version>
+        <revision>2.3.2-SNAPSHOT</revision>
         <kotlin.version>1.4.32</kotlin.version>
         <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
     </properties>
@@ -196,32 +196,32 @@
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-model</artifactId>
-                <version>${framework.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-core</artifactId>
-                <version>${framework.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-config-apollo</artifactId>
-                <version>${framework.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-config-nacos</artifactId>
-                <version>${framework.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-data-jpa</artifactId>
-                <version>${framework.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-data-mybatis</artifactId>
-                <version>${framework.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>org.redisson</groupId>
@@ -231,57 +231,57 @@
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-data-redis</artifactId>
-                <version>${framework.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-cache</artifactId>
-                <version>${framework.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-utils</artifactId>
-                <version>${framework.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-web</artifactId>
-                <version>${framework.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-microservice</artifactId>
-                <version>${framework.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-logging</artifactId>
-                <version>${framework.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-doc</artifactId>
-                <version>${framework.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-message-kafka</artifactId>
-                <version>${framework.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-message-websocket</artifactId>
-                <version>${framework.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-schedule</artifactId>
-                <version>${framework.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-wechat</artifactId>
-                <version>${framework.version}</version>
+                <version>${revision}</version>
             </dependency>
 
             <dependency>
