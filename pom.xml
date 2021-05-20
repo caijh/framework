@@ -509,7 +509,7 @@
                     <useReleaseProfile>false</useReleaseProfile>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <arguments>-DskipTests -P release</arguments>
-                    <scmCommentPrefix>「版本发布」</scmCommentPrefix>
+                    <scmCommentPrefix>版本发布</scmCommentPrefix>
                 </configuration>
             </plugin>
         </plugins>
