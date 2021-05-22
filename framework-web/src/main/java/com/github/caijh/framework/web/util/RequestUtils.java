@@ -7,9 +7,13 @@ import io.micrometer.core.instrument.util.StringUtils;
 
 public class RequestUtils {
 
-    private RequestUtils() {}
+    private RequestUtils() {
+
+    }
 
     /**
+     * extract Header.
+     *
      * @param request HttpServletRequest
      * @param param   参数
      * @return 查找请求是否有参数，有返回；无则查找header。
@@ -29,7 +33,7 @@ public class RequestUtils {
      * @return ip
      */
     public static String getIp(HttpServletRequest request) {
-        String clientIp = getIpFromRequestHeader(request);
+        String clientIp = RequestUtils.getIpFromRequestHeader(request);
         if (StringUtils.isBlank(clientIp) || Constants.UNKNOWN.equalsIgnoreCase(clientIp)) {
             clientIp = request.getRemoteAddr();
         }
@@ -40,7 +44,7 @@ public class RequestUtils {
         if (clientIp != null && !clientIp.contains(Constants.UNKNOWN)) {
             String[] ips = clientIp.split(",");
             for (String ip : ips) {
-                if (!isInnerIP(ip.trim())) {
+                if (!RequestUtils.isInnerIP(ip.trim())) {
                     sIP = ip.trim();
                     break;
                 }
@@ -88,16 +92,16 @@ public class RequestUtils {
      */
     public static boolean isInnerIP(String ipAddress) {
         boolean isInnerIp;
-        long ipNum = getIpNum(ipAddress);
-        long aBegin = getIpNum("10.0.0.0");
-        long aEnd = getIpNum("10.255.255.255");
+        long ipNum = RequestUtils.getIpNum(ipAddress);
+        long aBegin = RequestUtils.getIpNum("10.0.0.0");
+        long aEnd = RequestUtils.getIpNum("10.255.255.255");
 
-        long bBegin = getIpNum("172.16.0.0");
-        long bEnd = getIpNum("172.31.255.255");
+        long bBegin = RequestUtils.getIpNum("172.16.0.0");
+        long bEnd = RequestUtils.getIpNum("172.31.255.255");
 
-        long cBegin = getIpNum("192.168.0.0");
-        long cEnd = getIpNum("192.168.255.255");
-        isInnerIp = isInner(ipNum, aBegin, aEnd) || isInner(ipNum, bBegin, bEnd) || isInner(ipNum, cBegin, cEnd)
+        long cBegin = RequestUtils.getIpNum("192.168.0.0");
+        long cEnd = RequestUtils.getIpNum("192.168.255.255");
+        isInnerIp = RequestUtils.isInner(ipNum, aBegin, aEnd) || RequestUtils.isInner(ipNum, bBegin, bEnd) || RequestUtils.isInner(ipNum, cBegin, cEnd)
                 || ipAddress.equals("127.0.0.1");
         return isInnerIp;
     }
