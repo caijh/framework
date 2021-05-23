@@ -31,6 +31,48 @@ public abstract class BaseServiceImpl<M extends BaseRepository<T, I>, T, I> impl
 
     @NotNull
     @Override
+    public List<T> findAll(Specification<T> spec) {
+        return this.repository.findAll(spec);
+    }
+
+    @NotNull
+    @Override
+    public Page<T> findAll(Specification<T> spec, @NotNull Pageable pageable) {
+        return this.repository.findAll(spec, pageable);
+    }
+
+    @NotNull
+    @Override
+    public List<T> findAll(Specification<T> spec, @NotNull Sort sort) {
+        return this.repository.findAll(spec, sort);
+    }
+
+    @NotNull
+    @Override
+    public <S extends T> List<S> findAll(@NotNull Example<S> example) {
+        return this.repository.findAll(example);
+    }
+
+    @NotNull
+    @Override
+    public <S extends T> List<S> findAll(@NotNull Example<S> example, @NotNull Sort sort) {
+        return this.repository.findAll(example, sort);
+    }
+
+    @NotNull
+    @Override
+    public Page<T> findAll(@NotNull Pageable pageable) {
+        return this.repository.findAll(pageable);
+    }
+
+    @NotNull
+    @Override
+    public <S extends T> Page<S> findAll(@NotNull Example<S> example, @NotNull Pageable pageable) {
+        return this.repository.findAll(example, pageable);
+    }
+
+    @NotNull
+    @Override
     public List<T> findAllById(@NotNull Iterable<I> ids) {
         return this.repository.findAllById(ids);
     }
@@ -70,24 +112,6 @@ public abstract class BaseServiceImpl<M extends BaseRepository<T, I>, T, I> impl
 
     @NotNull
     @Override
-    public <S extends T> List<S> findAll(@NotNull Example<S> example) {
-        return this.repository.findAll(example);
-    }
-
-    @NotNull
-    @Override
-    public <S extends T> List<S> findAll(@NotNull Example<S> example, @NotNull Sort sort) {
-        return this.repository.findAll(example, sort);
-    }
-
-    @NotNull
-    @Override
-    public Page<T> findAll(@NotNull Pageable pageable) {
-        return this.repository.findAll(pageable);
-    }
-
-    @NotNull
-    @Override
     public <S extends T> S save(@NotNull S entity) {
         return this.repository.save(entity);
     }
@@ -106,6 +130,16 @@ public abstract class BaseServiceImpl<M extends BaseRepository<T, I>, T, I> impl
     @Override
     public long count() {
         return this.repository.count();
+    }
+
+    @Override
+    public <S extends T> long count(@NotNull Example<S> example) {
+        return this.repository.count(example);
+    }
+
+    @Override
+    public long count(Specification<T> spec) {
+        return this.repository.count(spec);
     }
 
     @Override
@@ -136,47 +170,13 @@ public abstract class BaseServiceImpl<M extends BaseRepository<T, I>, T, I> impl
 
     @NotNull
     @Override
-    public <S extends T> Page<S> findAll(@NotNull Example<S> example, @NotNull Pageable pageable) {
-        return this.repository.findAll(example, pageable);
-    }
-
-    @Override
-    public <S extends T> long count(@NotNull Example<S> example) {
-        return this.repository.count(example);
-    }
-
-    @Override
-    public long count(Specification<T> spec) {
-        return this.repository.count(spec);
+    public Optional<T> findOne(Specification<T> spec) {
+        return this.repository.findOne(spec);
     }
 
     @Override
     public <S extends T> boolean exists(@NotNull Example<S> example) {
         return this.repository.exists(example);
-    }
-
-    @NotNull
-    @Override
-    public Optional<T> findOne(Specification<T> spec) {
-        return this.repository.findOne(spec);
-    }
-
-    @NotNull
-    @Override
-    public List<T> findAll(Specification<T> spec) {
-        return this.repository.findAll(spec);
-    }
-
-    @NotNull
-    @Override
-    public Page<T> findAll(Specification<T> spec, @NotNull Pageable pageable) {
-        return this.repository.findAll(spec, pageable);
-    }
-
-    @NotNull
-    @Override
-    public List<T> findAll(Specification<T> spec, @NotNull Sort sort) {
-        return this.repository.findAll(spec, sort);
     }
 
 }
