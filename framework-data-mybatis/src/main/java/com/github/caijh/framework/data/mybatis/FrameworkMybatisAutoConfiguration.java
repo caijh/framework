@@ -1,4 +1,4 @@
-package com.github.caijh.framework.data.mybatis.autoconfigure;
+package com.github.caijh.framework.data.mybatis;
 
 import com.baomidou.mybatisplus.core.mapper.Mapper;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;

@@ -1,4 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.github.caijh.framework.data.mybatis.autoconfigure.FrameworkMybatisAutoConfiguration
-org.springframework.boot.env.EnvironmentPostProcessor=\
-  com.github.caijh.framework.data.mybatis.autoconfigure.processor.StarterConfigFileEnvironmentPostProcessor
+  com.github.caijh.framework.data.mybatis.FrameworkMybatisAutoConfiguration

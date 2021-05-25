@@ -1,4 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.github.caijh.framework.microservice.autoconfigure.FrameworkMicroserviceAutoConfiguration
-org.springframework.boot.env.EnvironmentPostProcessor=\
-  com.github.caijh.framework.microservice.processor.StarterConfigFileEnvironmentPostProcessor
+  com.github.caijh.framework.microservice.FrameworkMicroserviceAutoConfiguration

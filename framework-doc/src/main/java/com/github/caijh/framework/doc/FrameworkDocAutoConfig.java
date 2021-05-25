@@ -1,4 +1,4 @@
-package com.github.caijh.framework.doc.autoconfigure;
+package com.github.caijh.framework.doc;
 
 import com.github.caijh.framework.doc.autoconfigure.properties.SmartDocProperties;
 import com.github.caijh.framework.doc.autoconfigure.properties.SwaggerProperties;
@@ -41,7 +41,7 @@ public class FrameworkDocAutoConfig {
     @ConditionalOnProperty(prefix = SwaggerProperties.PREFIX, value = "enabled")
     @ConditionalOnMissingBean
     public Docket createRestApi(SwaggerProperties swaggerProperties) {
-        return new Docket(DocumentationType.OAS_30).apiInfo(apiInfo(swaggerProperties))
+        return new Docket(DocumentationType.OAS_30).apiInfo(this.apiInfo(swaggerProperties))
                                                    // 是否开启
                                                    .enable(swaggerProperties.isEnabled()).select()
                                                    // 只扫描注解了@Api并且@ApiOperation，或者@Endpoint
@@ -54,8 +54,8 @@ public class FrameworkDocAutoConfig {
 
     private ApiInfo apiInfo(SwaggerProperties swaggerProperties) {
         String version = "1.0.0";
-        if (buildProperties != null) {
-            version = buildProperties.getVersion();
+        if (this.buildProperties != null) {
+            version = this.buildProperties.getVersion();
         }
         return new ApiInfoBuilder()
                 .title(swaggerProperties.getTitle())

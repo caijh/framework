@@ -1,2 +1,2 @@
-org.springframework.boot.env.EnvironmentPostProcessor=\
-  com.github.caijh.framework.log.autoconfigure.processor.StarterConfigFileEnvironmentPostProcessor
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.github.caijh.framework.log.FrameworkLogAutoConfiguration

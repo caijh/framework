@@ -1,4 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   com.github.caijh.framework.message.websocket.FrameworkMessageWebsocketAutoConfiguration
-org.springframework.boot.env.EnvironmentPostProcessor=\
-  com.github.caijh.framework.message.websocket.autoconfigure.processor.StarterConfigFileEnvironmentPostProcessor

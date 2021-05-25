@@ -1,4 +1,4 @@
-package com.github.caijh.framework.microservice.autoconfigure;
+package com.github.caijh.framework.microservice;
 
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
