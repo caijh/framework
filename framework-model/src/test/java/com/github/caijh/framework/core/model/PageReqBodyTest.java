@@ -14,11 +14,11 @@ class PageReqBodyTest {
         reqBody.setPageNo(1);
         reqBody.setPageSize(10);
         List<PageReqBody.Sort> sorts = new ArrayList<>();
-        sorts.add(PageReqBody.Sort.builder().column("a_b_cc").order("asc").build());
-        sorts.add(PageReqBody.Sort.builder().column("ab").order("asc").build());
-        sorts.add(PageReqBody.Sort.builder().column("acBc").order("asc").build());
+        sorts.add(PageReqBody.Sort.builder().column("a_b_cc_dd").order("asc").toCamelCase(true).build());
+        sorts.add(PageReqBody.Sort.builder().column("ab").order("asc").toCamelCase(true).build());
+        sorts.add(PageReqBody.Sort.builder().column("acBc").order("asc").toCamelCase(true).build());
         reqBody.setSorts(sorts);
-        Assertions.assertEquals("aBCc", sorts.get(0).getColumn());
+        Assertions.assertEquals("aBCcDd", sorts.get(0).getColumn());
     }
 
 }
