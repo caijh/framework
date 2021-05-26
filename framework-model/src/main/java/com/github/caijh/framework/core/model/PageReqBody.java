@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import lombok.AllArgsConstructor;
@@ -66,15 +65,23 @@ public class PageReqBody implements ReqBody {
     public static class Sort implements Serializable {
 
         private static final long serialVersionUID = 243258760854336905L;
+        /**
+         * 排序属性.
+         */
         private String column;
 
-        private static final Pattern pattern = Pattern.compile("_([a-z])");
         /**
          * asc or desc
          */
         private String order;
 
+        private boolean toCamelCase = true;
+
         public String getColumn() {
+            if (!this.toCamelCase) {
+                return this.column;
+            }
+
             return this.column.contains("_")
                     ? this.column.substring(0, this.column.indexOf("_"))
                     + Arrays.stream(this.column.substring(this.column.indexOf("_") + 1).split("_"))
