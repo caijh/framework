@@ -21,7 +21,9 @@ import org.xml.sax.XMLReader;
 
 public class XmlUtils {
 
-    private XmlUtils() {}
+    private XmlUtils() {
+
+    }
 
     /**
      * parse object to xml string.
