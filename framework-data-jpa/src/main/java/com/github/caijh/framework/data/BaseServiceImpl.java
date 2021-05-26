@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.lang.Nullable;
 
 public abstract class BaseServiceImpl<M extends BaseRepository<T, I>, T, I> implements BaseService<T, I> {
 
@@ -108,6 +109,11 @@ public abstract class BaseServiceImpl<M extends BaseRepository<T, I>, T, I> impl
     @Override
     public T getOne(@NotNull I id) {
         return this.repository.getOne(id);
+    }
+
+    @Nullable
+    public T getOneOrNull(I id) {
+        return this.findById(id).orElse(null);
     }
 
     @NotNull
