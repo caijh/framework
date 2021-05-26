@@ -1,10 +1,16 @@
 package com.github.caijh.framework.core.model;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 抽象列表请求对象.
@@ -24,6 +30,9 @@ public class PageReqBody implements ReqBody {
      */
     private Integer pageSize = PageReqBody.DEFAULT_PAGE_SIZE;
 
+    /**
+     * 排序属性.
+     */
     private List<Sort> sorts;
 
     public Integer getPageNo() {
@@ -46,15 +55,33 @@ public class PageReqBody implements ReqBody {
         return this.sorts != null ? this.sorts : Collections.emptyList();
     }
 
+    public void setSorts(List<Sort> sorts) {
+        this.sorts = sorts;
+    }
+
     @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
     public static class Sort implements Serializable {
 
         private static final long serialVersionUID = 243258760854336905L;
         private String column;
+
+        private static final Pattern pattern = Pattern.compile("_([a-z])");
         /**
          * asc or desc
          */
         private String order;
+
+        public String getColumn() {
+            return this.column.contains("_")
+                    ? this.column.substring(0, this.column.indexOf("_"))
+                    + Arrays.stream(this.column.substring(this.column.indexOf("_") + 1).split("_"))
+                            .map(s -> Character.toUpperCase(s.charAt(0)) + s.substring(1))
+                            .collect(Collectors.joining())
+                    : this.column;
+        }
 
     }
 
