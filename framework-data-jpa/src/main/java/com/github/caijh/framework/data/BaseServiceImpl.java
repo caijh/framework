@@ -112,6 +112,7 @@ public abstract class BaseServiceImpl<M extends BaseRepository<T, I>, T, I> impl
     }
 
     @Nullable
+    @Override
     public T getOneOrNull(I id) {
         return this.findById(id).orElse(null);
     }
