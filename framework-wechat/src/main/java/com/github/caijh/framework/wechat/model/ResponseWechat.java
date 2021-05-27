@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 public class ResponseWechat {
 
     @XmlElement(name = "return_code")
-    public String returnCode;
+    private String returnCode;
 
     @XmlElement(name = "return_msg")
     private String returnMsg;
