@@ -13,5 +13,10 @@ class WechatConstants {
         const val API_PUBLIC_MEDIA_UPLOAD = "/cgi-bin/material/add_material"
         const val API_MINI_AUTHORIZE = "/sns/jscode2session"
         const val API_USERINFO = "/sns/userinfo"
+
+        /**
+         * 小程序行业信息
+         */
+        const val API_INDUSTRY_INFO = "/wxaapi/newtmpl/getcategory"
     }
 }

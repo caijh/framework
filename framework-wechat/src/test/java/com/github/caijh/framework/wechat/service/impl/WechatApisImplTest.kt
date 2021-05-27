@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 internal class WechatApisImplTest {
-    private val wechatApp = WechatApp("wx3122a2651783fb93", "36e1aec13f873b5965a9f85e4e56c6c4", WechatType.MINI)
+    private val wechatApp = WechatApp("", "", WechatType.MINI)
     private lateinit var wechatApis: WechatApis
 
     @BeforeEach
@@ -37,6 +37,12 @@ internal class WechatApisImplTest {
     fun getWechatJsSdkConfig() {
         val wechatJsSdkConfig = wechatApis.getWechatJsSdkConfig(wechatApp, "www.baidu.com")
         println(wechatJsSdkConfig)
+    }
+
+    @Test
+    fun getIndustryInfo() {
+        val industryInfo = wechatApis.getIndustryInfo(wechatApp)
+        Assertions.assertNotNull(industryInfo)
     }
 
 }

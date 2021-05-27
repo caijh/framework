@@ -20,4 +20,6 @@ interface WechatApis {
     fun getWechatJsSdkConfig(wechatApp: WechatApp, url: String): WechatJsSdkConfig
 
     fun uploadMedia(wechatApp: WechatApp, type: String, file: File): WechatMedia
+
+    fun getIndustryInfo(wechatApp: WechatApp): List<WechatIndustryInfo>
 }

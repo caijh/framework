@@ -1,10 +1,8 @@
 package com.github.caijh.framework.wechat.service.impl
 
 import com.alibaba.fastjson.JSON
-import com.github.caijh.commons.util.DateUtils
-import com.github.caijh.commons.util.HttpClientUtils
-import com.github.caijh.commons.util.Strings
-import com.github.caijh.commons.util.UuidUtils
+import com.github.caijh.commons.util.*
+import com.github.caijh.framework.core.exception.BizException
 import com.github.caijh.framework.wechat.constants.WechatConstants
 import com.github.caijh.framework.wechat.constants.WechatConstants.Companion.API_JS_API_SDK_LIST
 import com.github.caijh.framework.wechat.enums.WechatType
@@ -13,6 +11,7 @@ import com.github.caijh.framework.wechat.model.*
 import com.github.caijh.framework.wechat.service.WechatApis
 import org.springframework.stereotype.Service
 import java.io.File
+import java.util.function.Supplier
 
 @Service
 class WechatApisImpl : WechatApis {
@@ -64,6 +63,17 @@ class WechatApisImpl : WechatApis {
             "${WechatConstants.API_URL}${WechatConstants.API_USERINFO}?access_token=${accessToken}&openid=${wechatApp.appId}&lang=zh_CN"
         val respBody = this.doGet(url)
         return JSON.parseObject(respBody, WechatUserInfo::class.java)
+    }
+
+    override fun getIndustryInfo(wechatApp: WechatApp): List<WechatIndustryInfo> {
+        Asserts.isTrue(wechatApp.type == WechatType.MINI, Supplier { BizException("wechat type must be mini") })
+
+        val accessToken = getAccessToken(wechatApp)
+
+        val url =
+            "${WechatConstants.API_URL}${WechatConstants.API_INDUSTRY_INFO}?access_token=${accessToken}"
+        val respBody = this.doGet(url)
+        return JSON.parseArray(respBody, WechatIndustryInfo::class.java)
     }
 
     override fun uploadMedia(wechatApp: WechatApp, type: String, file: File): WechatMedia {
