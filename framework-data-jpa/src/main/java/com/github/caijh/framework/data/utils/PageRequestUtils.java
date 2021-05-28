@@ -2,6 +2,7 @@ package com.github.caijh.framework.data.utils;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.annotation.Nonnull;
 
 import com.github.caijh.framework.core.model.PageReqBody;
 import org.springframework.data.domain.PageRequest;
@@ -12,7 +13,7 @@ public class PageRequestUtils {
     private PageRequestUtils() {
     }
 
-    public static PageRequest newPageRequest(PageReqBody pageReqBody) {
+    public static PageRequest newPageRequest(@Nonnull PageReqBody pageReqBody) {
         List<Sort.Order> orders = pageReqBody.getSorts().stream()
                                              .map(e -> new Sort.Order(Sort.Direction.fromString(e.getOrder()), e.getColumn()))
                                              .collect(Collectors.toList());
