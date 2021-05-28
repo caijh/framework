@@ -1,0 +1,4 @@
+spring:
+  application:
+    name: framework-demo-web
+debug: true
