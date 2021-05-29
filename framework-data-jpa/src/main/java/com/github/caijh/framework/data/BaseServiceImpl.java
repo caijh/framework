@@ -16,7 +16,7 @@ import org.springframework.lang.Nullable;
 public abstract class BaseServiceImpl<M extends BaseRepository<T, I>, T, I> implements BaseService<T, I> {
 
     @Inject
-    private M repository;
+    protected M repository;
 
     @NotNull
     @Override
