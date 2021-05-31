@@ -1,9 +1,20 @@
 package com.github.caijh.framework.core.utils
 
 import com.github.caijh.framework.core.exception.ReflectionException
+import com.github.caijh.framework.core.lambda.SFunction
 import java.util.*
 
 object PropertyResolver {
+
+    /**
+     * 获取get、set方法对应属性名称.
+     * methodToProperty必须由java类调用.
+     */
+    @JvmStatic
+    fun <T> methodToProperty(func: SFunction<T, *>): String {
+        val lambda = LambdaUtils.resolve(func)
+        return methodToProperty(lambda.implMethodName)
+    }
 
     @JvmStatic
     fun methodToProperty(name: String): String {
