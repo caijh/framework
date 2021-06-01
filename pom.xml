@@ -344,6 +344,7 @@
                         <plugin>no-arg</plugin>
                         <plugin>spring</plugin>
                     </compilerPlugins>
+                    <sourceMap>true</sourceMap>
                 </configuration>
                 <dependencies>
                     <dependency>
