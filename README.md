@@ -4,4 +4,13 @@
 
 ## framework-core
 
-包含可以被其他模块所引用的类，定义共用的常量类、异常类等。
+包含可以被其他模块所引用的类，定义共用的常量类、异常类等能被其他framework模块使用的类。
+
+## framework-config-xxxx
+
+framework-config-xxxx 包含了xxx对应的通用配置项。
+
+## framework-data-xx
+
+### framework-data-mybatis
+
