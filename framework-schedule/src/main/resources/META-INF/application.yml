@@ -1,0 +1,10 @@
+aysnc:
+  executor:
+    core-pool-size: 10
+    max-pool-size: 10
+    queue-capacity: 1000
+    name-prefix: async-task-pool-
+schedule:
+  executor:
+    pool-size: 20
+    name-prefix: schedule-task-pool-
