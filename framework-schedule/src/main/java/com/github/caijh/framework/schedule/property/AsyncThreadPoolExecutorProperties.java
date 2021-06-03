@@ -1,4 +1,4 @@
-package com.github.caijh.framework.schedule.propety;
+package com.github.caijh.framework.schedule.property;
 
 
 import lombok.Data;

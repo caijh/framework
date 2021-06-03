@@ -4,8 +4,8 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 import javax.inject.Inject;
 
-import com.github.caijh.framework.schedule.propety.AsyncThreadPoolExecutorProperties;
-import com.github.caijh.framework.schedule.propety.ScheduleThreadPoolExecutorProperties;
+import com.github.caijh.framework.schedule.property.AsyncThreadPoolExecutorProperties;
+import com.github.caijh.framework.schedule.property.ScheduleThreadPoolExecutorProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.AsyncConfigurer;

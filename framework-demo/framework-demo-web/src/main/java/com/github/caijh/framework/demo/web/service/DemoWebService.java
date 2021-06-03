@@ -4,4 +4,6 @@ public interface DemoWebService {
 
     String hello(String world);
 
+    void asyncHello(String world);
+
 }

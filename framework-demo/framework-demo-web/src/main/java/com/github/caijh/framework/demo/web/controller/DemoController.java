@@ -19,7 +19,13 @@ public class DemoController extends BaseController {
     @GetMapping(value = "/test")
     @ResponseBody
     public String test() {
-        return demoWebService.hello(null);
+        return this.demoWebService.hello(null);
+    }
+
+    @GetMapping(value = "/async/test")
+    @ResponseBody
+    public void aysnc() {
+        this.demoWebService.asyncHello("world");
     }
 
 
