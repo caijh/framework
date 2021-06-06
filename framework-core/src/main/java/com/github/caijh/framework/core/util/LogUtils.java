@@ -1,4 +1,4 @@
-package com.github.caijh.framework.log.util;
+package com.github.caijh.framework.core.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

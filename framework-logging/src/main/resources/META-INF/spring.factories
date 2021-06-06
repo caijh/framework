@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.github.caijh.framework.log.FrameworkLogAutoConfiguration
+  com.github.caijh.framework.logging.FrameworkLogAutoConfiguration
