@@ -9,18 +9,20 @@ import org.springframework.web.filter.CorsFilter;
 @Configuration
 public class CorsAutoConfiguration {
 
-    private CorsConfiguration corsConfiguration() {
+    private static CorsConfiguration corsConfiguration() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.addAllowedOrigin("*"); //允许任何域名
         corsConfiguration.addAllowedHeader("*"); //允许任何头
         corsConfiguration.addAllowedMethod("*"); //允许任何方法
+        corsConfiguration.addExposedHeader("*"); // 暴露哪些头部信息
+        corsConfiguration.setAllowCredentials(true); // 是否发送 Cookie
         return corsConfiguration;
     }
 
     @Bean
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", corsConfiguration());
+        source.registerCorsConfiguration("/**", CorsAutoConfiguration.corsConfiguration());
         return new CorsFilter(source);
     }
 
