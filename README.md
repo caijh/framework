@@ -21,3 +21,8 @@ framework-config-xxxx 包含了xxx对应的通用配置项。
 
 1. CorsAutoConfiguration 配置一个CorsFIlter Bean ，并添加映射路径和具体的CORS配置路径。
 
+## framework-utils
+
+1. XmlUtils
+2. YamlUtils
+3. EasyExcel
