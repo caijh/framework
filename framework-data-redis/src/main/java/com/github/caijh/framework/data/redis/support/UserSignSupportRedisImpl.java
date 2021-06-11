@@ -11,7 +11,7 @@ import org.springframework.data.redis.connection.BitFieldSubCommands;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserSignRedisServiceImpl implements UserSignService {
+public class UserSignSupportRedisImpl implements UserSignSupport {
 
     @Inject
     private Redis redis;

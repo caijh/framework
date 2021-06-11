@@ -7,7 +7,7 @@ import java.util.List;
 
 import com.github.caijh.framework.core.constants.DateFormat;
 
-public interface UserSignService {
+public interface UserSignSupport {
 
     /**
      * 用户签到.

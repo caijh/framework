@@ -7,7 +7,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import com.github.caijh.framework.data.redis.support.UserSign;
-import com.github.caijh.framework.data.redis.support.UserSignService;
+import com.github.caijh.framework.data.redis.support.UserSignSupport;
 import com.github.caijh.framework.demo.web.service.DemoWebService;
 import com.github.caijh.framework.web.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class DemoController extends BaseController {
     private DemoWebService demoWebService;
 
     @Autowired
-    private UserSignService userSignService;
+    private UserSignSupport userSignSupport;
 
     @GetMapping(value = "/test")
     @ResponseBody
@@ -44,13 +44,12 @@ public class DemoController extends BaseController {
         UserSign<Long> userSign = new UserSign<>();
         userSign.setUserId(uid);
         userSign.setDate(LocalDate.now(ZoneId.systemDefault()));
-        this.userSignService.sign(userSign);
+        this.userSignSupport.sign(userSign);
     }
 
     @GetMapping(value = "/u/{uid}/sign/list")
     public List<UserSign<Long>> signList(@PathVariable Long uid) {
-        return this.userSignService.list(uid, YearMonth.now(ZoneId.systemDefault()));
+        return this.userSignSupport.list(uid, YearMonth.now(ZoneId.systemDefault()));
     }
-
 
 }
