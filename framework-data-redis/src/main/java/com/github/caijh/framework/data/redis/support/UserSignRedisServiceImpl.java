@@ -25,7 +25,7 @@ public class UserSignRedisServiceImpl implements UserSignService {
     @Override
     public <T> boolean checkSign(UserSign<T> userSign) {
         String key = this.buildKey(userSign.getUserId(), userSign.getDate());
-        Boolean bitResult = this.redis.getRedisTemplate().opsForValue().getBit(key, userSign.getDate().getDayOfMonth());
+        Boolean bitResult = this.redis.getRedisTemplate().opsForValue().getBit(key, userSign.getDate().getDayOfMonth() - 1);
         return Optional.ofNullable(bitResult).orElse(false);
     }
 
@@ -57,6 +57,5 @@ public class UserSignRedisServiceImpl implements UserSignService {
         }
         return userSigns;
     }
-
 
 }
