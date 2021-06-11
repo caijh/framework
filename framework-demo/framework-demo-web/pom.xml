@@ -23,5 +23,9 @@
             <groupId>com.github.caijh.framework</groupId>
             <artifactId>framework-schedule</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.github.caijh.framework</groupId>
+            <artifactId>framework-data-redis</artifactId>
+        </dependency>
     </dependencies>
 </project>
