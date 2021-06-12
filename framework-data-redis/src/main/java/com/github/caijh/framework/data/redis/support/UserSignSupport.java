@@ -1,5 +1,6 @@
 package com.github.caijh.framework.data.redis.support;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
@@ -15,7 +16,7 @@ public interface UserSignSupport {
      * @param userSign UserSign
      * @param <T>      the type uid
      */
-    <T> void sign(UserSign<T> userSign);
+    <T extends Serializable> void sign(UserSign<T> userSign);
 
     /**
      * 用户是否签到.
@@ -24,7 +25,7 @@ public interface UserSignSupport {
      * @param <T>      the type uid
      * @return true, if user sign.
      */
-    <T> boolean checkSign(UserSign<T> userSign);
+    <T extends Serializable> boolean checkSign(UserSign<T> userSign);
 
     /**
      * 获取用户签到的次数.
@@ -33,7 +34,7 @@ public interface UserSignSupport {
      * @param <T>      the type uid
      * @return 获取用户签到的次数.
      */
-    <T> int getSignCount(UserSign<T> userSign);
+    <T extends Serializable> int getSignCount(UserSign<T> userSign);
 
     /**
      * 获取用户某一月的签到记录.
@@ -43,7 +44,7 @@ public interface UserSignSupport {
      * @param <T>       the type uid
      * @return 用户某一月的签到记录.
      */
-    <T> List<UserSign<T>> list(T userId, YearMonth yearMonth);
+    <T extends Serializable> List<UserSign<T>> list(T userId, YearMonth yearMonth);
 
     default <T> String buildKey(T uid, LocalDate localDate) {
         return "u:sign:" + uid + ":" + localDate.format(DateTimeFormatter.ofPattern(DateFormat.YYYYMM));

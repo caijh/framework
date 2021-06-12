@@ -1,5 +1,6 @@
 package com.github.caijh.framework.data.redis.support;
 
+import java.io.Serializable;
 import java.time.YearMonth;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,26 +18,26 @@ public class UserSignSupportRedisImpl implements UserSignSupport {
     private Redis redis;
 
     @Override
-    public <T> void sign(UserSign<T> userSign) {
+    public <T extends Serializable> void sign(UserSign<T> userSign) {
         String key = this.buildKey(userSign.getUserId(), userSign.getDate());
         this.redis.getRedisTemplate().opsForValue().setBit(key, userSign.getDate().getDayOfMonth() - 1, true);
     }
 
     @Override
-    public <T> boolean checkSign(UserSign<T> userSign) {
+    public <T extends Serializable> boolean checkSign(UserSign<T> userSign) {
         String key = this.buildKey(userSign.getUserId(), userSign.getDate());
         Boolean bitResult = this.redis.getRedisTemplate().opsForValue().getBit(key, userSign.getDate().getDayOfMonth() - 1);
         return Optional.ofNullable(bitResult).orElse(false);
     }
 
     @Override
-    public <T> int getSignCount(UserSign<T> userSign) {
+    public <T extends Serializable> int getSignCount(UserSign<T> userSign) {
         String key = this.buildKey(userSign.getUserId(), userSign.getDate());
         return this.redis.bitCount(key);
     }
 
     @Override
-    public <T> List<UserSign<T>> list(T userId, YearMonth yearMonth) {
+    public <T extends Serializable> List<UserSign<T>> list(T userId, YearMonth yearMonth) {
         String key = this.buildKey(userId, yearMonth.atEndOfMonth());
         int dayOfMonth = yearMonth.atEndOfMonth().getDayOfMonth();
         List<Long> bitFields = this.redis.getRedisTemplate().opsForValue().bitField(key,
