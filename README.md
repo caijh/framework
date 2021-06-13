@@ -20,6 +20,7 @@ framework-config-xxxx 包含了xxx对应的通用配置项。
 ## framework-web
 
 1. CorsAutoConfiguration 配置一个CorsFIlter Bean ，并添加映射路径和具体的CORS配置路径。
+2. ThreadLocalStoreInterceptor处理请求后清理threadlocal变量
 
 ## framework-utils
 
