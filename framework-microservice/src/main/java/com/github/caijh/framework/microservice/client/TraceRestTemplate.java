@@ -9,7 +9,7 @@ public class TraceRestTemplate {
 
     public TraceRestTemplate(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
-        this.restTemplate.getInterceptors().add(new RestTemplateTraceInterceptor());
+        this.restTemplate.getInterceptors().add(new RestTemplateTraceInterceptor()); // 加入traceId
     }
 
     public RestTemplate getRestTemplate() {

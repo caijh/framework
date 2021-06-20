@@ -28,12 +28,23 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableHystrix
 public class FrameworkMicroserviceAutoConfiguration implements WebMvcConfigurer {
 
+    /**
+     * 通过TraceRestTemplate对restTemplate interceptors加入RestTemplateTraceInterceptor.
+     *
+     * @param restTemplate restTemplate
+     * @return TraceRestTemplate
+     */
     @ConditionalOnBean(RestTemplate.class)
     @Bean
     public TraceRestTemplate traceRestTemplate(RestTemplate restTemplate) {
         return new TraceRestTemplate(restTemplate);
     }
 
+    /**
+     * feign的请求头中加入X_TRACE_ID.
+     *
+     * @return feign请求拦截器
+     */
     @Bean
     public RequestInterceptor requestInterceptor() {
         return template -> {
@@ -56,6 +67,7 @@ public class FrameworkMicroserviceAutoConfiguration implements WebMvcConfigurer 
                 .withGroupKey(HystrixCommandGroupKey.Factory.asKey(id))
                 .andCommandPropertiesDefaults(
                         HystrixCommandProperties.Setter()
+                                                .withExecutionTimeoutEnabled(true)
                                                 .withExecutionTimeoutInMilliseconds(5000)
                                                 .withExecutionIsolationStrategy(HystrixCommandProperties.ExecutionIsolationStrategy.THREAD)
                 )
