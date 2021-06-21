@@ -8,7 +8,9 @@ import javax.inject.Inject;
 
 import com.github.caijh.framework.data.redis.support.UserSign;
 import com.github.caijh.framework.data.redis.support.UserSignSupport;
+import com.github.caijh.framework.demo.web.response.GlobalId;
 import com.github.caijh.framework.demo.web.service.DemoWebService;
+import com.github.caijh.framework.globalid.service.GlobalIdService;
 import com.github.caijh.framework.web.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +28,9 @@ public class DemoController extends BaseController {
 
     @Autowired
     private UserSignSupport userSignSupport;
+
+    @Autowired
+    private GlobalIdService globalIdService;
 
     @GetMapping(value = "/test")
     @ResponseBody
@@ -50,6 +55,13 @@ public class DemoController extends BaseController {
     @GetMapping(value = "/u/{uid}/sign/list")
     public List<UserSign<Long>> signList(@PathVariable Long uid) {
         return this.userSignSupport.list(uid, YearMonth.now(ZoneId.systemDefault()));
+    }
+
+
+    @GetMapping(value = "/global/id")
+    public GlobalId globalId() {
+        long id = this.globalIdService.nextId();
+        return new GlobalId().setId(id);
     }
 
 }

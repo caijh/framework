@@ -27,3 +27,7 @@ framework-config-xxxx 包含了xxx对应的通用配置项。
 1. XmlUtils
 2. YamlUtils
 3. EasyExcel
+
+# framework-global-id
+
+使用mist算法生成全局id

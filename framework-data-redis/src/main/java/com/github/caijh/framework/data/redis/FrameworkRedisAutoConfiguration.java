@@ -1,6 +1,13 @@
 package com.github.caijh.framework.data.redis;
 
+import java.time.Duration;
+import java.util.Optional;
+
 import com.github.caijh.framework.data.redis.serializer.ProtobufSerializer;
+import com.github.caijh.framework.data.redis.support.Redis;
+import org.redisson.Redisson;
+import org.redisson.api.RedissonClient;
+import org.redisson.config.Config;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
@@ -35,13 +42,40 @@ public class FrameworkRedisAutoConfiguration {
     }
 
     @Bean
-    public Redis redis(RedisTemplate<String, Object> stringObjectRedisTemplate) {
-        return new Redis(stringObjectRedisTemplate);
+    public RedissonClient redisson(RedisProperties redisProperties) {
+        Config config = new Config();
+        RedisProperties.Cluster cluster = redisProperties.getCluster();
+        if (cluster != null) {
+            config.useClusterServers().addNodeAddress(cluster.getNodes().toArray(new String[]{}))
+                  .setClientName(redisProperties.getClientName())
+                  .setPassword(redisProperties.getPassword())
+                  .setRetryAttempts(cluster.getMaxRedirects()).setConnectTimeout((int) (redisProperties.getTimeout().getSeconds() * 1000))
+                  .setScanInterval(5000);
+        } else {
+            RedisProperties.Sentinel sentinel = redisProperties.getSentinel();
+            if (sentinel != null) {
+                config.useSentinelServers().addSentinelAddress(sentinel.getNodes().toArray(new String[]{}))
+                      .setClientName(redisProperties.getClientName()).setPassword(redisProperties.getPassword())
+                      .setDatabase(redisProperties.getDatabase()).setMasterName(sentinel.getMaster()).setScanInterval(5000)
+                      .setConnectTimeout((int) (redisProperties.getTimeout().getSeconds() * 1000));
+            } else {
+                String address = redisProperties.getUrl();
+                if (address == null) {
+                    address = "redis://" + redisProperties.getHost() + ":" + redisProperties.getPort();
+                }
+                config.useSingleServer().setAddress(address)
+                      .setClientName(redisProperties.getClientName()).setPassword(redisProperties.getPassword())
+                      .setDatabase(redisProperties.getDatabase())
+                      .setConnectTimeout((int) Optional.ofNullable(redisProperties.getTimeout()).orElseGet(() -> Duration.ofSeconds(10)).getSeconds() * 1000)
+                ;
+            }
+        }
+        return Redisson.create(config);
     }
 
     @Bean
-    public RedisLock redisLock(RedisProperties redisProperties) {
-        return new RedisLock(redisProperties);
+    public Redis redis(RedisTemplate<String, Object> stringObjectRedisTemplate, RedissonClient redissonClient) {
+        return new Redis(stringObjectRedisTemplate, redissonClient);
     }
 
 }

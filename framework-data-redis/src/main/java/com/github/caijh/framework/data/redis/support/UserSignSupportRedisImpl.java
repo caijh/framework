@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Optional;
 import javax.inject.Inject;
 
-import com.github.caijh.framework.data.redis.Redis;
 import org.springframework.data.redis.connection.BitFieldSubCommands;
 import org.springframework.stereotype.Service;
 
