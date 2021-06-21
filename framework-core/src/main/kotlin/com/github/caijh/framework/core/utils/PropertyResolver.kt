@@ -27,7 +27,7 @@ object PropertyResolver {
             throw ReflectionException("Error parsing property name '$propertyName'.  Didn't start with 'is', 'get' or 'set'.")
         }
         if (propertyName.length == 1 || propertyName.length > 1 && !Character.isUpperCase(propertyName[1])) {
-            propertyName = propertyName.substring(0, 1).toLowerCase(Locale.ENGLISH) + propertyName.substring(1)
+            propertyName = propertyName.substring(0, 1).lowercase(Locale.ENGLISH) + propertyName.substring(1)
         }
         return propertyName
     }
