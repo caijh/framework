@@ -37,6 +37,7 @@
         <module>framework-config-eureka</module>
 
         <module>framework-demo</module>
+        <module>framework-global-id</module>
     </modules>
 
     <properties>
@@ -282,6 +283,11 @@
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-wechat</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.caijh.framework</groupId>
+                <artifactId>framework-global-id</artifactId>
                 <version>${revision}</version>
             </dependency>
 
