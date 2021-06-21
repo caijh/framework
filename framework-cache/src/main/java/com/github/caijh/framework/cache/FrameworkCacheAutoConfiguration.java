@@ -1,10 +1,10 @@
-package com.github.caijh.framework.cache.autoconfigure;
+package com.github.caijh.framework.cache;
 
 import java.time.Duration;
 import javax.annotation.Nonnull;
 
-import com.github.caijh.framework.cache.RedisWithTtlCacheManager;
 import com.github.caijh.framework.cache.exception.CacheConfigException;
+import com.github.caijh.framework.cache.manager.RedisWithTtlCacheManager;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.cache.CacheManager;
@@ -29,7 +29,7 @@ public class FrameworkCacheAutoConfiguration implements EnvironmentAware {
     @ConditionalOnBean(value = RedisTemplate.class)
     @ConditionalOnMissingBean
     public CacheManager cacheManager(RedisTemplate<String, Object> redisTemplate) {
-        String appName = env.getProperty("spring.application.name", "UNKNOWN");
+        String appName = this.env.getProperty("spring.application.name", "UNKNOWN");
 
         RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration
                 .defaultCacheConfig()

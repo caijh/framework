@@ -1,4 +1,4 @@
-package com.github.caijh.framework.cache;
+package com.github.caijh.framework.cache.manager;
 
 import java.time.Duration;
 import javax.annotation.Nonnull;
