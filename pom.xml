@@ -586,6 +586,14 @@
                             <encoding>UTF-8</encoding>
                             <docencoding>UTF-8</docencoding>
                         </configuration>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
                     </plugin>
                     <!-- GPG -->
                     <plugin>
