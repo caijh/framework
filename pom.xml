@@ -36,7 +36,6 @@
         <module>framework-config-nacos</module>
         <module>framework-config-eureka</module>
 
-        <module>framework-demo</module>
         <module>framework-global-id</module>
     </modules>
 
