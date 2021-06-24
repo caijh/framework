@@ -17,6 +17,12 @@ framework-config-xxxx 包含了xxx对应的通用配置项。
 1. PaginationInnerInterceptor分页拦截
 2. 自动填充，实现并声明InsertFillFieldProvider和UpdateFillFieldProvider两个Bean
 
+### framework-data-redis
+
+1. Redis封装
+2. Redis分布式锁，使用redisson实现
+3. 用户签到
+
 ## framework-web
 
 1. CorsAutoConfiguration 配置一个CorsFIlter Bean ，并添加映射路径和具体的CORS配置路径。
