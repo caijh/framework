@@ -32,7 +32,7 @@ class MistGlobalIdServiceImpl : GlobalIdService, InitializingBean, Runnable {
 
     private lateinit var blockingQueue: RBoundedBlockingQueue<Long>
 
-    private val maxSize = 10
+    private val maxSize = 100
 
     override fun nextId(): Long {
         return blockingQueue.take()
@@ -43,7 +43,7 @@ class MistGlobalIdServiceImpl : GlobalIdService, InitializingBean, Runnable {
             val lock = redis.redisLock.get("global:id:lock")
             try { // 确认顺序放入blockingQueue中
                 lock.lockInterruptibly()
-                if (blockingQueue.size != maxSize) {
+                if (blockingQueue.size < maxSize) {
                     val increase = redis.redisTemplate.opsForValue().increment("global:id", 1L)
                     if (increase != null) {
                         blockingQueue.put(generate(increase))
