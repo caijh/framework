@@ -1,4 +1,4 @@
-package com.github.caijh.framework.data.redis.support;
+package com.github.caijh.framework.data.redis.support.impl;
 
 import java.io.Serializable;
 import java.time.YearMonth;
@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Optional;
 import javax.inject.Inject;
 
+import com.github.caijh.framework.data.redis.support.Redis;
+import com.github.caijh.framework.data.redis.support.UserSign;
+import com.github.caijh.framework.data.redis.support.UserSignSupport;
 import org.springframework.data.redis.connection.BitFieldSubCommands;
 import org.springframework.stereotype.Service;
 
