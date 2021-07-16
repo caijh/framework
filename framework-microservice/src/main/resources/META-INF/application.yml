@@ -4,6 +4,10 @@ spring:
       hystrix:
         enabled: true
 
+ribbon:
+  eager-load:
+    enabled: true # 开启ribbon饥饿加载
+
 feign:
   client:
     config:
