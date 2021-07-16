@@ -1,13 +1,8 @@
-mybatis:
-  configuration:
-    map-underscore-to-camel-case: true
-    cache-enabled: true
-  mapper-locations: classpath*:mapper/**/*Mapper.xml
 mybatis-plus:
-  mapper-locations: ${mybatis.mapper-locations} #xml扫描，多个目录用逗号或者分号分隔（告诉 Mapper 所对应的 XML 文件位置）
+  mapper-locations: classpath*:mapper/**/*Mapper.xml #xml扫描，多个目录用逗号或者分号分隔（告诉 Mapper 所对应的 XML 文件位置）
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 配置slq打印日志
-    map-underscore-to-camel-case: ${mybatis.configuration.map-underscore-to-camel-case}
+    map-underscore-to-camel-case: true
   global-config:
     db-config:
       logic-delete-field: deleted # 全局逻辑删除的实体字段名

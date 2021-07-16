@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import com.github.caijh.framework.core.exception.BizException;
-import com.github.caijh.framework.core.utils.ClassUtils;
+import com.github.caijh.framework.core.util.ClassUtils;
 import org.springframework.util.SerializationUtils;
 
 /**

@@ -1,4 +1,4 @@
-package com.github.caijh.framework.core.utils
+package com.github.caijh.framework.core.util
 
 import com.github.caijh.framework.core.exception.BizException
 

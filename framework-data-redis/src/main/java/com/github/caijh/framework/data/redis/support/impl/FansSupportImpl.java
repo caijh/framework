@@ -1,11 +1,11 @@
 package com.github.caijh.framework.data.redis.support.impl;
 
+import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
 
-import com.beust.jcommander.internal.Sets;
 import com.github.caijh.framework.data.redis.support.FansSupport;
 import com.github.caijh.framework.data.redis.support.Redis;
 import org.springframework.stereotype.Service;
@@ -35,7 +35,7 @@ public class FansSupportImpl implements FansSupport {
     @Override
     public <T extends Number> Set<T> getFollowUid(T uid) {
         Set<Object> members = this.redis.getRedisTemplate().opsForSet().members(String.format(FansSupportImpl.FOLLOW_KEY, uid));
-        return Optional.ofNullable(members).orElse(Sets.newHashSet())
+        return Optional.ofNullable(members).orElse(Collections.emptySet())
                        .stream().map(e -> (T) e)
                        .collect(Collectors.toSet());
     }
@@ -44,7 +44,7 @@ public class FansSupportImpl implements FansSupport {
     @Override
     public <T extends Number> Set<T> getFansUid(T uid) {
         Set<Object> members = this.redis.getRedisTemplate().opsForSet().members(String.format(FansSupportImpl.FANS_KEY, uid));
-        return Optional.ofNullable(members).orElse(Sets.newHashSet())
+        return Optional.ofNullable(members).orElse(Collections.emptySet())
                        .stream().map(e -> (T) e)
                        .collect(Collectors.toSet());
     }
@@ -76,7 +76,7 @@ public class FansSupportImpl implements FansSupport {
     public <T extends Number> Set<T> getFollowIntersection(T uid, T targetUid) {
         Set<Object> intersect = this.redis.getRedisTemplate().opsForSet()
                                           .intersect(String.format(FansSupportImpl.FANS_KEY, uid), String.format(FansSupportImpl.FANS_KEY, targetUid));
-        return Optional.ofNullable(intersect).orElse(Sets.newHashSet()).stream().map(e -> (T) e)
+        return Optional.ofNullable(intersect).orElse(Collections.emptySet()).stream().map(e -> (T) e)
                        .collect(Collectors.toSet());
     }
 

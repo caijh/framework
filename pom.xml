@@ -40,15 +40,16 @@
     </modules>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-        <lombok.version>1.18.16</lombok.version>
-        <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
-        <spring-cloud.version>Hoxton.SR6</spring-cloud.version>
+        <dokka.version>1.4.32</dokka.version>
         <framework.version>2.3.2-0.0.3-SNAPSHOT</framework.version>
+        <jsr305.version>3.0.1</jsr305.version>
         <kotlin.version>1.5.20</kotlin.version>
         <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
-        <dokka.version>1.4.32</dokka.version>
+        <lombok.version>1.18.16</lombok.version>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
+        <spring-cloud.version>Hoxton.SR6</spring-cloud.version>
     </properties>
 
     <licenses>
@@ -142,7 +143,7 @@
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
             <artifactId>jsr305</artifactId>
-            <version>3.0.2</version>
+            <version>${jsr305.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -188,7 +189,7 @@
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
-                <version>5.4.29.Final</version>
+                <version>5.5.3.Final</version>
             </dependency>
             <dependency>
                 <groupId>com.vladmihalcea</groupId>
@@ -228,7 +229,7 @@
             <dependency>
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson</artifactId>
-                <version>3.8.2</version>
+                <version>3.16.0</version>
             </dependency>
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>

@@ -1,8 +1,12 @@
 package com.github.caijh.framework.web.handler;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.caijh.framework.core.model.R;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
@@ -20,6 +24,13 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @Order(1)
 public class ValidateExceptionHandler {
 
+    private final ObjectMapper mapper;
+
+    public ValidateExceptionHandler() {
+        this.mapper = new ObjectMapper();
+        this.mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+    }
+
     @ExceptionHandler(value = {BindException.class, MethodArgumentNotValidException.class})
     @ResponseBody
     public ResponseEntity<R<Void>> validExceptionHandler(Exception e) {
@@ -32,11 +43,15 @@ public class ValidateExceptionHandler {
         R<Void> result = new R<>();
         if (bindingResult != null) {
             List<FieldError> fieldErrors = bindingResult.getFieldErrors();
-            JSONObject errMsg = new JSONObject();
+            Map<String, String> errMsg = new HashMap<>();
             for (FieldError error : fieldErrors) {
                 errMsg.put(error.getField(), error.getDefaultMessage());
             }
-            result.setMessage(errMsg.toString());
+            try {
+                result.setMessage(this.mapper.writeValueAsString(errMsg));
+            } catch (JsonProcessingException jsonProcessingException) {
+                result.setMessage("ValidExceptionHandler write field error message fail");
+            }
         } else {
             result.setMessage(e.getLocalizedMessage());
         }
