@@ -1,4 +1,4 @@
-package com.github.caijh.framework.microservice.interceptor;
+package com.github.caijh.framework.microservice.trace;
 
 import java.io.IOException;
 

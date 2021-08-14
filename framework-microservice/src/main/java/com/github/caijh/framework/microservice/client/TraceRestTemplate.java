@@ -1,6 +1,6 @@
 package com.github.caijh.framework.microservice.client;
 
-import com.github.caijh.framework.microservice.interceptor.RestTemplateTraceInterceptor;
+import com.github.caijh.framework.microservice.trace.RestTemplateTraceInterceptor;
 import org.springframework.web.client.RestTemplate;
 
 public class TraceRestTemplate {

@@ -2,7 +2,8 @@ package com.github.caijh.framework.microservice;
 
 import com.github.caijh.framework.microservice.client.TraceRestTemplate;
 import com.github.caijh.framework.microservice.constant.Constants;
-import com.github.caijh.framework.microservice.interceptor.TraceIdInterceptor;
+import com.github.caijh.framework.microservice.trace.TraceIdInterceptor;
+import com.github.caijh.framework.microservice.trace.TraceIdThreadPoolTaskExecutorDecorator;
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
 import com.netflix.hystrix.HystrixCommandProperties;
@@ -18,6 +19,7 @@ import org.springframework.cloud.netflix.hystrix.HystrixCircuitBreakerFactory;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -53,6 +55,12 @@ public class FrameworkMicroserviceAutoConfiguration implements WebMvcConfigurer 
                 template.header(Constants.HTTP_HEADER_TRACE_ID, traceId);
             }
         };
+    }
+
+    @Bean
+    @ConditionalOnBean(ThreadPoolTaskExecutor.class)
+    public TraceIdThreadPoolTaskExecutorDecorator traceIdThreadPoolTaskExecutor(ThreadPoolTaskExecutor threadPoolTaskExecutor) {
+        return new TraceIdThreadPoolTaskExecutorDecorator(threadPoolTaskExecutor);
     }
 
     @Bean
