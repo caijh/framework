@@ -12,10 +12,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 
-public abstract class BaseServiceImpl<M extends BaseRepository<T, I>, T, I> implements BaseService<T, I> {
+public abstract class BaseServiceImpl<T, I> implements BaseService<T, I> {
 
     @Inject
-    protected M repository;
+    protected BaseRepository<T, I> repository;
 
     @NotNull
     @Override
