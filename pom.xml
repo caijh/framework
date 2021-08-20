@@ -296,6 +296,16 @@
 
     <build>
         <plugins>
+            <!-- 统一更新子模块版本号为父模块版本号插件 -->
+            <!-- mvn -N versions:update-child-modules -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <generateBackupPoms>false</generateBackupPoms>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
