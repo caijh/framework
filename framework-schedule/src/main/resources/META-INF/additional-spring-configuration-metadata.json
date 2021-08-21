@@ -1,0 +1,34 @@
+{
+  "properties": [
+    {
+      "name": "aysnc.executor.core-pool-size",
+      "type": "java.lang.Integer",
+      "description": "the core pool size in aysnc.executor."
+    },
+    {
+      "name": "aysnc.executor.max-pool-size",
+      "type": "java.lang.Integer",
+      "description": "max pool size in asysnc.executor."
+    },
+    {
+      "name": "aysnc.executor.queue-capacity",
+      "type": "java.lang.Integer",
+      "description": "the queue-capacity of asysnc.executor."
+    },
+    {
+      "name": "aysnc.executor.name-prefix",
+      "type": "java.lang.String",
+      "description": "aysnc.executor.name-prefix."
+    },
+    {
+      "name": "schedule.executor.pool-size",
+      "type": "java.lang.Integer",
+      "description": "schedule.executor.pool-size."
+    },
+    {
+      "name": "schedule.executor.name-prefix",
+      "type": "java.lang.String",
+      "description": "schedule.executor.name-prefix."
+    }
+  ]
+}
