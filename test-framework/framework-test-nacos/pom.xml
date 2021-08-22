@@ -10,7 +10,6 @@
     </parent>
     <groupId>com.github.caijh.framework.test</groupId>
     <artifactId>framework-test-nacos</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <name>framework-test-nacos</name>
     <description>framework-test-nacos</description>
 
