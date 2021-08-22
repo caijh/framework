@@ -1,5 +1,6 @@
 package com.github.caijh.framework.web.util;
 
+import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
 
 import com.github.caijh.framework.web.constant.Constants;
@@ -40,31 +41,16 @@ public class RequestUtils {
         /*
          * 对于获取到多ip的情况下，找到公网ip.
          */
-        String sIP = null;
         if (clientIp != null && !clientIp.contains(Constants.UNKNOWN)) {
             String[] ips = clientIp.split(",");
-            for (String ip : ips) {
-                if (!RequestUtils.isInnerIP(ip.trim())) {
-                    sIP = ip.trim();
-                    break;
-                }
-            }
-            /*
-             * 如果多ip都是内网ip，则取第一个ip.
-             */
-            if (null == sIP) {
-                sIP = ips[0].trim();
-            }
-            clientIp = sIP;
+            clientIp = Arrays.stream(ips).map(String::trim)
+                             .filter(trim -> !RequestUtils.isInnerIP(trim))
+                             .findFirst().orElse(ips[0].trim());
         }
         if (clientIp != null && clientIp.contains(Constants.UNKNOWN)) {
-            clientIp = clientIp.replace("unknown,", "");
-            clientIp = clientIp.trim();
+            clientIp = clientIp.replace("unknown,", "").trim();
         }
-        if ("".equals(clientIp) || null == clientIp) {
-            clientIp = "127.0.0.1";
-        }
-        return clientIp;
+        return clientIp != null && !"".equals(clientIp) ? clientIp : "127.0.0.1";
     }
 
     private static String getIpFromRequestHeader(HttpServletRequest request) {
@@ -91,19 +77,12 @@ public class RequestUtils {
      * @return 是否是内网地址
      */
     public static boolean isInnerIP(String ipAddress) {
-        boolean isInnerIp;
         long ipNum = RequestUtils.getIpNum(ipAddress);
-        long aBegin = RequestUtils.getIpNum("10.0.0.0");
-        long aEnd = RequestUtils.getIpNum("10.255.255.255");
 
-        long bBegin = RequestUtils.getIpNum("172.16.0.0");
-        long bEnd = RequestUtils.getIpNum("172.31.255.255");
-
-        long cBegin = RequestUtils.getIpNum("192.168.0.0");
-        long cEnd = RequestUtils.getIpNum("192.168.255.255");
-        isInnerIp = RequestUtils.isInner(ipNum, aBegin, aEnd) || RequestUtils.isInner(ipNum, bBegin, bEnd) || RequestUtils.isInner(ipNum, cBegin, cEnd)
+        return RequestUtils.isInner(ipNum, RequestUtils.getIpNum("10.0.0.0"), RequestUtils.getIpNum("10.255.255.255"))
+                || RequestUtils.isInner(ipNum, RequestUtils.getIpNum("172.16.0.0"), RequestUtils.getIpNum("172.31.255.255"))
+                || RequestUtils.isInner(ipNum, RequestUtils.getIpNum("192.168.0.0"), RequestUtils.getIpNum("192.168.255.255"))
                 || ipAddress.equals("127.0.0.1");
-        return isInnerIp;
     }
 
     private static long getIpNum(String ipAddress) {
@@ -119,6 +98,5 @@ public class RequestUtils {
     private static boolean isInner(long userIp, long begin, long end) {
         return (userIp >= begin) && (userIp <= end);
     }
-
 
 }

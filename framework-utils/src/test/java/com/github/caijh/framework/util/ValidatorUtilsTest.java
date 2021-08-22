@@ -30,7 +30,7 @@ class ValidatorUtilsTest {
 
     @Test
     void isIDCard() {
-        assertFalse(ValidatorUtils.isIDCard("440582"));
+        assertFalse(ValidatorUtils.isIdCard("440582"));
     }
 
     @Test
