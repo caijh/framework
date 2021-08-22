@@ -37,6 +37,7 @@
         <module>framework-config-eureka</module>
 
         <module>framework-global-id</module>
+        <module>test-framework/framework-test-nacos</module>
     </modules>
 
     <properties>
