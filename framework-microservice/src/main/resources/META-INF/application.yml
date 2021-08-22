@@ -16,7 +16,7 @@ feign:
         readTimeout: 5000
         loggerLevel: basic
   hystrix:
-    enabled: true
+    enabled: true # feign允许开启hystrix后, 会自动把所有服务的feign接口下的方法加入到断路器监控中
   compression:
     request:
       enabled: false #是否对请求进行GZIP压缩

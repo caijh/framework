@@ -16,6 +16,7 @@ import org.springframework.cloud.client.circuitbreaker.Customizer;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.netflix.hystrix.HystrixCircuitBreakerFactory;
+import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,6 +29,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableDiscoveryClient
 @EnableFeignClients
 @EnableHystrix
+@EnableHystrixDashboard
 public class FrameworkMicroserviceAutoConfiguration implements WebMvcConfigurer {
 
     /**
@@ -78,6 +80,7 @@ public class FrameworkMicroserviceAutoConfiguration implements WebMvcConfigurer 
                                                 .withExecutionTimeoutEnabled(true)
                                                 .withExecutionTimeoutInMilliseconds(5000)
                                                 .withExecutionIsolationStrategy(HystrixCommandProperties.ExecutionIsolationStrategy.THREAD)
+                                                .withCircuitBreakerSleepWindowInMilliseconds(10000) // 把断路器的休眠窗时间设为10秒，默认为5秒
                 )
 
         );
