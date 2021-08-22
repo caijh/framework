@@ -9,18 +9,17 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
     <groupId>com.github.caijh.framework.test</groupId>
-    <artifactId>framework-test-nacos</artifactId>
-    <name>framework-test-nacos</name>
-    <description>framework-test-nacos</description>
-
+    <artifactId>framework-microservice-test</artifactId>
+    <name>framework-microservice-test</name>
+    <description>framework-microservice-test</description>
     <dependencies>
         <dependency>
             <groupId>com.github.caijh.framework</groupId>
-            <artifactId>framework-config-nacos</artifactId>
+            <artifactId>framework-web</artifactId>
         </dependency>
         <dependency>
             <groupId>com.github.caijh.framework</groupId>
-            <artifactId>framework-web</artifactId>
+            <artifactId>framework-microservice</artifactId>
         </dependency>
     </dependencies>
 
@@ -51,5 +50,6 @@
             </plugin>
         </plugins>
     </build>
+
 
 </project>
