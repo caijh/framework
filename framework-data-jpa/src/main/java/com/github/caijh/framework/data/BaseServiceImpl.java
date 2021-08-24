@@ -17,6 +17,17 @@ public abstract class BaseServiceImpl<T, I> implements BaseService<T, I> {
     @Inject
     protected BaseRepository<T, I> repository;
 
+    /**
+     * 将注入BaseRepository转化实际继承了BaseRepository的类.
+     *
+     * @param <R> repository this extends BaseRepository
+     * @return R target repository
+     */
+    @SuppressWarnings("unchecked")
+    public <R extends BaseRepository<T, I>> R getRepository() {
+        return (R) this.repository;
+    }
+
     @NotNull
     @Override
     public List<T> findAll() {
