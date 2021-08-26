@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import com.github.caijh.framework.core.exception.ConfigFileNotFoundException;
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.context.config.ConfigFileApplicationListener;
+import org.springframework.boot.context.config.ConfigDataEnvironmentPostProcessor;
 import org.springframework.boot.env.EnvironmentPostProcessor;
 import org.springframework.core.Ordered;
 import org.springframework.core.env.ConfigurableEnvironment;
@@ -22,7 +22,7 @@ import org.springframework.core.io.UrlResource;
 
 public class ConfigFileEnvironmentPostProcessor implements EnvironmentPostProcessor, Ordered {
 
-    public static final int DEFAULT_ORDER = ConfigFileApplicationListener.DEFAULT_ORDER - 1;
+    public static final int DEFAULT_ORDER = ConfigDataEnvironmentPostProcessor.ORDER - 1;
     private static final String CONFIG_FILE_LOCATION = "META-INF/application.yml";
     /**
      * defaultProperties keep same value of {@code ConfigFileApplicationListener.DEFAULT_PROPERTIES}.
