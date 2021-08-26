@@ -22,7 +22,7 @@ import org.springframework.core.io.UrlResource;
 
 public class ConfigFileEnvironmentPostProcessor implements EnvironmentPostProcessor, Ordered {
 
-    public static final int DEFAULT_ORDER = ConfigDataEnvironmentPostProcessor.ORDER - 1;
+    public static final int DEFAULT_ORDER = ConfigDataEnvironmentPostProcessor.ORDER + 1;
     private static final String CONFIG_FILE_LOCATION = "META-INF/application.yml";
     /**
      * defaultProperties keep same value of {@code ConfigFileApplicationListener.DEFAULT_PROPERTIES}.

@@ -18,6 +18,14 @@
             <groupId>com.github.caijh.framework</groupId>
             <artifactId>framework-core</artifactId>
         </dependency>
+
+        <!--Nacos作为配置中心报错：Param ‘serviceName‘ is illegal, serviceName is blank-->
+        <!--Nacos config的配置信息要存至bootstrap.yml文件中-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
