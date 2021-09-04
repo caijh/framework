@@ -9,37 +9,33 @@ import com.power.doc.model.ApiConfig;
 import com.power.doc.model.ApiErrorCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.WebApplicationType;
-import org.springframework.boot.autoconfigure.web.ServerProperties;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.boot.web.context.WebServerApplicationContext;
+import org.springframework.boot.web.context.WebServerInitializedEvent;
+import org.springframework.boot.web.server.WebServer;
 import org.springframework.context.ApplicationListener;
-import org.springframework.context.ConfigurableApplicationContext;
 
-public class DocInitializer implements ApplicationListener<ApplicationReadyEvent> {
+public class DocInitializer implements ApplicationListener<WebServerInitializedEvent> {
 
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public void onApplicationEvent(ApplicationReadyEvent event) {
-        if (WebApplicationType.NONE == event.getSpringApplication().getWebApplicationType()) {
-            return;
-        }
-        logger.info("Initializing smart-doc");
+    public void onApplicationEvent(WebServerInitializedEvent event) {
+        this.logger.info("Initializing smart-doc");
 
-        init(event.getApplicationContext());
+        this.init(event.getApplicationContext());
 
-        logger.info("Initialized smart-doc");
+        this.logger.info("Initialized smart-doc");
     }
 
-    public void init(ConfigurableApplicationContext applicationContext) {
+    public void init(WebServerApplicationContext applicationContext) {
         ApiConfig config = new ApiConfig();
         config.setAllInOne(true);
         config.setCoverOld(true);
         config.setAdoc(true);
         config.setStrict(true);
         config.setProjectName(applicationContext.getApplicationName());
-        ServerProperties serverProperties = applicationContext.getBean(ServerProperties.class);
-        config.setServerUrl("http://127.0.0.1:" + serverProperties.getPort());
+        WebServer webServer = applicationContext.getWebServer();
+        config.setServerUrl("http://127.0.0.1:" + webServer.getPort());
         config.setOutPath("doc/api");
         List<ApiErrorCode> errorCodeList = new ArrayList<>();
         for (HttpCodeEnum codeEnum : HttpCodeEnum.values()) {
