@@ -36,9 +36,11 @@
         <module>framework-config-nacos</module>
         <module>framework-config-eureka</module>
         <module>framework-global-id</module>
+        <module>framework-sentinel</module>
 
         <module>test-framework/framework-config-nacos-test</module>
         <module>test-framework/framework-microservice-test</module>
+        <module>test-framework/framework-sentinel-test</module>
     </modules>
 
     <properties>
@@ -282,6 +284,11 @@
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-global-id</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.caijh.framework</groupId>
+                <artifactId>framework-sentinel</artifactId>
                 <version>${framework.version}</version>
             </dependency>
 
