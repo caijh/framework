@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Configuration
 @EnableJpaRepositories(
+        basePackages = "**",
         excludeFilters = {
                 @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Service.class),
                 @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = BaseService.class)
