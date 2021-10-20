@@ -56,7 +56,7 @@
         <spring-cloud.version>2020.0.3</spring-cloud.version>
         <redisson.version>3.16.0</redisson.version>
         <hibernate-types-52.version>2.9.13</hibernate-types-52.version>
-        <hibernate-core.version>5.5.3.Final</hibernate-core.version>
+        <hibernate-core.version>5.5.8.Final</hibernate-core.version>
     </properties>
 
     <licenses>
