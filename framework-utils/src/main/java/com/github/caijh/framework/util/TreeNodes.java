@@ -5,7 +5,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-
+/**
+ * hold all tree node.
+ *
+ * @param <K> tree nod key
+ * @param <V> tree node value
+ */
 public class TreeNodes<K, V extends TreeNode<K, V>> {
 
     private final List<V> allNodes;
