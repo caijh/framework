@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: sormuras/download-jdk@v1
         with:
-          feature: 1.8
+          feature: 17
       - name: Set up JDK 1.8
         uses: actions/setup-java@v2
         with:
