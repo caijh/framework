@@ -46,10 +46,10 @@
     <properties>
         <dokka.version>1.4.32</dokka.version>
         <framework.version>2.4.6-0.0.3-SNAPSHOT</framework.version>
-        <jsr305.version>3.0.1</jsr305.version>
-        <kotlin.version>1.5.30</kotlin.version>
+        <jsr305.version>3.0.2</jsr305.version>
+        <kotlin.version>1.5.31</kotlin.version>
         <kotlin.compiler.incremental>false</kotlin.compiler.incremental>
-        <lombok.version>1.18.20</lombok.version>
+        <lombok.version>1.18.22</lombok.version>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
@@ -103,17 +103,17 @@
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
-            <version>2.3.1</version>
+            <version>2.4.0-b180830.0359</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-core</artifactId>
-            <version>3.0.0</version>
+            <version>3.0.1</version>
         </dependency>
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-impl</artifactId>
-            <version>2.3.3</version>
+            <version>3.0.1</version>
         </dependency>
         <dependency>
             <groupId>javax.activation</groupId>
@@ -133,7 +133,7 @@
         <dependency>
             <groupId>org.javassist</groupId>
             <artifactId>javassist</artifactId>
-            <version>3.27.0-GA</version>
+            <version>3.28.0-GA</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
