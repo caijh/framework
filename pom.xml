@@ -327,7 +327,7 @@
                         <arg>-Xjsr305=strict</arg>
                     </args>
                     <compilerPlugins>
-                        <plugin>lombok</plugin>
+                        <!--<plugin>lombok</plugin>-->
                         <plugin>no-arg</plugin>
                         <plugin>spring</plugin>
                     </compilerPlugins>
@@ -335,7 +335,7 @@
                     <jvmTarget>${java.version}</jvmTarget>
                 </configuration>
                 <dependencies>
-                    <dependency>
+                   <!-- <dependency>
                         <groupId>org.projectlombok</groupId>
                         <artifactId>lombok</artifactId>
                         <version>${lombok.version}</version>
@@ -344,7 +344,7 @@
                         <groupId>org.jetbrains.kotlin</groupId>
                         <artifactId>kotlin-maven-lombok</artifactId>
                         <version>${kotlin.version}</version>
-                    </dependency>
+                    </dependency>-->
                     <dependency>
                         <groupId>org.jetbrains.kotlin</groupId>
                         <artifactId>kotlin-maven-allopen</artifactId>
@@ -370,15 +370,15 @@
                             <annotationProcessorPaths>
                                 <!-- Specify your annotation processors here. -->
                                 <!--use Lombok annotations on Kotlin classes-->
-                                <annotationProcessorPath>
+                                <!--<annotationProcessorPath>
                                     <groupId>org.projectlombok</groupId>
                                     <artifactId>lombok</artifactId>
                                     <version>${lombok.version}</version>
-                                </annotationProcessorPath>
+                                </annotationProcessorPath>-->
                             </annotationProcessorPaths>
                             <annotationProcessors>
-                                <annotationProcessor>lombok.launch.AnnotationProcessorHider$AnnotationProcessor
-                                </annotationProcessor>
+                               <!-- <annotationProcessor>lombok.launch.AnnotationProcessorHider$AnnotationProcessor
+                                </annotationProcessor>-->
                             </annotationProcessors>
                         </configuration>
                     </execution>
@@ -409,15 +409,15 @@
                             <annotationProcessorPaths>
                                 <!-- Specify your annotation processors here. -->
                                 <!--use Lombok annotations on Kotlin classes-->
-                                <annotationProcessorPath>
+                               <!-- <annotationProcessorPath>
                                     <groupId>org.projectlombok</groupId>
                                     <artifactId>lombok</artifactId>
                                     <version>${lombok.version}</version>
-                                </annotationProcessorPath>
+                                </annotationProcessorPath>-->
                             </annotationProcessorPaths>
                             <annotationProcessors>
-                                <annotationProcessor>lombok.launch.AnnotationProcessorHider$AnnotationProcessor
-                                </annotationProcessor>
+                              <!--  <annotationProcessor>lombok.launch.AnnotationProcessorHider$AnnotationProcessor
+                                </annotationProcessor>-->
                             </annotationProcessors>
                         </configuration>
                     </execution>
