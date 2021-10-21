@@ -15,12 +15,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Set up JDK 1.8
+      - name: Download JDK
+        run: |
+          download_url="https://media-gdgz-person.gdoss.xstore.ctyun.cn/PERSONCLOUD/f8da8574-0a87-4607-ace6-a41d68b4ab0c.gz?response-content-disposition=attachment%3Bfilename%3D%22jdk-8u311-linux-x64.tar.gz%22&x-amz-CLIENTNETWORK=UNKNOWN&x-amz-CLOUDTYPEIN=PERSON&x-amz-limit=rate%3D10240%2Cconcurrency%3D10&x-amz-CLIENTTYPEIN=WEB&Signature=BJqeE7G/Huk32wiYtO9Cj2PSj1U%3D&x-amz-SHID=1137311451766&AWSAccessKeyId=B12spNbFIkHcJjk5MvKN&Expires=1634805805&x-amz-FSIZE=146799982&x-amz-UID=200371631&x-amz-UFID=31490114481705521"
+          wget -O $RUNNER_TEMP/java_package.tar.gz $download_url
+      - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          distribution: 'temurin'
+          distribution: 'jdkfile'
+          jdkFile: ${{ runner.temp }}/java_package.tar.gz
           java-version: '8'
-          java-package: jdk # optional (jdk or jre) - defaults to jdk
           server-id: oss
           server-username: MAVEN_USERNAME
           server-password: MAVEN_PASSWORD
