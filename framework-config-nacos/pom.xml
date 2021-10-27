@@ -11,7 +11,7 @@
 
     <artifactId>framework-config-nacos</artifactId>
     <properties>
-        <spring.cloud.nacos.version>2.2.5.RELEASE</spring.cloud.nacos.version>
+        <spring.cloud.nacos.version>2021.1</spring.cloud.nacos.version>
     </properties>
     <dependencies>
         <dependency>
