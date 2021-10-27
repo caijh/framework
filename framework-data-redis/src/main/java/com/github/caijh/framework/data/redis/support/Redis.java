@@ -161,7 +161,7 @@ public class Redis {
      * delete keys.
      *
      * @param keys keys to delete
-     * @return how much keys is deleted
+     * @return the number of keys is deleted
      */
     public Long delete(Collection<String> keys) {
         return this.redisTemplate.delete(keys);
