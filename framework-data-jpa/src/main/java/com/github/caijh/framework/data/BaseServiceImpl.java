@@ -12,6 +12,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 
+/**
+ * 基础数据服务实现类.
+ * @param <T> 实体类型
+ * @param <I> 实体id类型
+ */
 public abstract class BaseServiceImpl<T, I> implements BaseService<T, I> {
 
     @Inject

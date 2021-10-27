@@ -12,6 +12,12 @@ public class PinYinUtils {
 
     }
 
+    /**
+     * 获取中文对应的拼音字符串.
+     *
+     * @param chinese 中文字符串
+     * @return 中文的拼音字符串
+     */
     public static String toPinyin(String chinese) {
         StringBuilder pinyin = new StringBuilder();
         char[] newChar = chinese.toCharArray();
