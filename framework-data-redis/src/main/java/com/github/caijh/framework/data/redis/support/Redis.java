@@ -213,7 +213,7 @@ public class Redis {
         return this.redissonClient;
     }
 
-    public RedisLock getRedisLock() {
+    public RedisLock getLock() {
         return this.redisLock;
     }
 

@@ -40,7 +40,7 @@ class MistGlobalIdServiceImpl : GlobalIdService, InitializingBean, Runnable {
 
     override fun run() {
         while (true) {
-            val lock = redis.redisLock.get("global:id:lock")
+            val lock = redis.lock.get("global:id:lock")
             try { // 确认顺序放入blockingQueue中
                 lock.lockInterruptibly()
                 if (blockingQueue.size < maxSize) {
