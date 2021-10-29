@@ -19,6 +19,9 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 
+/**
+ * 框架cache配置.
+ */
 @Configuration
 @EnableCaching
 public class FrameworkCacheAutoConfiguration implements EnvironmentAware {
@@ -38,7 +41,7 @@ public class FrameworkCacheAutoConfiguration implements EnvironmentAware {
                 .serializeValuesWith(RedisSerializationContext.SerializationPair
                         .fromSerializer(redisTemplate.getValueSerializer()))
                 .entryTtl(Duration.ofMinutes(1))
-                .computePrefixWith(cacheName -> "APP:" + appName + ":caching:" + cacheName);
+                .computePrefixWith(cacheName -> "APP:" + appName + ":CACHE:" + cacheName);
 
         RedisConnectionFactory connectionFactory = redisTemplate.getConnectionFactory();
         if (connectionFactory == null) {
