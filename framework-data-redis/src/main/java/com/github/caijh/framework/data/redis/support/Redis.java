@@ -192,6 +192,10 @@ public class Redis {
         });
     }
 
+    /**
+     * @param key key
+     * @return true, if redis has the key.
+     */
     public boolean hasKey(String key) {
         Boolean hasKey = this.getRedisTemplate().hasKey(key);
         return Optional.ofNullable(hasKey).orElse(false);
@@ -235,9 +239,7 @@ public class Redis {
          */
         public static final long ENTITY_EXPIRED_SECONDS = Expired.M_1_SECONDS * 60 * 24;
 
-        private Expired() {
-
-        }
+        private Expired() {}
 
     }
 
