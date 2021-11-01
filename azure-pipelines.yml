@@ -13,7 +13,7 @@ steps:
 - task: DownloadSecureFile@1
   displayName: Download gpg Secure file
   inputs:
-    secureFile: 'privatekeys.gpg'
+    secureFile: '8A9A95864F12F7A70F1DC31F2233ACD21B562294.asc'
   name: privateKeyRing
 - task: CmdLine@2
   inputs:
