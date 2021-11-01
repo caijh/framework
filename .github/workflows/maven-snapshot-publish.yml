@@ -30,8 +30,10 @@ jobs:
           server-password: MAVEN_PASSWORD
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }} # Value of the GPG private key to import
           gpg-passphrase: GPG_PASSPHRASE # env variable for GPG private key passphrase
+      - name: Set maven Options
+        run: export MAVEN_OPTS="-Xmx3072m"
       - name: Publish Snapshot package
-        run: mvn -DXmx=3072m clean package -DskipTests deploy -P release
+        run: mvn clean package -DskipTests deploy -P release
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
