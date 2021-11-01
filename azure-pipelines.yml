@@ -12,7 +12,7 @@ pool:
 steps:
 - task: MavenAuthenticate@0
   inputs:
-    mavenServiceConnections: 'Maven Cental'
+    mavenServiceConnections: 'Maven Central'
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
