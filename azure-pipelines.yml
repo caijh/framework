@@ -10,9 +10,6 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: MavenAuthenticate@0
-  inputs:
-    mavenServiceConnections: 'Maven Central'
 - task: DownloadSecureFile@1
   displayName: Download gpg Secure file
   inputs:
@@ -20,7 +17,9 @@ steps:
   name: privateKeyRing
 - task: CmdLine@2
   inputs:
-    script: 'gpg --import-key $(privateKeyRing.secureFilePath) --passphrase $(gpg-passphrase)'
+    script: 'gpg --import-key $(privateKeyRing.secureFilePath) --passphrase $(GPG-PASSPHRASE)'
+  displayName: Import gpg private key
+
 
 - task: Maven@3
   inputs:
