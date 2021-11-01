@@ -21,6 +21,9 @@ import org.springframework.util.Assert;
 import static com.github.caijh.framework.data.redis.support.Redis.Expired.ENTITY_EXPIRED_SECONDS;
 import static com.github.caijh.framework.data.redis.support.Redis.Expired.LIST_EXPIRED_SECONDS;
 
+/**
+ * Redis通用方法集对象.
+ */
 public class Redis {
 
     private final RedisTemplate<String, Object> redisTemplate;
