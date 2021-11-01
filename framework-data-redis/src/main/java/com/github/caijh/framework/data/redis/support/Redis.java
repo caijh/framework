@@ -196,6 +196,8 @@ public class Redis {
     }
 
     /**
+     * 判断key是否在redis中.
+     *
      * @param key key
      * @return true, if redis has the key.
      */

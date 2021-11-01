@@ -18,6 +18,7 @@ public interface IndexEnum {
      * @param typeClass enum implements IndexEnum
      * @param <T>       IndexEnum
      * @return IndexEnum instance
+     * @throws NoSuchElementException if index enum not found.
      */
     @Nonnull
     static <T extends IndexEnum> T valueOf(int index, Class<T> typeClass) {

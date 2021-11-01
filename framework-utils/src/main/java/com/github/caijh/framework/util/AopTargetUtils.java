@@ -19,7 +19,7 @@ public class AopTargetUtils {
      *
      * @param proxy 代理对象
      * @return 目标对象
-     * @throws Exception, 如果无法目标对象
+     * @throws Exception 如果无法目标对象.
      */
     public static Object getTarget(Object proxy) throws Exception {
 

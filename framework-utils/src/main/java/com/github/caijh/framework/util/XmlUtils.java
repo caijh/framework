@@ -32,6 +32,7 @@ public class XmlUtils {
      * @param name   root xml name
      * @param <T>    class type
      * @return xml string of object
+     * @throws ObjectToXmlException if change to xml fail.
      */
     @SuppressWarnings("unchecked")
     public static <T> String toXml(T object, @Nullable String name) {
