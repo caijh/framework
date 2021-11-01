@@ -17,7 +17,7 @@ steps:
   name: privateKeyRing
 - task: CmdLine@2
   inputs:
-    script: 'gpg --import-key $(privateKeyRing.secureFilePath) --passphrase $(GPG-PASSPHRASE)'
+    script: 'gpg --import $(privateKeyRing.secureFilePath) --passphrase $(GPG-PASSPHRASE)'
   displayName: Import gpg private key
 - task: DownloadSecureFile@1
   displayName: Download settings.xml
