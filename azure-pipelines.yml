@@ -19,7 +19,17 @@ steps:
   inputs:
     script: 'gpg --import-key $(privateKeyRing.secureFilePath) --passphrase $(GPG-PASSPHRASE)'
   displayName: Import gpg private key
-
+- task: DownloadSecureFile@1
+  displayName: Download settings.xml
+  inputs:
+    secureFile: 'settings.xml'
+  name: settingsXml
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      mkdir ${HOME}/.m2
+      cp "$(settingsXml.secureFilePath)" "${HOME}/.m2"
 
 - task: Maven@3
   inputs:
