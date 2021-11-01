@@ -13,6 +13,15 @@ steps:
 - task: MavenAuthenticate@0
   inputs:
     mavenServiceConnections: 'Maven Central'
+- task: DownloadSecureFile@1
+  displayName: Download gpg Secure file
+  inputs:
+    secureFile: 'privatekeys.gpg'
+  name: privateKeyRing
+- task: CmdLine@2
+  inputs:
+    script: 'gpg --import-key $(privateKeyRing.secureFilePath) --passphrase $(gpg-passphrase)'
+
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
