@@ -1,4 +1,4 @@
-package com.github.caijh.framework.core.validation;
+package com.github.caijh.framework.util.validation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -7,7 +7,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
-
 
 @Documented
 @Constraint(validatedBy = PhoneTelValidator.class)

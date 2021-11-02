@@ -1,10 +1,9 @@
-package com.github.caijh.framework.core.validation;
+package com.github.caijh.framework.util.validation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 import com.github.caijh.framework.util.ValidatorUtils;
-
 
 public class PhoneTelValidator implements ConstraintValidator<CheckPhoneTel, String> {
 
