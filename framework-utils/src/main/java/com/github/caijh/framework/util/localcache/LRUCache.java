@@ -1,4 +1,4 @@
-package com.github.caijh.framework.localcache;
+package com.github.caijh.framework.util.localcache;
 
 import java.util.concurrent.ConcurrentHashMap;
 
