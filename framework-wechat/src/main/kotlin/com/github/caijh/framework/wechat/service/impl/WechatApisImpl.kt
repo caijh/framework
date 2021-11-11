@@ -33,7 +33,7 @@ class WechatApisImpl : WechatApis {
     override fun getWechatJsSdkConfig(wechatApp: WechatApp, url: String): WechatJsSdkConfig {
         val ticket = this.getJsApiTicket(wechatApp)
         val jsSdkSignature =
-            WechatJsSdkSignature(ticket, UuidUtils.uuid(), DateUtils.currentTimestamp().toInt(), url)
+            WechatJsSdkSignature(ticket, UUID.get(), DateUtils.currentTimestamp().toInt(), url)
         return WechatJsSdkConfig(
             wechatApp.appId,
             jsSdkSignature.ticket,
@@ -81,15 +81,15 @@ class WechatApisImpl : WechatApis {
         val url =
             "${WechatConstants.API_URL}${WechatConstants.API_PUBLIC_MEDIA_UPLOAD}?access_token=${accessToken}&type=${type}"
 
-        val upload = HttpClientUtils.upload(url, file)
-        this.assertIsSuccess(upload.string())
-        return JSON.parseObject(upload.string(), WechatMedia::class.java)
+        val upload = HttpClient.upload(url, file)
+        this.assertIsSuccess(upload?.string())
+        return JSON.parseObject(upload?.string(), WechatMedia::class.java)
     }
 
     private fun doGet(url: String): String {
-        val respBody = HttpClientUtils.get(url)
+        val respBody = HttpClient[url]
         assertIsSuccess(respBody)
-        return respBody
+        return respBody ?: ""
     }
 
     private fun assertIsSuccess(respBody: String?) {
