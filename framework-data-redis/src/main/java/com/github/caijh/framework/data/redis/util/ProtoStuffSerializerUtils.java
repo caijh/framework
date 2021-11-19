@@ -5,6 +5,9 @@ import io.protostuff.ProtostuffIOUtil;
 import io.protostuff.Schema;
 import io.protostuff.runtime.RuntimeSchema;
 
+/**
+ * ProtoStuffSerializer工具类
+ */
 public class ProtoStuffSerializerUtils {
 
     private static final Schema<Wrapper> SCHEMA = RuntimeSchema.getSchema(Wrapper.class);
@@ -12,6 +15,13 @@ public class ProtoStuffSerializerUtils {
     private ProtoStuffSerializerUtils() {
     }
 
+    /**
+     * 序列化对象
+     *
+     * @param t   对象
+     * @param <T> 对象类型
+     * @return 对象的字节数组
+     */
     public static <T> byte[] serialize(T t) {
         LinkedBuffer buffer = LinkedBuffer.allocate(512);
         final byte[] protoStuff;
@@ -23,6 +33,13 @@ public class ProtoStuffSerializerUtils {
         return protoStuff;
     }
 
+    /**
+     * 反序列化对象
+     *
+     * @param bytes 字节数组
+     * @param <T>   期望的对象类型
+     * @return 反序列化的对象
+     */
     public static <T> T deserialize(byte[] bytes) {
         Wrapper<T> wrapper = new Wrapper<>();
         ProtostuffIOUtil.mergeFrom(bytes, wrapper, SCHEMA);
