@@ -3,6 +3,7 @@ package com.github.caijh.framework.web.handler;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.validation.ValidationException;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -35,7 +36,11 @@ public class ValidateExceptionHandler {
         this.mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
     }
 
-    @ExceptionHandler(value = {BindException.class, MethodArgumentNotValidException.class})
+    @ExceptionHandler(value = {
+        BindException.class,
+        MethodArgumentNotValidException.class,
+        ValidationException.class
+    })
     @ResponseBody
     public ResponseEntity<R<Void>> validExceptionHandler(Exception e) {
         BindingResult bindingResult = null;
