@@ -20,6 +20,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+/**
+ * 统一异常处理
+ * 拦截controller中的异常
+ */
 @RestControllerAdvice(annotations = Controller.class)
 @Order(1)
 public class ValidateExceptionHandler {
@@ -35,10 +39,10 @@ public class ValidateExceptionHandler {
     @ResponseBody
     public ResponseEntity<R<Void>> validExceptionHandler(Exception e) {
         BindingResult bindingResult = null;
-        if (e instanceof BindException) {
-            bindingResult = ((BindException) e).getBindingResult();
-        } else if (e instanceof MethodArgumentNotValidException) {
+        if (e instanceof MethodArgumentNotValidException) {
             bindingResult = ((MethodArgumentNotValidException) e).getBindingResult();
+        } else if (e instanceof BindException) {
+            bindingResult = ((BindException) e).getBindingResult();
         }
         R<Void> result = new R<>();
         if (bindingResult != null) {
