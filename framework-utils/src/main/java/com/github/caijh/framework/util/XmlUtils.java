@@ -19,6 +19,9 @@ import org.springframework.lang.Nullable;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
+/**
+ * xml工具类
+ */
 public class XmlUtils {
 
     private XmlUtils() {
@@ -50,7 +53,7 @@ public class XmlUtils {
                 marshaller.marshal(object, writer);
             } else {
                 JAXBElement<T> jaxbElement = new JAXBElement<>(
-                        new QName("", name != null ? name : clazz.getSimpleName().toLowerCase()), clazz, object);
+                    new QName("", name != null ? name : clazz.getSimpleName().toLowerCase()), clazz, object);
                 marshaller.marshal(jaxbElement, writer);
             }
 
@@ -64,6 +67,14 @@ public class XmlUtils {
         return XmlUtils.toXml(object, null);
     }
 
+    /**
+     * 将xml转换为对象
+     *
+     * @param xml   xml string
+     * @param clazz 对象类型
+     * @param <T>   对象类型
+     * @return xml对应的对象
+     */
     @SuppressWarnings("unchecked")
     public static <T> T fromXml(String xml, Class<T> clazz) {
         try {

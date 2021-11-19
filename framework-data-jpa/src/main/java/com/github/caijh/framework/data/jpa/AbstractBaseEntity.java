@@ -12,6 +12,11 @@ import com.vladmihalcea.hibernate.type.json.JsonNodeStringType;
 import com.vladmihalcea.hibernate.type.json.JsonStringType;
 import org.hibernate.annotations.TypeDef;
 
+/**
+ * 抽象基础实体类
+ *
+ * @param <T> 实体类id类型
+ */
 @TypeDef(name = "string-array", typeClass = StringArrayType.class)
 @TypeDef(name = "int-array", typeClass = IntArrayType.class)
 @TypeDef(name = "json", typeClass = JsonStringType.class)
