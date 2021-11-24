@@ -47,7 +47,7 @@
         <dokka.version>1.4.32</dokka.version>
         <framework.version>2.4.6-0.0.3-SNAPSHOT</framework.version>
         <jsr305.version>3.0.2</jsr305.version>
-        <kotlin.version>1.5.31</kotlin.version>
+        <kotlin.version>1.6.0</kotlin.version>
         <kotlin.compiler.incremental>false</kotlin.compiler.incremental>
         <lombok.version>1.18.22</lombok.version>
         <maven.compiler.source>8</maven.compiler.source>
