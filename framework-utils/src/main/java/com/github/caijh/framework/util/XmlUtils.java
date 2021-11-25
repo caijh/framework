@@ -74,6 +74,7 @@ public class XmlUtils {
      * @param clazz 对象类型
      * @param <T>   对象类型
      * @return xml对应的对象
+     * @throws XmlToObjectException if change to xml string fail.
      */
     @SuppressWarnings("unchecked")
     public static <T> T fromXml(String xml, Class<T> clazz) {
