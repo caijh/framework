@@ -23,13 +23,8 @@ public class RedisLock implements DistributedLock {
 
     @Override
     public Lock get(String key) {
-        return this.getRedissonRedLock(key);
-    }
-
-    private RedissonRedLock getRedissonRedLock(String key) {
         RLock lock = this.redissonClient.getLock(key);
         return new RedissonRedLock(lock);
     }
-
 
 }

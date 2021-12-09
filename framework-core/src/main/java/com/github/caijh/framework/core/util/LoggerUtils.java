@@ -4,18 +4,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Use LogUtils to get Logger object, keep all use the same LoggerFactory.
+ * Use LoggerUtils to get Logger object, keep all use the same LoggerFactory.
  *
  * @author caijh
  */
-public class LogUtils {
+public class LoggerUtils {
 
-    private LogUtils() {
-
-    }
+    private LoggerUtils() {}
 
     /**
-     * get the logger of name.
+     * get the (logger) of name.
      *
      * @param name log name
      * @return Logger

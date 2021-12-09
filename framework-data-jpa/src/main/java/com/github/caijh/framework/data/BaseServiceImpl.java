@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Optional;
 import javax.inject.Inject;
 
+import com.github.caijh.framework.core.util.LoggerUtils;
 import com.github.caijh.framework.data.jpa.BaseRepository;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +16,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 /**
  * 基础数据服务实现类.
+ *
  * @param <T> 实体类型
  * @param <I> 实体id类型
  */
@@ -21,6 +24,8 @@ public abstract class BaseServiceImpl<T, I> implements BaseService<T, I> {
 
     @Inject
     protected BaseRepository<T, I> repository;
+
+    protected Logger logger = LoggerUtils.getLogger(getClass());
 
     /**
      * 将注入BaseRepository转化实际继承了BaseRepository的类.
