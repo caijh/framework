@@ -16,31 +16,31 @@
     <version>2.4.6-0.0.3-SNAPSHOT</version>
 
     <modules>
-        <module>framework-model</module>
-        <module>framework-core</module>
-        <module>framework-data-jpa</module>
-        <module>framework-data-mybatis</module>
-        <module>framework-data-redis</module>
-        <module>framework-utils</module>
-        <module>framework-web</module>
-        <module>framework-microservice</module>
-        <module>framework-logging</module>
-        <module>framework-doc</module>
-        <module>framework-cache</module>
-        <module>framework-message-kafka</module>
-        <module>framework-message-websocket</module>
-        <module>framework-schedule</module>
-        <module>framework-wechat</module>
-        <module>framework-config-configcenter</module>
-        <module>framework-config-apollo</module>
-        <module>framework-config-nacos</module>
-        <module>framework-config-eureka</module>
-        <module>framework-global-id</module>
-        <module>framework-sentinel</module>
+        <module>../framework-model</module>
+        <module>../framework-core</module>
+        <module>../framework-data-jpa</module>
+        <module>../framework-data-mybatis</module>
+        <module>../framework-data-redis</module>
+        <module>../framework-utils</module>
+        <module>../framework-web</module>
+        <module>../framework-microservice</module>
+        <module>../framework-logging</module>
+        <module>../framework-doc</module>
+        <module>../framework-cache</module>
+        <module>../framework-message-kafka</module>
+        <module>../framework-message-websocket</module>
+        <module>../framework-schedule</module>
+        <module>../framework-wechat</module>
+        <module>../framework-config-configcenter</module>
+        <module>../framework-config-apollo</module>
+        <module>../framework-config-nacos</module>
+        <module>../framework-config-eureka</module>
+        <module>../framework-global-id</module>
+        <module>../framework-sentinel</module>
 
-        <module>test-framework/framework-config-nacos-test</module>
-        <module>test-framework/framework-microservice-test</module>
-        <module>test-framework/framework-sentinel-test</module>
+        <module>../test-framework/framework-config-nacos-test</module>
+        <module>../test-framework/framework-microservice-test</module>
+        <module>../test-framework/framework-sentinel-test</module>
     </modules>
 
     <properties>
@@ -519,7 +519,7 @@
                     </dependency>
                 </dependencies>
                 <configuration>
-                    <configLocation>checkstyle.xml</configLocation>
+                    <configLocation>../checkstyle.xml</configLocation>
                     <encoding>UTF-8</encoding>
                     <consoleOutput>true</consoleOutput>
                     <failsOnError>true</failsOnError>

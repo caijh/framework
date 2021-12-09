@@ -33,7 +33,7 @@ steps:
 
 - task: Maven@3
   inputs:
-    mavenPomFile: 'pom.xml'
+    mavenPomFile: 'framework-parent/pom.xml'
     goals: 'deploy'
     options: '-DskipTests=true -P release'
     publishJUnitResults: true
@@ -45,5 +45,4 @@ steps:
     mavenAuthenticateFeed: false
     effectivePomSkip: false
     sonarQubeRunAnalysis: false
-    
-    
+
