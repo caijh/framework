@@ -4,15 +4,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.github.caijh.framework.core.constants.DateFormat;
+import com.github.caijh.framework.core.util.LoggerUtils;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 
 public abstract class BaseController {
 
-    protected Logger logger = LoggerFactory.getLogger(this.getClass());
+    protected Logger logger = LoggerUtils.getLogger(getClass());
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
