@@ -6,7 +6,7 @@
         <artifactId>framework-parent</artifactId>
         <groupId>com.github.caijh.framework</groupId>
         <version>2.4.6-0.0.3-SNAPSHOT</version>
-        <relativePath>../../pom.xml</relativePath>
+        <relativePath>../../framework-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
