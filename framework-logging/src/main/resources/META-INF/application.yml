@@ -1,7 +1,7 @@
 logging:
   file:
     path: logs
-    name: "${logging.file.path}/${spring.application.name:-app}.log"
+    name: "${logging.file.path}/${spring.application.name:app}.log"
   pattern:
     dateformat: "yyyy-MM-dd HH:mm:ss.SSS"
     console: "%d{yyyy-dd-MM HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{36}.%M [tr=%X{TRACE_ID:-0}] - %msg%n"
