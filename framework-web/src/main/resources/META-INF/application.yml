@@ -33,7 +33,7 @@ management:
         allowed-origins: '*'
         allowed-headers: '*'
         allowed-methods: '*'
-        allow-credentials: true
+        allow-credentials: false # 设置为true时，allowed-origins不能为'*'
   health:
     readinessstate:
       enabled: true

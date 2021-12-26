@@ -19,17 +19,17 @@ public class CorsAutoConfiguration {
 
     private CorsConfiguration corsConfiguration() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        properties.getAllowedMethods().forEach(corsConfiguration::addAllowedOrigin); // 添加允许跨域的请求origin
-        properties.getAllowedHeaders().forEach(corsConfiguration::addAllowedHeader); // 添加允许跨域的请求header
-        properties.getAllowedMethods().forEach(corsConfiguration::addAllowedMethod); // 添加允许跨域的请求method
-        corsConfiguration.setAllowCredentials(properties.getAllowCredentials()); // 是否发送 Cookie
+        this.properties.getAllowedMethods().forEach(corsConfiguration::addAllowedOrigin); // 添加允许跨域的请求origin
+        this.properties.getAllowedHeaders().forEach(corsConfiguration::addAllowedHeader); // 添加允许跨域的请求header
+        this.properties.getAllowedMethods().forEach(corsConfiguration::addAllowedMethod); // 添加允许跨域的请求method
+        corsConfiguration.setAllowCredentials(this.properties.getAllowCredentials()); // 是否发送 Cookie
         return corsConfiguration;
     }
 
     @Bean
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", corsConfiguration());
+        source.registerCorsConfiguration("/**", this.corsConfiguration());
         return new CorsFilter(source);
     }
 
