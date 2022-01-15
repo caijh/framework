@@ -87,7 +87,7 @@ class WechatApisImpl : WechatApis {
     }
 
     private fun doGet(url: String): String {
-        val respBody = HttpClient[url]
+        val respBody = HttpClient.get(url)
         assertIsSuccess(respBody)
         return respBody ?: ""
     }
