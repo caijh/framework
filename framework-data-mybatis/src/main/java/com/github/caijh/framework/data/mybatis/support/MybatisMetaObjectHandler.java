@@ -16,12 +16,10 @@ public class MybatisMetaObjectHandler implements MetaObjectHandler {
         this.updateFillFieldProvider = updateFillFieldProvider;
     }
 
-
     @Override
     public void insertFill(MetaObject metaObject) {
         Arrays.stream(this.insertFillFieldProvider.getFields())
               .forEach(e -> this.strictInsertFill(metaObject, e.getFieldName(), e.getFieldValue(), e.getFieldClass()));
-
     }
 
     @Override
