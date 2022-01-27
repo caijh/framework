@@ -52,8 +52,7 @@ public class XmlUtils {
             if (xmlRootElementPresent) {
                 marshaller.marshal(object, writer);
             } else {
-                JAXBElement<T> jaxbElement = new JAXBElement<>(
-                    new QName("", name != null ? name : clazz.getSimpleName().toLowerCase()), clazz, object);
+                JAXBElement<T> jaxbElement = new JAXBElement<>(new QName("", name != null ? name : clazz.getSimpleName().toLowerCase()), clazz, object);
                 marshaller.marshal(jaxbElement, writer);
             }
 

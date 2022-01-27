@@ -36,11 +36,7 @@ public class ValidateExceptionHandler {
         this.mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
     }
 
-    @ExceptionHandler(value = {
-        BindException.class,
-        MethodArgumentNotValidException.class,
-        ValidationException.class
-    })
+    @ExceptionHandler(value = {BindException.class, MethodArgumentNotValidException.class, ValidationException.class})
     @ResponseBody
     public ResponseEntity<R<Void>> validExceptionHandler(Exception e) {
         BindingResult bindingResult = null;
