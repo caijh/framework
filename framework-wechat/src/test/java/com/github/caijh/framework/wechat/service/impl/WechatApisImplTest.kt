@@ -1,6 +1,6 @@
 package com.github.caijh.framework.wechat.service.impl
 
-import com.github.caijh.framework.wechat.enums.WechatType
+import com.github.caijh.framework.wechat.enums.WechatAppType
 import com.github.caijh.framework.wechat.model.WechatApp
 import com.github.caijh.framework.wechat.service.WechatApis
 import org.junit.jupiter.api.AfterEach
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 internal class WechatApisImplTest {
-    private val wechatApp = WechatApp("", "", WechatType.MINI)
+    private val wechatApp = WechatApp("", "", WechatAppType.MINI)
     private lateinit var wechatApis: WechatApis
 
     @BeforeEach

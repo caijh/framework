@@ -2,7 +2,7 @@ package com.github.caijh.framework.wechat.enums
 
 import com.github.caijh.framework.core.enums.IndexEnum
 
-enum class WechatType(private val index: Int) : IndexEnum {
+enum class WechatAppType(private val index: Int) : IndexEnum {
     UNKNOWN(-1),
 
     /**

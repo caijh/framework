@@ -5,7 +5,7 @@ import com.github.caijh.commons.util.*
 import com.github.caijh.framework.core.exception.BizException
 import com.github.caijh.framework.wechat.constants.WechatConstants
 import com.github.caijh.framework.wechat.constants.WechatConstants.Companion.API_JS_API_SDK_LIST
-import com.github.caijh.framework.wechat.enums.WechatType
+import com.github.caijh.framework.wechat.enums.WechatAppType
 import com.github.caijh.framework.wechat.exception.WechatApiException
 import com.github.caijh.framework.wechat.model.*
 import com.github.caijh.framework.wechat.service.WechatApis
@@ -47,8 +47,8 @@ class WechatApisImpl : WechatApis {
 
     override fun login(wechatApp: WechatApp, code: String): String {
         val url = when (wechatApp.type) {
-            WechatType.MINI -> WechatConstants.API_URL + WechatConstants.API_MINI_AUTHORIZE + "?appid=" + wechatApp.appId + "&secret=" + wechatApp.secret + "&js_code=" + code + "&grant_type=authorization_code"
-            WechatType.PUBLIC -> WechatConstants.API_URL + WechatConstants.API_PUBLIC_AUTHORIZE + "?appid=" + wechatApp.appId + "&secret=" + wechatApp.secret + "&code=" + code + "&grant_type=authorization_code"
+            WechatAppType.MINI -> WechatConstants.API_URL + WechatConstants.API_MINI_AUTHORIZE + "?appid=" + wechatApp.appId + "&secret=" + wechatApp.secret + "&js_code=" + code + "&grant_type=authorization_code"
+            WechatAppType.PUBLIC -> WechatConstants.API_URL + WechatConstants.API_PUBLIC_AUTHORIZE + "?appid=" + wechatApp.appId + "&secret=" + wechatApp.secret + "&code=" + code + "&grant_type=authorization_code"
             else ->
                 throw IllegalArgumentException("wechat type not supported")
 
@@ -66,7 +66,7 @@ class WechatApisImpl : WechatApis {
     }
 
     override fun getIndustryInfo(wechatApp: WechatApp): List<WechatIndustryInfo> {
-        Asserts.isTrue(wechatApp.type == WechatType.MINI, Supplier { BizException("wechat type must be mini") })
+        Asserts.isTrue(wechatApp.type == WechatAppType.MINI, Supplier { BizException("wechat type must be mini") })
 
         val accessToken = getAccessToken(wechatApp)
 

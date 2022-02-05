@@ -18,5 +18,10 @@ class WechatConstants {
          * 小程序行业信息
          */
         const val API_INDUSTRY_INFO = "/wxaapi/newtmpl/getcategory"
+
+        private const val PAY_BASE_API_URL = "https://api.mch.weixin.qq.com"
+
+        const val PAY_UNIFIEDORDER = "$PAY_BASE_API_URL/pay/unifiedorder"
+
     }
 }
