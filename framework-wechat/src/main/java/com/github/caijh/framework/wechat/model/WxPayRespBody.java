@@ -1,6 +1,7 @@
 package com.github.caijh.framework.wechat.model;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -53,6 +54,31 @@ public class WxPayRespBody {
 
     public boolean isSuccess() {
         return "SUCCESS".equals(returnCode) && "SUCCESS".equals(resultCode);
+    }
+
+    @XmlTransient
+    public String getReturnCode() {
+        return returnCode;
+    }
+
+    @XmlTransient
+    public String getReturnMsg() {
+        return returnMsg;
+    }
+
+    @XmlTransient
+    public String getResultCode() {
+        return resultCode;
+    }
+
+    @XmlTransient
+    public String getErrCode() {
+        return errCode;
+    }
+
+    @XmlTransient
+    public String getErrCodeDes() {
+        return errCodeDes;
     }
 
 }
