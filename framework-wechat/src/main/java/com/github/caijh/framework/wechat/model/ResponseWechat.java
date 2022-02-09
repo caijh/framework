@@ -11,6 +11,10 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class ResponseWechat {
 
+    public static final String SUCCESS = "SUCCESS";
+
+    public static final String FAIL = "FAIL";
+
     @XmlElement(name = "return_code")
     private String returnCode;
 

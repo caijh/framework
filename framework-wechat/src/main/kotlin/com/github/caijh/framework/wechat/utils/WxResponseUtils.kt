@@ -2,10 +2,10 @@ package com.github.caijh.framework.wechat.utils
 
 import com.github.caijh.commons.util.Maps
 import com.github.caijh.framework.core.exception.BizException
+import com.github.caijh.framework.wechat.model.ResponseWechat.FAIL
+import com.github.caijh.framework.wechat.model.ResponseWechat.SUCCESS
 
 object WxResponseUtils {
-    private const val FAIL = "FAIL"
-    private const val SUCCESS = "SUCCESS"
 
     fun processXmlResponse(xml: String): Map<String, Any> {
         val respBody: Map<String, Any> = Maps.fromXml(xml)
