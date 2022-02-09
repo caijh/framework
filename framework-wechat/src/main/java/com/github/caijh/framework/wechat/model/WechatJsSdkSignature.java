@@ -33,7 +33,7 @@ public class WechatJsSdkSignature {
             MessageDigest crypt = MessageDigest.getInstance("SHA-1");
             crypt.reset();
             crypt.update(paramString.getBytes(StandardCharsets.UTF_8));
-            this.signature = HexUtils.INSTANCE.byteArr2HexStr(crypt.digest());
+            this.signature = HexUtils.byteArr2HexStr(crypt.digest());
         } catch (NoSuchAlgorithmException e) {
             throw new WechatJsSdkSignatureException(e);
         }
