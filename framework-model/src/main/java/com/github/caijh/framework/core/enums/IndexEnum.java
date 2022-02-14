@@ -36,4 +36,8 @@ public interface IndexEnum {
 
     int getIndex();
 
+    default String getDesc() {
+        return "";
+    }
+
 }
