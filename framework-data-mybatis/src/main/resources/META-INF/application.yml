@@ -3,6 +3,8 @@ mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 配置slq打印日志
     map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 3000
   global-config:
     db-config:
       logic-delete-field: deleted # 全局逻辑删除的实体字段名

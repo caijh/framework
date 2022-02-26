@@ -12,7 +12,7 @@
     <artifactId>framework-data-mybatis</artifactId>
 
     <properties>
-        <mybatis.plus.version>3.4.1</mybatis.plus.version>
+        <mybatis.plus.version>3.5.1</mybatis.plus.version>
     </properties>
 
     <dependencies>
