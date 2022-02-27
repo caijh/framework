@@ -1,4 +1,4 @@
-package com.github.caijh.framework.core.exception;
+package com.github.caijh.framework.core.exceptions;
 
 public class ReflectionException extends RuntimeException {
 

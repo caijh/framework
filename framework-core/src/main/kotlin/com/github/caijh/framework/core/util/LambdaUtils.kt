@@ -1,6 +1,6 @@
 package com.github.caijh.framework.core.util
 
-import com.github.caijh.framework.core.exception.BizException
+import com.github.caijh.framework.core.exceptions.BizException
 import com.github.caijh.framework.core.lambda.SFunction
 import com.github.caijh.framework.core.lambda.SerializedLambda
 import java.lang.ref.WeakReference

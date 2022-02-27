@@ -2,7 +2,7 @@ package com.github.caijh.framework.wechat.service.impl
 
 import com.alibaba.fastjson.JSON
 import com.github.caijh.commons.util.*
-import com.github.caijh.framework.core.exception.BizException
+import com.github.caijh.framework.core.exceptions.BizException
 import com.github.caijh.framework.wechat.constants.WechatConstants
 import com.github.caijh.framework.wechat.constants.WechatConstants.Companion.API_JS_API_SDK_LIST
 import com.github.caijh.framework.wechat.enums.WechatAppType

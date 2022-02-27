@@ -1,7 +1,7 @@
 package com.github.caijh.framework.wechat.utils
 
 import com.github.caijh.commons.util.Maps
-import com.github.caijh.framework.core.exception.BizException
+import com.github.caijh.framework.core.exceptions.BizException
 import com.github.caijh.framework.wechat.model.ResponseWechat.FAIL
 import com.github.caijh.framework.wechat.model.ResponseWechat.SUCCESS
 

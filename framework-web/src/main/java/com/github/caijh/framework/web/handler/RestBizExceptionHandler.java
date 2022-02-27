@@ -2,7 +2,7 @@ package com.github.caijh.framework.web.handler;
 
 import javax.inject.Inject;
 
-import com.github.caijh.framework.core.exception.BizException;
+import com.github.caijh.framework.core.exceptions.BizException;
 import com.github.caijh.framework.core.model.R;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -31,7 +31,7 @@ public class RestBizExceptionHandler extends ResponseEntityExceptionHandler {
         R<Void> result = new R<>();
         String code = exception.getCode();
         if (code != null) {
-            String message = messageSource.getMessage(code, exception.getParams(), LocaleContextHolder.getLocale());
+            String message = this.messageSource.getMessage(code, exception.getParams(), LocaleContextHolder.getLocale());
             result.setCode(code).setMessage(message);
         } else {
             result.setMessage(exception.getLocalizedMessage());
