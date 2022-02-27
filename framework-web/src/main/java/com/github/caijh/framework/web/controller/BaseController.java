@@ -3,7 +3,7 @@ package com.github.caijh.framework.web.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.github.caijh.framework.core.constants.DateFormat;
+import com.github.caijh.framework.core.constant.DateFormat;
 import com.github.caijh.framework.core.util.LoggerUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 
 public abstract class BaseController {
 
-    protected Logger logger = LoggerUtils.getLogger(getClass());
+    protected Logger logger = LoggerUtils.getLogger(this.getClass());
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {

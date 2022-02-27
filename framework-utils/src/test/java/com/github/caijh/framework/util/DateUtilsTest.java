@@ -3,7 +3,7 @@ package com.github.caijh.framework.util;
 import java.util.Date;
 
 import com.github.caijh.commons.util.DateUtils;
-import com.github.caijh.framework.core.constants.DateFormat;
+import com.github.caijh.framework.core.constant.DateFormat;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

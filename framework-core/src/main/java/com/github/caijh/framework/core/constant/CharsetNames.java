@@ -1,4 +1,4 @@
-package com.github.caijh.framework.core.constants;
+package com.github.caijh.framework.core.constant;
 
 public final class CharsetNames {
 

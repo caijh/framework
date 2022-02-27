@@ -1,4 +1,4 @@
-package com.github.caijh.framework.core.constants;
+package com.github.caijh.framework.core.constant;
 
 public class DateFormat {
 
@@ -16,8 +16,6 @@ public class DateFormat {
     public static final String MMDD = "MMdd";
     public static final String HH_MM_SS = "HH:mm:ss";
 
-    private DateFormat() {
-
-    }
+    private DateFormat() {}
 
 }
