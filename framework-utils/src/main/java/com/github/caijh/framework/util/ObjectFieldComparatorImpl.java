@@ -13,9 +13,7 @@ public class ObjectFieldComparatorImpl implements ObjectFieldComparator {
 
     @Override
     public List<ComparableFieldResult> compare(Object o1, Object o2) {
-        if (o1 == o2) {
-            throw new IllegalArgumentException("o1 and o2 must not be the same object");
-        }
+        this.assertNotSame(o1, o2);
 
         List<ComparableFieldResult> results = Lists.newArrayList();
         Arrays.stream(o1.getClass().getDeclaredFields())
@@ -28,9 +26,7 @@ public class ObjectFieldComparatorImpl implements ObjectFieldComparator {
 
     @Override
     public List<ComparableFieldResult> compare(Object o1, Object o2, String... fields) {
-        if (o1 == o2) {
-            throw new IllegalArgumentException("o1 and o2 must not be the same object");
-        }
+        this.assertNotSame(o1, o2);
 
         List<String> fieldNames = Arrays.stream(fields).collect(Collectors.toList());
         List<ComparableFieldResult> results = Lists.newArrayList();
@@ -40,6 +36,24 @@ public class ObjectFieldComparatorImpl implements ObjectFieldComparator {
               .forEach(field -> results.add(this.getComparableFieldResult(field, o1, o2)));
 
         return results;
+    }
+
+    @Override
+    public List<ComparableFieldResult> compareAllFields(Object o1, Object o2, String... ignoreFields) {
+        this.assertNotSame(o1, o2);
+        List<String> ignoreFieldNames = Arrays.stream(ignoreFields).collect(Collectors.toList());
+        List<ComparableFieldResult> results = Lists.newArrayList();
+        Arrays.stream(o1.getClass().getDeclaredFields())
+              .filter(e -> !ignoreFieldNames.contains(e.getName()))
+              .collect(Collectors.toList())
+              .forEach(field -> results.add(this.getComparableFieldResult(field, o1, o2)));
+        return results;
+    }
+
+    private void assertNotSame(Object o1, Object o2) {
+        if (o1 == o2) {
+            throw new IllegalArgumentException("o1 and o2 must not be the same object");
+        }
     }
 
     @NotNull
