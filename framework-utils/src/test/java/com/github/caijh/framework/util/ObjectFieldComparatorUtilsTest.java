@@ -15,14 +15,15 @@ class ObjectFieldComparatorUtilsTest {
         user.setName("caijh");
         Person person = new Person();
         person.setName("test");
-        List<ComparableFieldResult> results = ObjectFieldComparatorUtils.compare(user, person);
+        List<ComparableFieldResult> results = ObjectFieldComparatorUtils.getObjectFieldComparator().compareComparableField(user, person);
         Assertions.assertTrue(results.stream().anyMatch(e -> !e.isFieldEqual()));
         person.setName("caijh");
-        results = ObjectFieldComparatorUtils.compare(user, person);
+        results = ObjectFieldComparatorUtils.getObjectFieldComparator().compareComparableField(user, person);
         Assertions.assertTrue(results.stream().anyMatch(ComparableFieldResult::isFieldEqual));
 
         user.setStudent(true);
         person.setStudent(true);
+        results = ObjectFieldComparatorUtils.getObjectFieldComparator().compareComparableField(user, person);
         Assertions.assertTrue(results.stream().anyMatch(ComparableFieldResult::isFieldEqual));
     }
 
