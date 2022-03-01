@@ -2,6 +2,7 @@ package com.github.caijh.framework.core.util
 
 import com.github.caijh.framework.core.exceptions.ReflectionException
 import com.github.caijh.framework.core.lambda.SFunction
+import java.lang.reflect.Method
 import java.util.*
 
 object PropertyResolver {
@@ -45,5 +46,10 @@ object PropertyResolver {
     @JvmStatic
     fun isSetter(name: String): Boolean {
         return name.startsWith("set") && name.length > 3
+    }
+
+    @JvmStatic
+    fun propertyToGetterMethod(clazz: Class<*>, property: String): Method? {
+        return clazz.methods.filter { e -> isGetter(e.name) && methodToProperty(e.name) == property }.getOrNull(0)
     }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.github.caijh.commons.util.Asserts;
-import com.github.caijh.commons.util.ReflectUtils;
+import com.github.caijh.commons.util.reflection.invoker.GetFieldInvoker;
 import com.google.common.collect.Lists;
 
 public interface ObjectFieldComparator {
@@ -53,8 +53,9 @@ public interface ObjectFieldComparator {
         String fieldName = field.getName();
         result.setFieldName(fieldName);
         try {
-            Object o1FieldValue = ReflectUtils.invokeGetter(o1, fieldName);
-            Object o2FieldValue = ReflectUtils.invokeGetter(o2, fieldName);
+            Object o1FieldValue = new GetFieldInvoker(field).invoke(o1);
+            Field o2Field = o2.getClass().getDeclaredField(fieldName);
+            Object o2FieldValue = new GetFieldInvoker(o2Field).invoke(o2);
             result.setFieldEqual(o1FieldValue.equals(o2FieldValue));
         } catch (Exception e) {
             result.setFieldEqual(false);
