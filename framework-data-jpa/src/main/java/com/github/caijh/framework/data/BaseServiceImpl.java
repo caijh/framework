@@ -22,6 +22,7 @@ import org.springframework.data.jpa.domain.Specification;
  */
 public abstract class BaseServiceImpl<T, I> implements BaseService<T, I> {
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Inject
     protected BaseRepository<T, I> repository;
 
