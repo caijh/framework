@@ -50,6 +50,10 @@ public interface BaseService<T, I> {
 
     T getOne(@NotNull I id);
 
+    default T getOneOrNull(I id) {
+        return this.findById(id).orElse(null);
+    }
+
     <S extends T> S save(@NotNull S entity);
 
     Optional<T> findById(@NotNull I id);
