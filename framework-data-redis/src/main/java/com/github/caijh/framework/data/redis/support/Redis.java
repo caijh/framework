@@ -65,7 +65,7 @@ public class Redis {
         final byte[] keyBytes = this.keySerializer.serialize(key);
         byte[] serialize = this.valueSerializer.serialize(obj);
         if (expire == null) {
-            Class<T> clazz = ((Class<T>) obj.getClass());
+            Class<T> clazz = (Class<T>) obj.getClass();
             if (clazz.isArray() || Collection.class.isAssignableFrom(clazz) || Map.class.isAssignableFrom(clazz)) {
                 expire = LIST_EXPIRED_SECONDS;
             } else {
