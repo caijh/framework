@@ -12,7 +12,7 @@
     <artifactId>framework-config-apollo</artifactId>
 
     <properties>
-        <apollo-client.version>1.9.1</apollo-client.version>
+        <apollo-client.version>1.9.2</apollo-client.version>
     </properties>
 
     <dependencies>

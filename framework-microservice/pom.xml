@@ -24,7 +24,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-            <version>2.2.9.RELEASE</version>
+            <version>2.2.10.RELEASE</version>
             <exclusions>
                 <exclusion>
                     <artifactId>HdrHistogram</artifactId>
@@ -35,7 +35,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
-            <version>2.2.9.RELEASE</version>
+            <version>2.2.10.RELEASE</version>
         </dependency>
     </dependencies>
 
