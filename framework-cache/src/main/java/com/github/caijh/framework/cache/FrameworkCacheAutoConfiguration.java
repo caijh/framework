@@ -5,6 +5,8 @@ import javax.annotation.Nonnull;
 
 import com.github.caijh.framework.cache.exception.CacheConfigException;
 import com.github.caijh.framework.cache.manager.RedisWithTtlCacheManager;
+import com.github.caijh.framework.data.redis.FrameworkRedisAutoConfiguration;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.cache.CacheManager;
@@ -24,6 +26,7 @@ import org.springframework.data.redis.serializer.RedisSerializationContext;
  */
 @Configuration
 @EnableCaching
+@AutoConfigureAfter(FrameworkRedisAutoConfiguration.class)
 public class FrameworkCacheAutoConfiguration implements EnvironmentAware {
 
     private Environment env;
