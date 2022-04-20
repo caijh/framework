@@ -1,8 +1,5 @@
 package com.github.caijh.framework.data.redis;
 
-import java.time.Duration;
-import java.util.Optional;
-
 import com.github.caijh.framework.data.redis.serializer.ProtobufSerializer;
 import com.github.caijh.framework.data.redis.support.Redis;
 import org.redisson.Redisson;
@@ -23,6 +20,9 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
+import java.time.Duration;
+import java.util.*;
+
 
 @Configuration
 @EnableConfigurationProperties(RedisProperties.class)
@@ -39,7 +39,7 @@ public class FrameworkRedisAutoConfiguration {
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         redisTemplate.setValueSerializer(new ProtobufSerializer());
         redisTemplate.setHashKeySerializer(new StringRedisSerializer());
-        redisTemplate.setHashValueSerializer(new ProtobufSerializer());
+        redisTemplate.setHashValueSerializer(new StringRedisSerializer()); // redis stream object record need HashValueSerializer to StringRedisSerializer.
         redisTemplate.setEnableTransactionSupport(true);
         redisTemplate.afterPropertiesSet();
         return redisTemplate;
