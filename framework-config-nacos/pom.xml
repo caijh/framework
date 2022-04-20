@@ -11,7 +11,7 @@
 
     <artifactId>framework-config-nacos</artifactId>
     <properties>
-        <spring.cloud.nacos.version>2021.0.1.0</spring.cloud.nacos.version>
+        <spring.cloud.nacos.version>2021.1</spring.cloud.nacos.version>
     </properties>
     <dependencies>
         <dependency>
@@ -38,6 +38,14 @@
                 <exclusion>
                     <artifactId>jsr305</artifactId>
                     <groupId>com.google.code.findbugs</groupId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>commons-io</groupId>
+                    <artifactId>commons-io</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
