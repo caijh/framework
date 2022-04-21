@@ -38,7 +38,7 @@ public class FrameworkRedisAutoConfiguration {
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         redisTemplate.setValueSerializer(new ProtobufSerializer());
         redisTemplate.setHashKeySerializer(new StringRedisSerializer());
-        redisTemplate.setHashValueSerializer(new StringRedisSerializer()); // redis stream object record need HashValueSerializer to StringRedisSerializer.
+        redisTemplate.setHashValueSerializer(new StringRedisSerializer()); // fix: redis stream object record must StringRedisSerializer.
         redisTemplate.setEnableTransactionSupport(true);
         redisTemplate.afterPropertiesSet();
         return redisTemplate;
