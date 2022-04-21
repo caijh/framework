@@ -1,5 +1,8 @@
 package com.github.caijh.framework.data.redis;
 
+import java.time.Duration;
+import java.util.Optional;
+
 import com.github.caijh.framework.data.redis.serializer.ProtobufSerializer;
 import com.github.caijh.framework.data.redis.support.Redis;
 import org.redisson.Redisson;
@@ -19,10 +22,6 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
-
-import java.time.Duration;
-import java.util.*;
-
 
 @Configuration
 @EnableConfigurationProperties(RedisProperties.class)
