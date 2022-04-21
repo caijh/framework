@@ -1,9 +1,3 @@
-spring:
-  cloud:
-    circuitbreaker:
-      hystrix:
-        enabled: true
-
 ribbon:
   eager-load:
     enabled: true # 开启ribbon饥饿加载
@@ -15,8 +9,6 @@ feign:
         connectTimeout: 5000
         readTimeout: 5000
         loggerLevel: basic
-  hystrix:
-    enabled: true # feign允许开启hystrix后, 会自动把所有服务的feign接口下的方法加入到断路器监控中
   compression:
     request:
       enabled: false #是否对请求进行GZIP压缩
@@ -24,7 +16,3 @@ feign:
       min-request-size: 2048 #超过该大小的请求会被压缩
     response:
       enabled: false #是否对响应进行GZIP压缩
-
-hystrix:
-  metrics:
-    enabled: true
