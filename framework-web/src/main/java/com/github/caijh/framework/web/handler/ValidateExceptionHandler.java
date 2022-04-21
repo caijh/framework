@@ -60,7 +60,7 @@ public class ValidateExceptionHandler {
         } else {
             result.setMessage(e.getLocalizedMessage());
         }
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
     }
 
 }
