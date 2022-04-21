@@ -4,8 +4,8 @@ logging:
     name: "${logging.file.path}/${spring.application.name:app}.log"
   pattern:
     dateformat: "yyyy-MM-dd HH:mm:ss.SSS"
-    console: "%d{yyyy-dd-MM HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{36}.%M [tr=%X{TRACE_ID:-0}] - %msg%n"
-    file: "%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39} [tr=%X{TRACE_ID:-0}] : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
+    console: "%d{yyyy-dd-MM HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{36} - [%class{2}.%method.%line] [tr=%X{TRACE_ID:-0}] - %msg%n"
+    file: "%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39} - [%class{2}.%method.%line] [tr=%X{TRACE_ID:-0}] : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
   logback:
     rollingpolicy:
       max-history: 7
