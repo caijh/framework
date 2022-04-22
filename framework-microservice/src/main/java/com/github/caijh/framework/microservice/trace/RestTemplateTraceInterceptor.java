@@ -2,7 +2,7 @@ package com.github.caijh.framework.microservice.trace;
 
 import java.io.IOException;
 
-import com.github.caijh.framework.microservice.constant.Constants;
+import com.github.caijh.framework.core.constant.TraceIdConstants;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.MDC;
 import org.springframework.http.HttpRequest;
@@ -16,9 +16,9 @@ public class RestTemplateTraceInterceptor implements ClientHttpRequestIntercepto
     @NotNull
     @Override
     public ClientHttpResponse intercept(@NotNull HttpRequest request, @NotNull byte[] body, @NotNull ClientHttpRequestExecution execution) throws IOException {
-        String traceId = MDC.get(Constants.TRACE_ID);
+        String traceId = MDC.get(TraceIdConstants.TRACE_ID);
         if (StringUtils.hasLength(traceId)) {
-            request.getHeaders().add(Constants.HTTP_HEADER_TRACE_ID, traceId);
+            request.getHeaders().add(TraceIdConstants.HTTP_HEADER_TRACE_ID, traceId);
         }
         return execution.execute(request, body);
     }

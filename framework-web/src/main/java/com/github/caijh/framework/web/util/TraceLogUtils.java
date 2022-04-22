@@ -1,9 +1,9 @@
-package com.github.caijh.framework.microservice.util;
+package com.github.caijh.framework.web.util;
 
 import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
-import com.github.caijh.framework.microservice.constant.Constants;
+import com.github.caijh.framework.core.constant.TraceIdConstants;
 import org.apache.logging.log4j.util.Strings;
 
 public class TraceLogUtils {
@@ -12,7 +12,7 @@ public class TraceLogUtils {
     }
 
     public static String getTraceId(HttpServletRequest request) {
-        String traceId = request.getHeader(Constants.HTTP_HEADER_TRACE_ID);
+        String traceId = request.getHeader(TraceIdConstants.HTTP_HEADER_TRACE_ID);
         if (Strings.isNotBlank(traceId)) {
             return traceId;
         }

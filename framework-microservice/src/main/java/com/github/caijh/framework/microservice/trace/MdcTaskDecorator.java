@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import org.slf4j.MDC;
 import org.springframework.core.task.TaskDecorator;
 
-import static com.github.caijh.framework.microservice.constant.Constants.TRACE_ID;
+import static com.github.caijh.framework.core.constant.TraceIdConstants.TRACE_ID;
 
 /**
  * 线程池中任务获取trace_id
