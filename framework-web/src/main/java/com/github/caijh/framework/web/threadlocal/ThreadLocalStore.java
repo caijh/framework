@@ -7,16 +7,14 @@ import org.springframework.core.NamedThreadLocal;
 
 public class ThreadLocalStore {
 
-    private ThreadLocalStore() {
-
-    }
-
     private static final ThreadLocal<Map<Object, Object>> STORE = new NamedThreadLocal<Map<Object, Object>>("thread local store") {
         @Override
         protected Map<Object, Object> initialValue() {
             return new HashMap<>();
         }
     };
+
+    private ThreadLocalStore() {}
 
     public static void put(Object key, Object value) {
         STORE.get().put(key, value);

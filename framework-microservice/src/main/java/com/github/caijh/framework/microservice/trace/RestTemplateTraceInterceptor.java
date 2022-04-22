@@ -1,5 +1,7 @@
 package com.github.caijh.framework.microservice.trace;
 
+import java.io.IOException;
+
 import com.github.caijh.framework.microservice.constant.Constants;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.MDC;
@@ -8,8 +10,6 @@ import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.util.StringUtils;
-
-import java.io.IOException;
 
 public class RestTemplateTraceInterceptor implements ClientHttpRequestInterceptor {
 
