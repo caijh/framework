@@ -1,6 +1,7 @@
 package com.github.caijh.framework.web.autoconfigure;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
+
 import org.springframework.boot.actuate.autoconfigure.endpoint.web.CorsEndpointProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +15,7 @@ import org.springframework.web.filter.CorsFilter;
 @Configuration
 public class CorsAutoConfiguration {
 
-    @Autowired
+    @Inject
     private CorsEndpointProperties properties;
 
     private CorsConfiguration corsConfiguration() {
