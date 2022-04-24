@@ -1,7 +1,6 @@
 package com.github.caijh.framework.microservice;
 
-import com.github.caijh.framework.core.constant.TraceIdConstants;
-import com.github.caijh.framework.microservice.client.TraceRestTemplate;
+import com.github.caijh.framework.core.constant.TraceConstants;
 import com.github.caijh.framework.microservice.trace.TraceIdThreadPoolTaskExecutorDecorator;
 import feign.Logger;
 import feign.RequestInterceptor;
@@ -12,24 +11,11 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import org.springframework.web.client.RestTemplate;
 
 @Configuration
 @EnableDiscoveryClient
 @EnableFeignClients
 public class FrameworkMicroserviceAutoConfiguration {
-
-    /**
-     * 通过TraceRestTemplate对restTemplate interceptors加入RestTemplateTraceInterceptor.
-     *
-     * @param restTemplate restTemplate
-     * @return TraceRestTemplate
-     */
-    @ConditionalOnBean(RestTemplate.class)
-    @Bean
-    public TraceRestTemplate traceRestTemplate(RestTemplate restTemplate) {
-        return new TraceRestTemplate(restTemplate);
-    }
 
     /**
      * feign的请求头中加入X_TRACE_ID.
@@ -39,9 +25,9 @@ public class FrameworkMicroserviceAutoConfiguration {
     @Bean
     public RequestInterceptor requestInterceptor() {
         return template -> {
-            String traceId = MDC.get(TraceIdConstants.TRACE_ID);
+            String traceId = MDC.get(TraceConstants.TRACE_ID);
             if (traceId != null) {
-                template.header(TraceIdConstants.HTTP_HEADER_TRACE_ID, traceId);
+                template.header(TraceConstants.HTTP_HEADER_TRACE_ID, traceId);
             }
         };
     }
