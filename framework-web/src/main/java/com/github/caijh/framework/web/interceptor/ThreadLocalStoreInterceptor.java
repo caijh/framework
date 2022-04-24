@@ -5,14 +5,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.github.caijh.framework.web.threadlocal.ThreadLocalStore;
 import org.springframework.lang.NonNull;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.servlet.AsyncHandlerInterceptor;
 
-public class ThreadLocalStoreInterceptor extends HandlerInterceptorAdapter {
+public class ThreadLocalStoreInterceptor implements AsyncHandlerInterceptor {
 
     @Override
-    public void afterCompletion(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull Object handler, Exception ex)
-            throws Exception {
-        super.afterCompletion(request, response, handler, ex);
+    public void afterCompletion(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull Object handler, Exception ex) {
         ThreadLocalStore.reset();
     }
 
