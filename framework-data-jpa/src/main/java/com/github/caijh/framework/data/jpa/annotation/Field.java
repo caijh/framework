@@ -11,6 +11,6 @@ public @interface Field {
 
     Class<?> clazz();
 
-    String field() default "";
+    String fieldName() default "";
 
 }

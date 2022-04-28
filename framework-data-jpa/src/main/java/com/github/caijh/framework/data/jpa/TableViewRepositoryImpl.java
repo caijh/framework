@@ -8,6 +8,7 @@ import com.github.caijh.framework.data.jpa.annotation.Relation;
 import com.github.caijh.framework.data.jpa.annotation.TableView;
 import org.apache.logging.log4j.util.Strings;
 import org.hibernate.SessionFactory;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,6 +34,19 @@ public class TableViewRepositoryImpl implements TableViewRepository {
         TableView tableView = clazz.getAnnotation(TableView.class);
         Class<?> base = tableView.base();
         Relation[] join = tableView.relations();
+        StringBuilder hql = new StringBuilder();
+        hql.append("select ")
+           .append(exactFieldsSql(base))
+           .append(" from ")
+           .append(exactFromSql(base, join))
+           .append("");
+        String s = hql.toString();
+        //        return sessionFactory.getCurrentSession().createQuery(s, view.getClass()).list();
+        return Collections.emptyList();
+    }
+
+    @NotNull
+    private String exactFromSql(Class<?> base, Relation[] join) {
         StringBuilder fromBuilder = new StringBuilder();
         for (Relation relation : join) {
             Class<?> relationBase = relation.base();
@@ -44,15 +58,7 @@ public class TableViewRepositoryImpl implements TableViewRepository {
             JoinType joinType = relation.joinType();
             fromBuilder.append(joinType.sqlString()).append(" ").append(relation.reference().getName()).append(relation.on());
         }
-        String fromSqlString = fromBuilder.toString();
-        StringBuilder hql = new StringBuilder();
-        String fieldsSqlString = exactFieldsSql(base);
-        hql.append("select ")
-           .append(fieldsSqlString)
-           .append(" from ").append(fromSqlString);
-        String s = hql.toString();
-        //        return sessionFactory.getCurrentSession().createQuery(s, view.getClass()).list();
-        return Collections.emptyList();
+        return fromBuilder.toString();
     }
 
     private String exactFieldsSql(Class<?> base) {
@@ -67,7 +73,7 @@ public class TableViewRepositoryImpl implements TableViewRepository {
                 Class<?> clazz = field.clazz();
                 sql.append(clazz.getName())
                    .append(".")
-                   .append(Strings.isNotBlank(field.field()) ? field.field() : declaredField.getName()).append(",");
+                   .append(Strings.isNotBlank(field.fieldName()) ? field.fieldName() : declaredField.getName()).append(",");
             }
             String s = sql.toString();
             return s.substring(0, s.length() - 1);
