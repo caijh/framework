@@ -4,6 +4,11 @@
       "name": "swagger.enable",
       "type": "java.lang.Boolean",
       "description": "Set true to enable swagger."
+    },
+    {
+      "name": "smart-doc.enable",
+      "type": "java.lang.Boolean",
+      "description": "Set true to enable smart-doc."
     }
   ]
 }
