@@ -35,8 +35,7 @@ public class TableViewRepositoryImpl implements TableViewRepository {
         Class<?> base = tableView.base();
         Relation[] join = tableView.relations();
         StringBuilder hql = new StringBuilder();
-        hql.append("select ")
-           .append(exactFieldsSql(base))
+        hql.append("select ").append(exactFieldsSql(base))
            .append(" from ")
            .append(exactFromSql(base, join))
            .append("");
@@ -69,7 +68,8 @@ public class TableViewRepositoryImpl implements TableViewRepository {
                 if (!declaredField.isAnnotationPresent(com.github.caijh.framework.data.jpa.annotation.Field.class)) {
                     continue;
                 }
-                com.github.caijh.framework.data.jpa.annotation.Field field = declaredField.getAnnotation(com.github.caijh.framework.data.jpa.annotation.Field.class);
+                com.github.caijh.framework.data.jpa.annotation.Field field =
+                        declaredField.getAnnotation(com.github.caijh.framework.data.jpa.annotation.Field.class);
                 Class<?> clazz = field.clazz();
                 sql.append(clazz.getName())
                    .append(".")
