@@ -80,7 +80,7 @@
 
     <repositories>
         <repository>
-            <id>oss-snapshots</id>
+            <id>ossrh-snapshots</id>
             <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
             <releases>
                 <enabled>false</enabled>
@@ -641,7 +641,7 @@
                         <version>1.6.8</version>
                         <extensions>true</extensions>
                         <configuration>
-                            <serverId>ossrh</serverId>
+                            <serverId>ossrh-releases</serverId>
                             <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
                             <autoReleaseAfterClose>true</autoReleaseAfterClose>
                         </configuration>
@@ -650,11 +650,11 @@
             </build>
             <distributionManagement>
                 <snapshotRepository>
-                    <id>ossrh</id>
+                    <id>ossrh-snapshots</id>
                     <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
                 </snapshotRepository>
                 <repository>
-                    <id>ossrh</id>
+                    <id>ossrh-releases</id>
                     <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
                 </repository>
             </distributionManagement>
