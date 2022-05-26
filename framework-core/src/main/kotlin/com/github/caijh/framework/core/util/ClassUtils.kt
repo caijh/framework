@@ -6,7 +6,7 @@ object ClassUtils {
     @JvmStatic
     fun toClassConfident(name: String?): Class<*> {
         return try {
-            Class.forName(name, false, getDefaultClassLoader())
+            Class.forName(name, false, org.springframework.util.ClassUtils.getDefaultClassLoader())
         } catch (e: ClassNotFoundException) {
             try {
                 Class.forName(name)
@@ -19,26 +19,4 @@ object ClassUtils {
         }
     }
 
-    @JvmStatic
-    fun getDefaultClassLoader(): ClassLoader? {
-        var cl: ClassLoader? = null
-        try {
-            cl = Thread.currentThread().contextClassLoader
-        } catch (ex: Throwable) {
-            // Cannot access thread context ClassLoader - falling back...
-        }
-        if (cl == null) {
-            // No thread context class loader -> use class loader of this class.
-            cl = ClassUtils::class.java.classLoader
-            if (cl == null) {
-                // getClassLoader() returning null indicates the bootstrap ClassLoader
-                try {
-                    cl = ClassLoader.getSystemClassLoader()
-                } catch (ex: Throwable) {
-                    // Cannot access system ClassLoader - oh well, maybe the caller can live with null...
-                }
-            }
-        }
-        return cl
-    }
 }
