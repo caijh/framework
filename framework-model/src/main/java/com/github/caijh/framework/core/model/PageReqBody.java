@@ -58,6 +58,10 @@ public class PageReqBody implements ReqBody {
         this.sorts = sorts;
     }
 
+    public long getOffset() {
+        return (long) getPageNo() * this.pageSize;
+    }
+
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
