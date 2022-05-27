@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import com.github.caijh.framework.core.exceptions.BizException;
-import com.github.caijh.framework.core.util.ClassUtils;
+import com.github.caijh.framework.core.util.ClassLoadUtils;
 import org.springframework.util.SerializationUtils;
 
 /**
@@ -46,7 +46,7 @@ public class SerializedLambda implements Serializable {
             protected Class<?> resolveClass(ObjectStreamClass objectStreamClass) throws IOException, ClassNotFoundException {
                 Class<?> clazz;
                 try {
-                    clazz = ClassUtils.toClassConfident(objectStreamClass.getName());
+                    clazz = ClassLoadUtils.toClassConfident(objectStreamClass.getName());
                 } catch (Exception ex) {
                     clazz = super.resolveClass(objectStreamClass);
                 }
@@ -74,7 +74,7 @@ public class SerializedLambda implements Serializable {
      * @return 实现类
      */
     public Class<?> getImplClass() {
-        return ClassUtils.toClassConfident(this.getImplClassName());
+        return ClassLoadUtils.toClassConfident(this.getImplClassName());
     }
 
     /**
@@ -112,7 +112,7 @@ public class SerializedLambda implements Serializable {
      */
     public Class<?> getInstantiatedType() {
         String instantiatedTypeName = this.normalizedName(this.instantiatedMethodType.substring(2, this.instantiatedMethodType.indexOf(';')));
-        return ClassUtils.toClassConfident(instantiatedTypeName);
+        return ClassLoadUtils.toClassConfident(instantiatedTypeName);
     }
 
     /**
