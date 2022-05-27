@@ -1,4 +1,4 @@
-package com.github.caijh.framework.core.exceptions;
+package com.github.caijh.framework.core.service.exceptions;
 
 public class ConfigFileNotFoundException extends RuntimeException {
 

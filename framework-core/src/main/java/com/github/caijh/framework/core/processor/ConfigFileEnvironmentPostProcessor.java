@@ -8,7 +8,7 @@ import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import com.github.caijh.framework.core.exceptions.ConfigFileNotFoundException;
+import com.github.caijh.framework.core.service.exceptions.ConfigFileNotFoundException;
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.context.config.ConfigDataEnvironmentPostProcessor;
