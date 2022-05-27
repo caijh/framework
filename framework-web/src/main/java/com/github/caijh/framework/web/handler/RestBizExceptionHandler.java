@@ -2,8 +2,8 @@ package com.github.caijh.framework.web.handler;
 
 import javax.inject.Inject;
 
+import com.github.caijh.framework.core.exceptions.BizException;
 import com.github.caijh.framework.core.model.R;
-import com.github.caijh.framework.core.service.exceptions.BizException;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.core.annotation.Order;

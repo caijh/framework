@@ -1,4 +1,4 @@
-package com.github.caijh.framework.core.service.exceptions;
+package com.github.caijh.framework.core.exceptions;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
