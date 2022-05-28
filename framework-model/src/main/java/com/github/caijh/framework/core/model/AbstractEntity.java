@@ -12,7 +12,7 @@ import com.vladmihalcea.hibernate.type.json.JsonStringType;
 import org.hibernate.annotations.TypeDef;
 
 /**
- * 抽象基础实体类
+ * 抽象基础实体类, AbstractEntity can not be changed to interface.
  *
  * @param <T> 实体类id类型
  */
@@ -23,6 +23,6 @@ import org.hibernate.annotations.TypeDef;
 @TypeDef(name = "json-node", typeClass = JsonNodeStringType.class)
 @TypeDef(name = "jsonb-node", typeClass = JsonNodeBinaryType.class)
 @MappedSuperclass
-public interface AbstractEntity<T extends Serializable> extends PersistentObject<T> {
+public abstract class AbstractEntity<T extends Serializable> implements PersistentObject<T> {
 
 }

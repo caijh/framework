@@ -9,6 +9,7 @@ import com.github.caijh.framework.web.autoconfigure.JacksonAutoConfiguration;
 import com.github.caijh.framework.web.filter.ThreadLocalStoreFilter;
 import com.github.caijh.framework.web.interceptor.ThreadLocalStoreInterceptor;
 import com.github.caijh.framework.web.interceptor.TraceIdInterceptor;
+import com.github.caijh.framework.web.interceptor.UserContextInterceptor;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
@@ -55,6 +56,7 @@ public class FrameworkWebAutoConfiguration implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new TraceIdInterceptor());
+        registry.addInterceptor(new UserContextInterceptor());
         registry.addInterceptor(new ThreadLocalStoreInterceptor());
     }
 

@@ -32,6 +32,11 @@
         </dependency>
 
         <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>com.vladmihalcea</groupId>
             <artifactId>hibernate-types-52</artifactId>
         </dependency>
