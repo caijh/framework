@@ -1,9 +1,8 @@
-package com.github.caijh.framework.data.jpa;
+package com.github.caijh.framework.core.model;
 
 import java.io.Serializable;
 import javax.persistence.MappedSuperclass;
 
-import com.github.caijh.framework.core.model.PersistentObject;
 import com.vladmihalcea.hibernate.type.array.IntArrayType;
 import com.vladmihalcea.hibernate.type.array.StringArrayType;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
