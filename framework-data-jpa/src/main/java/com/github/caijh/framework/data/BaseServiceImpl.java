@@ -2,11 +2,11 @@ package com.github.caijh.framework.data;
 
 import java.util.List;
 import java.util.Optional;
+import javax.annotation.Nonnull;
 import javax.inject.Inject;
 
 import com.github.caijh.framework.core.util.LoggerUtils;
 import com.github.caijh.framework.data.jpa.BaseRepository;
-import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -38,69 +38,69 @@ public abstract class BaseServiceImpl<T, I> implements BaseService<T, I> {
         return (R) this.repository;
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public List<T> findAll() {
         return this.repository.findAll();
     }
 
-    @NotNull
+    @Nonnull
     @Override
-    public List<T> findAll(@NotNull Sort sort) {
+    public List<T> findAll(@Nonnull Sort sort) {
         return this.repository.findAll(sort);
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public List<T> findAll(Specification<T> spec) {
         return this.repository.findAll(spec);
     }
 
-    @NotNull
+    @Nonnull
     @Override
-    public Page<T> findAll(Specification<T> spec, @NotNull Pageable pageable) {
+    public Page<T> findAll(Specification<T> spec, @Nonnull Pageable pageable) {
         return this.repository.findAll(spec, pageable);
     }
 
-    @NotNull
+    @Nonnull
     @Override
-    public List<T> findAll(Specification<T> spec, @NotNull Sort sort) {
+    public List<T> findAll(Specification<T> spec, @Nonnull Sort sort) {
         return this.repository.findAll(spec, sort);
     }
 
-    @NotNull
+    @Nonnull
     @Override
-    public <S extends T> List<S> findAll(@NotNull Example<S> example) {
+    public <S extends T> List<S> findAll(@Nonnull Example<S> example) {
         return this.repository.findAll(example);
     }
 
-    @NotNull
+    @Nonnull
     @Override
-    public <S extends T> List<S> findAll(@NotNull Example<S> example, @NotNull Sort sort) {
+    public <S extends T> List<S> findAll(@Nonnull Example<S> example, @Nonnull Sort sort) {
         return this.repository.findAll(example, sort);
     }
 
-    @NotNull
+    @Nonnull
     @Override
-    public Page<T> findAll(@NotNull Pageable pageable) {
+    public Page<T> findAll(@Nonnull Pageable pageable) {
         return this.repository.findAll(pageable);
     }
 
-    @NotNull
+    @Nonnull
     @Override
-    public <S extends T> Page<S> findAll(@NotNull Example<S> example, @NotNull Pageable pageable) {
+    public <S extends T> Page<S> findAll(@Nonnull Example<S> example, @Nonnull Pageable pageable) {
         return this.repository.findAll(example, pageable);
     }
 
-    @NotNull
+    @Nonnull
     @Override
-    public List<T> findAllById(@NotNull Iterable<I> ids) {
+    public List<T> findAllById(@Nonnull Iterable<I> ids) {
         return this.repository.findAllById(ids);
     }
 
-    @NotNull
+    @Nonnull
     @Override
-    public <S extends T> List<S> saveAll(@NotNull Iterable<S> entities) {
+    public <S extends T> List<S> saveAll(@Nonnull Iterable<S> entities) {
         return this.repository.saveAll(entities);
     }
 
@@ -109,15 +109,15 @@ public abstract class BaseServiceImpl<T, I> implements BaseService<T, I> {
         this.repository.flush();
     }
 
-    @NotNull
+    @Nonnull
     @Override
-    public <S extends T> S saveAndFlush(@NotNull S entity) {
+    public <S extends T> S saveAndFlush(@Nonnull S entity) {
         return this.repository.saveAndFlush(entity);
     }
 
     @Override
-    public void deleteInBatch(@NotNull Iterable<T> entities) {
-        this.repository.deleteInBatch(entities);
+    public void deleteInBatch(@Nonnull Iterable<T> entities) {
+        this.repository.deleteAllInBatch(entities);
     }
 
     @Override
@@ -125,26 +125,26 @@ public abstract class BaseServiceImpl<T, I> implements BaseService<T, I> {
         this.repository.deleteAllInBatch();
     }
 
-    @NotNull
+    @Nonnull
     @Override
-    public T getOne(@NotNull I id) {
-        return this.repository.getOne(id);
+    public T getOne(@Nonnull I id) {
+        return this.repository.getById(id);
     }
 
-    @NotNull
+    @Nonnull
     @Override
-    public <S extends T> S save(@NotNull S entity) {
+    public <S extends T> S save(@Nonnull S entity) {
         return this.repository.save(entity);
     }
 
-    @NotNull
+    @Nonnull
     @Override
-    public Optional<T> findById(@NotNull I id) {
+    public Optional<T> findById(@Nonnull I id) {
         return this.repository.findById(id);
     }
 
     @Override
-    public boolean existsById(@NotNull I id) {
+    public boolean existsById(@Nonnull I id) {
         return this.repository.existsById(id);
     }
 
@@ -154,7 +154,7 @@ public abstract class BaseServiceImpl<T, I> implements BaseService<T, I> {
     }
 
     @Override
-    public <S extends T> long count(@NotNull Example<S> example) {
+    public <S extends T> long count(@Nonnull Example<S> example) {
         return this.repository.count(example);
     }
 
@@ -164,17 +164,17 @@ public abstract class BaseServiceImpl<T, I> implements BaseService<T, I> {
     }
 
     @Override
-    public void deleteById(@NotNull I id) {
+    public void deleteById(@Nonnull I id) {
         this.repository.deleteById(id);
     }
 
     @Override
-    public void delete(@NotNull T entity) {
+    public void delete(@Nonnull T entity) {
         this.repository.delete(entity);
     }
 
     @Override
-    public void deleteAll(@NotNull Iterable<? extends T> entities) {
+    public void deleteAll(@Nonnull Iterable<? extends T> entities) {
         this.repository.deleteAll(entities);
     }
 
@@ -183,20 +183,20 @@ public abstract class BaseServiceImpl<T, I> implements BaseService<T, I> {
         this.repository.deleteAll();
     }
 
-    @NotNull
+    @Nonnull
     @Override
-    public <S extends T> Optional<S> findOne(@NotNull Example<S> example) {
+    public <S extends T> Optional<S> findOne(@Nonnull Example<S> example) {
         return this.repository.findOne(example);
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public Optional<T> findOne(Specification<T> spec) {
         return this.repository.findOne(spec);
     }
 
     @Override
-    public <S extends T> boolean exists(@NotNull Example<S> example) {
+    public <S extends T> boolean exists(@Nonnull Example<S> example) {
         return this.repository.exists(example);
     }
 

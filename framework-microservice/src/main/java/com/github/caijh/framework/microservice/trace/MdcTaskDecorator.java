@@ -2,9 +2,9 @@ package com.github.caijh.framework.microservice.trace;
 
 import java.util.Map;
 import java.util.UUID;
+import javax.annotation.Nonnull;
 
 import org.apache.logging.log4j.util.Strings;
-import org.jetbrains.annotations.NotNull;
 import org.slf4j.MDC;
 import org.springframework.core.task.TaskDecorator;
 
@@ -15,9 +15,9 @@ import static com.github.caijh.framework.core.constant.TraceConstants.TRACE_ID;
  */
 public class MdcTaskDecorator implements TaskDecorator {
 
-    @NotNull
+    @Nonnull
     @Override
-    public Runnable decorate(@NotNull Runnable runnable) {
+    public Runnable decorate(@Nonnull Runnable runnable) {
         Map<String, String> map = MDC.getCopyOfContextMap();
         return () -> {
             try {

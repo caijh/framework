@@ -1,10 +1,10 @@
 package com.github.caijh.framework.web.interceptor;
 
+import javax.annotation.Nonnull;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.github.caijh.framework.web.threadlocal.GlobalUserContext;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.web.servlet.AsyncHandlerInterceptor;
 
 import static com.github.caijh.framework.web.threadlocal.GlobalUserContext.X_USER_ID;
@@ -12,7 +12,7 @@ import static com.github.caijh.framework.web.threadlocal.GlobalUserContext.X_USE
 public class UserContextInterceptor implements AsyncHandlerInterceptor {
 
     @Override
-    public boolean preHandle(HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, @Nonnull HttpServletResponse response, @Nonnull Object handler) throws Exception {
         String userId = request.getHeader(X_USER_ID);
         if (userId != null) {
             GlobalUserContext.setCurrentUserId(Long.valueOf(userId));

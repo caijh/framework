@@ -2,8 +2,8 @@ package com.github.caijh.framework.data;
 
 import java.util.List;
 import java.util.Optional;
+import javax.annotation.Nonnull;
 
-import org.jetbrains.annotations.NotNull;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,64 +20,64 @@ public interface BaseService<T, I> {
 
     List<T> findAll();
 
-    List<T> findAll(@NotNull Sort sort);
+    List<T> findAll(@Nonnull Sort sort);
 
     List<T> findAll(Specification<T> spec);
 
-    Page<T> findAll(Specification<T> spec, @NotNull Pageable pageable);
+    Page<T> findAll(Specification<T> spec, @Nonnull Pageable pageable);
 
-    List<T> findAll(Specification<T> spec, @NotNull Sort sort);
+    List<T> findAll(Specification<T> spec, @Nonnull Sort sort);
 
-    <S extends T> List<S> findAll(@NotNull Example<S> example);
+    <S extends T> List<S> findAll(@Nonnull Example<S> example);
 
-    <S extends T> List<S> findAll(@NotNull Example<S> example, @NotNull Sort sort);
+    <S extends T> List<S> findAll(@Nonnull Example<S> example, @Nonnull Sort sort);
 
-    Page<T> findAll(@NotNull Pageable pageable);
+    Page<T> findAll(@Nonnull Pageable pageable);
 
-    <S extends T> Page<S> findAll(@NotNull Example<S> example, @NotNull Pageable pageable);
+    <S extends T> Page<S> findAll(@Nonnull Example<S> example, @Nonnull Pageable pageable);
 
-    List<T> findAllById(@NotNull Iterable<I> ids);
+    List<T> findAllById(@Nonnull Iterable<I> ids);
 
-    <S extends T> List<S> saveAll(@NotNull Iterable<S> entities);
+    <S extends T> List<S> saveAll(@Nonnull Iterable<S> entities);
 
     void flush();
 
-    <S extends T> S saveAndFlush(@NotNull S entity);
+    <S extends T> S saveAndFlush(@Nonnull S entity);
 
-    void deleteInBatch(@NotNull Iterable<T> entities);
+    void deleteInBatch(@Nonnull Iterable<T> entities);
 
     void deleteAllInBatch();
 
-    T getOne(@NotNull I id);
+    T getOne(@Nonnull I id);
 
     default T getOneOrNull(I id) {
         return this.findById(id).orElse(null);
     }
 
-    <S extends T> S save(@NotNull S entity);
+    <S extends T> S save(@Nonnull S entity);
 
-    Optional<T> findById(@NotNull I id);
+    Optional<T> findById(@Nonnull I id);
 
-    boolean existsById(@NotNull I id);
+    boolean existsById(@Nonnull I id);
 
     long count();
 
-    <S extends T> long count(@NotNull Example<S> example);
+    <S extends T> long count(@Nonnull Example<S> example);
 
     long count(Specification<T> spec);
 
-    void deleteById(@NotNull I id);
+    void deleteById(@Nonnull I id);
 
-    void delete(@NotNull T entity);
+    void delete(@Nonnull T entity);
 
-    void deleteAll(@NotNull Iterable<? extends T> entities);
+    void deleteAll(@Nonnull Iterable<? extends T> entities);
 
     void deleteAll();
 
-    <S extends T> Optional<S> findOne(@NotNull Example<S> example);
+    <S extends T> Optional<S> findOne(@Nonnull Example<S> example);
 
     Optional<T> findOne(Specification<T> spec);
 
-    <S extends T> boolean exists(@NotNull Example<S> example);
+    <S extends T> boolean exists(@Nonnull Example<S> example);
 
 }
