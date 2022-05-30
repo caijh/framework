@@ -28,6 +28,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
+      rm -rf ${HOME}/.m2
       mkdir ${HOME}/.m2
       cp "$(settingsXml.secureFilePath)" "${HOME}/.m2"
 
