@@ -42,8 +42,8 @@
         <framework.version>2.4.6-0.0.3-SNAPSHOT</framework.version>
         <jsr305.version>3.0.2</jsr305.version>
         <lombok.version>1.18.24</lombok.version>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
         <spring-cloud.version>2021.0.1</spring-cloud.version>
         <redisson.version>3.16.0</redisson.version>
