@@ -3,7 +3,6 @@ package com.github.caijh.framework.util;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.github.caijh.commons.util.Asserts;
 import com.github.caijh.commons.util.reflection.invoker.GetFieldInvoker;
@@ -14,11 +13,10 @@ public interface ObjectFieldComparator {
     default List<ComparableFieldResult> compare(Object o1, Object o2, String... fields) {
         Asserts.isTrue(o1 != o2, () -> new IllegalArgumentException("o1 and o2 must not be same"));
 
-        List<String> fieldNames = Arrays.stream(fields).collect(Collectors.toList());
+        List<String> fieldNames = Arrays.stream(fields).toList();
         List<ComparableFieldResult> results = Lists.newArrayList();
         Arrays.stream(o1.getClass().getDeclaredFields())
-              .filter(e -> fieldNames.contains(e.getName()))
-              .collect(Collectors.toList())
+              .filter(e -> fieldNames.contains(e.getName())).toList()
               .forEach(field -> results.add(this.getFieldCompareResult(field, o1, o2)));
 
         return results;
@@ -27,11 +25,10 @@ public interface ObjectFieldComparator {
     default List<ComparableFieldResult> compareAllFields(Object o1, Object o2, String... ignoreFields) {
         Asserts.isTrue(o1 != o2, () -> new IllegalArgumentException("o1 and o2 must not be same"));
 
-        List<String> ignoreFieldNames = Arrays.stream(ignoreFields).collect(Collectors.toList());
+        List<String> ignoreFieldNames = Arrays.stream(ignoreFields).toList();
         List<ComparableFieldResult> results = Lists.newArrayList();
         Arrays.stream(o1.getClass().getDeclaredFields())
-              .filter(field -> !ignoreFieldNames.contains(field.getName()))
-              .collect(Collectors.toList())
+              .filter(field -> !ignoreFieldNames.contains(field.getName())).toList()
               .forEach(field -> results.add(this.getFieldCompareResult(field, o1, o2)));
         return results;
     }
@@ -41,8 +38,7 @@ public interface ObjectFieldComparator {
 
         List<ComparableFieldResult> results = Lists.newArrayList();
         Arrays.stream(o1.getClass().getDeclaredFields())
-              .filter(e -> e.getAnnotation(ComparableField.class) != null)
-              .collect(Collectors.toList())
+              .filter(e -> e.getAnnotation(ComparableField.class) != null).toList()
               .forEach(field -> results.add(this.getFieldCompareResult(field, o1, o2)));
 
         return results;
