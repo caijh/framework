@@ -3,7 +3,6 @@ package com.github.caijh.framework.core.enums;
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 
 /**
@@ -31,7 +30,7 @@ public interface IndexEnum {
     }
 
     static <T extends IndexEnum> List<Integer> indexValues(Class<T> clazz) {
-        return Arrays.stream(clazz.getEnumConstants()).map(IndexEnum::getIndex).collect(Collectors.toList());
+        return Arrays.stream(clazz.getEnumConstants()).map(IndexEnum::getIndex).toList();
     }
 
     int getIndex();
