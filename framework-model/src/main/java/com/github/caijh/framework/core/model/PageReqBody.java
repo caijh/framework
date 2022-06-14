@@ -1,5 +1,6 @@
 package com.github.caijh.framework.core.model;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collections;
@@ -58,8 +59,12 @@ public class PageReqBody implements ReqBody {
         this.sorts = sorts;
     }
 
-    public long getOffset() {
-        return (long) getPageNo() * this.pageSize;
+    public Integer getOffset() {
+        return getPageNo() * this.pageSize;
+    }
+
+    public Integer getLimit() {
+        return this.pageSize;
     }
 
     @Data
@@ -68,6 +73,7 @@ public class PageReqBody implements ReqBody {
     @Builder
     public static class Sort implements Serializable {
 
+        @Serial
         private static final long serialVersionUID = 243258760854336905L;
         /**
          * 排序属性.
