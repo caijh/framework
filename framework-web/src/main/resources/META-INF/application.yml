@@ -11,6 +11,8 @@ server:
 spring:
   jackson:
     property-naming-strategy: SNAKE_CASE
+    serialization:
+      write-dates-as-timestamps: true
   messages:
     basename: i18n/messages
     encoding: utf-8
