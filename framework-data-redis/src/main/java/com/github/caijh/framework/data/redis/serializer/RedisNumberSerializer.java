@@ -11,6 +11,8 @@ import org.springframework.data.redis.serializer.SerializationException;
 
 public class RedisNumberSerializer<T extends Number> implements RedisSerializer<T> {
 
+    public static final RedisNumberSerializer<Long> STRING_LONG_SERIALIZER = new RedisNumberSerializer<>(Long.class);
+
     private final Class<T> clazz;
 
     public RedisNumberSerializer(Class<T> clazz) {

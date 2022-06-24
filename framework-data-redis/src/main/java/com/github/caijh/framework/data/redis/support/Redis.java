@@ -42,16 +42,30 @@ public class Redis {
         this.valueSerializer = (RedisSerializer<Object>) this.redisTemplate.getValueSerializer();
     }
 
+    public byte[] getRawValue(String key) {
+        byte[] keyBytes = this.keySerializer.serialize(key);
+        Assert.notNull(keyBytes, "key must not be null");
+        return this.redisTemplate.execute((RedisConnection redisConnection) -> redisConnection.get(keyBytes));
+    }
+
     public <T> T get(String key, RedisSerializer<T> valueSerializer) {
         byte[] rawValue = getRawValue(key);
 
         return valueSerializer.deserialize(rawValue);
     }
 
-    public byte[] getRawValue(String key) {
-        byte[] keyBytes = this.keySerializer.serialize(key);
-        Assert.notNull(keyBytes, "key must not be null");
-        return this.redisTemplate.execute((RedisConnection redisConnection) -> redisConnection.get(keyBytes));
+    /**
+     * get cache object.
+     *
+     * @param key key
+     * @param <T> parameter type of class
+     * @return T the has been cache object.
+     */
+    @SuppressWarnings("unchecked")
+    public <T> T get(String key) {
+        byte[] valueBytes = getRawValue(key);
+
+        return (T) this.valueSerializer.deserialize(valueBytes);
     }
 
     /**
@@ -137,20 +151,6 @@ public class Redis {
     }
 
     /**
-     * get cache object.
-     *
-     * @param key key
-     * @param <T> parameter type of class
-     * @return T the has been cache object.
-     */
-    @SuppressWarnings("unchecked")
-    public <T> T get(String key) {
-        byte[] valueBytes = getRawValue(key);
-
-        return (T) this.valueSerializer.deserialize(valueBytes);
-    }
-
-    /**
      * get the cached list.
      *
      * @param key the key of object
@@ -161,16 +161,6 @@ public class Redis {
     public <T> List<T> getList(String key) {
         byte[] valueBytes = getRawValue(key);
         return (List<T>) this.valueSerializer.deserialize(valueBytes);
-    }
-
-    /**
-     * delete the key.
-     *
-     * @param key key
-     * @return true, if delete successful.
-     */
-    public Boolean delete(String key) {
-        return this.redisTemplate.delete(key);
     }
 
     /**
@@ -206,6 +196,16 @@ public class Redis {
      */
     public Long delete(Collection<String> keys) {
         return this.redisTemplate.delete(keys);
+    }
+
+    /**
+     * delete the key.
+     *
+     * @param key key
+     * @return true, if delete successful.
+     */
+    public Boolean delete(String key) {
+        return this.redisTemplate.delete(key);
     }
 
     /**
