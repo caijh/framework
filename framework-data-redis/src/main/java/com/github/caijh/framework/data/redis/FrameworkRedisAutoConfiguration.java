@@ -3,7 +3,7 @@ package com.github.caijh.framework.data.redis;
 import java.time.Duration;
 import java.util.Optional;
 
-import com.github.caijh.framework.data.redis.serializer.ProtobufSerializer;
+import com.github.caijh.framework.data.redis.serializer.RedisProtobufSerializer;
 import com.github.caijh.framework.data.redis.support.Redis;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
@@ -36,7 +36,7 @@ public class FrameworkRedisAutoConfiguration {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         redisTemplate.setKeySerializer(new StringRedisSerializer());
-        redisTemplate.setValueSerializer(new ProtobufSerializer());
+        redisTemplate.setValueSerializer(new RedisProtobufSerializer());
         redisTemplate.setHashKeySerializer(new StringRedisSerializer());
         redisTemplate.setHashValueSerializer(new StringRedisSerializer()); // fix: redis stream object record must StringRedisSerializer.
         redisTemplate.setEnableTransactionSupport(true);

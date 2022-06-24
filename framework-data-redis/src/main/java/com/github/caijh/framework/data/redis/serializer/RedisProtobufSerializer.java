@@ -3,7 +3,7 @@ package com.github.caijh.framework.data.redis.serializer;
 import com.github.caijh.framework.data.redis.util.ProtoStuffSerializerUtils;
 import org.springframework.data.redis.serializer.RedisSerializer;
 
-public class ProtobufSerializer implements RedisSerializer<Object> {
+public class RedisProtobufSerializer implements RedisSerializer<Object> {
 
     @Override
     public byte[] serialize(Object o) {

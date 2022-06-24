@@ -41,6 +41,18 @@ public class Redis {
         this.valueSerializer = (RedisSerializer<Object>) this.redisTemplate.getValueSerializer();
     }
 
+    public <T> T getRawValue(String key, RedisSerializer<T> valueSerializer) {
+        byte[] rawValue = getRawValue(key);
+
+        return valueSerializer.deserialize(rawValue);
+    }
+
+    public byte[] getRawValue(String key) {
+        byte[] keyBytes = this.keySerializer.serialize(key);
+        Assert.notNull(keyBytes, "key must not be null");
+        return this.redisTemplate.execute((RedisConnection redisConnection) -> redisConnection.get(keyBytes));
+    }
+
     /**
      * save obj to redis.
      *
@@ -76,6 +88,25 @@ public class Redis {
         this.setEx(keyBytes, serialize, expire);
     }
 
+    private void setEx(byte[] keyBytes, byte[] serializeValue, Long expire) {
+        boolean ret;
+        if (expire > 0) {
+            ret = Optional
+                .ofNullable(this.getRedisTemplate().execute((RedisConnection redisConnection) -> redisConnection.setEx(keyBytes, expire, serializeValue)))
+                .orElse(true);
+        } else {
+            ret = Optional.ofNullable(this.getRedisTemplate().execute((RedisConnection redisConnection) -> redisConnection.set(keyBytes, serializeValue)))
+                          .orElse(true);
+        }
+        if (!ret) {
+            throw new RedisException();
+        }
+    }
+
+    public RedisTemplate<String, Object> getRedisTemplate() {
+        return this.redisTemplate;
+    }
+
     /**
      * save list to redis.
      *
@@ -104,21 +135,6 @@ public class Redis {
         this.setEx(keyBytes, serialize, expire);
     }
 
-    private void setEx(byte[] keyBytes, byte[] serializeValue, Long expire) {
-        boolean ret;
-        if (expire > 0) {
-            ret = Optional
-                    .ofNullable(this.getRedisTemplate().execute((RedisConnection redisConnection) -> redisConnection.setEx(keyBytes, expire, serializeValue)))
-                    .orElse(true);
-        } else {
-            ret = Optional.ofNullable(this.getRedisTemplate().execute((RedisConnection redisConnection) -> redisConnection.set(keyBytes, serializeValue)))
-                          .orElse(true);
-        }
-        if (!ret) {
-            throw new RedisException();
-        }
-    }
-
     /**
      * get cache object.
      *
@@ -128,9 +144,7 @@ public class Redis {
      */
     @SuppressWarnings("unchecked")
     public <T> T get(String key) {
-        byte[] keyBytes = this.keySerializer.serialize(key);
-        Assert.notNull(keyBytes, "key must not be null");
-        byte[] valueBytes = this.redisTemplate.execute((RedisConnection redisConnection) -> redisConnection.get(keyBytes));
+        byte[] valueBytes = getRawValue(key);
 
         return (T) this.valueSerializer.deserialize(valueBytes);
     }
@@ -144,9 +158,7 @@ public class Redis {
      */
     @SuppressWarnings("unchecked")
     public <T> List<T> getList(String key) {
-        byte[] keyBytes = this.keySerializer.serialize(key);
-        Assert.notNull(keyBytes, "key must not be null");
-        byte[] valueBytes = this.redisTemplate.execute((RedisConnection redisConnection) -> redisConnection.get(keyBytes));
+        byte[] valueBytes = getRawValue(key);
         return (List<T>) this.valueSerializer.deserialize(valueBytes);
     }
 
@@ -158,16 +170,6 @@ public class Redis {
      */
     public Boolean delete(String key) {
         return this.redisTemplate.delete(key);
-    }
-
-    /**
-     * delete keys.
-     *
-     * @param keys keys to delete
-     * @return the number of keys is deleted
-     */
-    public Long delete(Collection<String> keys) {
-        return this.redisTemplate.delete(keys);
     }
 
     /**
@@ -196,6 +198,16 @@ public class Redis {
     }
 
     /**
+     * delete keys.
+     *
+     * @param keys keys to delete
+     * @return the number of keys is deleted
+     */
+    public Long delete(Collection<String> keys) {
+        return this.redisTemplate.delete(keys);
+    }
+
+    /**
      * 判断key是否在redis中.
      *
      * @param key key
@@ -209,13 +221,8 @@ public class Redis {
     public int bitCount(String key) {
         byte[] keyByte = this.keySerializer.serialize(key);
         Assert.notNull(keyByte, "key 不能为空");
-        Long count = this.getRedisTemplate()
-                         .execute((RedisCallback<Long>) con -> con.bitCount(keyByte));
+        Long count = this.getRedisTemplate().execute((RedisCallback<Long>) con -> con.bitCount(keyByte));
         return count != null ? count.intValue() : 0;
-    }
-
-    public RedisTemplate<String, Object> getRedisTemplate() {
-        return this.redisTemplate;
     }
 
     public RedissonClient getRedissonClient() {

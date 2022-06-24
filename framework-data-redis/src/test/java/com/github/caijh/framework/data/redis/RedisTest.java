@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.github.caijh.framework.data.redis.serializer.ProtobufSerializer;
+import com.github.caijh.framework.data.redis.serializer.RedisProtobufSerializer;
 import com.github.caijh.framework.data.redis.support.Redis;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,8 +35,8 @@ class RedisTest {
         connectionFactory.afterPropertiesSet();
         redisTemplate.setConnectionFactory(connectionFactory);
         redisTemplate.setKeySerializer(new StringRedisSerializer());
-        redisTemplate.setValueSerializer(new ProtobufSerializer());
-        redisTemplate.setHashValueSerializer(new ProtobufSerializer());
+        redisTemplate.setValueSerializer(new RedisProtobufSerializer());
+        redisTemplate.setHashValueSerializer(new RedisProtobufSerializer());
         redisTemplate.setEnableTransactionSupport(true);
         redisTemplate.afterPropertiesSet();
         this.redis = new Redis(redisTemplate, null);
