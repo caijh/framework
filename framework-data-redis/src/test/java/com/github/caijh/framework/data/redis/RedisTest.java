@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.github.caijh.framework.data.redis.serializer.RedisNumberSerializer;
 import com.github.caijh.framework.data.redis.serializer.RedisProtobufSerializer;
 import com.github.caijh.framework.data.redis.support.Redis;
 import org.junit.jupiter.api.AfterEach;
@@ -40,6 +41,7 @@ class RedisTest {
         redisTemplate.setEnableTransactionSupport(true);
         redisTemplate.afterPropertiesSet();
         this.redis = new Redis(redisTemplate, null);
+        this.redis.batchDelete("*");
     }
 
     @AfterEach
@@ -87,6 +89,10 @@ class RedisTest {
 
         this.redis.set("test", "test", 0L);
         this.redis.delete("test");
+
+        redis.getRedisTemplate().opsForValue().increment("temp");
+        Long temp = redis.get("temp", new RedisNumberSerializer<>(Long.class));
+        assertEquals(1L, temp);
 
         this.redis.set("u:1", 1);
         this.redis.set("u:2", 2);

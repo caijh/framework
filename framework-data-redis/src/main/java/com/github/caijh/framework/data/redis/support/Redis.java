@@ -8,7 +8,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Consumer;
 
-import com.github.caijh.framework.data.redis.exception.RedisException;
+import com.github.caijh.framework.data.redis.exception.RedisScanException;
+import com.github.caijh.framework.data.redis.exception.RedisSetValueException;
 import org.redisson.api.RedissonClient;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.Cursor;
@@ -41,7 +42,7 @@ public class Redis {
         this.valueSerializer = (RedisSerializer<Object>) this.redisTemplate.getValueSerializer();
     }
 
-    public <T> T getRawValue(String key, RedisSerializer<T> valueSerializer) {
+    public <T> T get(String key, RedisSerializer<T> valueSerializer) {
         byte[] rawValue = getRawValue(key);
 
         return valueSerializer.deserialize(rawValue);
@@ -99,7 +100,7 @@ public class Redis {
                           .orElse(true);
         }
         if (!ret) {
-            throw new RedisException();
+            throw new RedisSetValueException();
         }
     }
 
@@ -192,7 +193,7 @@ public class Redis {
                 cursor.forEachRemaining(consumer);
                 return null;
             } catch (Exception e) {
-                throw new RedisException(e);
+                throw new RedisScanException(e);
             }
         });
     }

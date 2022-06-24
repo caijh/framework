@@ -1,8 +1,11 @@
 package com.github.caijh.framework.data.redis.serializer;
 
-import java.lang.reflect.ParameterizedType;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodType;
 import java.nio.charset.StandardCharsets;
 
+import com.github.caijh.framework.data.redis.exception.RedisSerializeException;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.SerializationException;
 
@@ -10,10 +13,8 @@ public class RedisNumberSerializer<T extends Number> implements RedisSerializer<
 
     private final Class<T> clazz;
 
-    @SuppressWarnings("unchecked")
-    public RedisNumberSerializer() {
-        ParameterizedType parameterizedType = (ParameterizedType) getClass().getGenericSuperclass();
-        clazz = (Class<T>) parameterizedType.getActualTypeArguments()[0];
+    public RedisNumberSerializer(Class<T> clazz) {
+        this.clazz = clazz;
     }
 
     @Override
@@ -24,9 +25,17 @@ public class RedisNumberSerializer<T extends Number> implements RedisSerializer<
         return number.toString().getBytes(StandardCharsets.UTF_8);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public T deserialize(byte[] bytes) throws SerializationException {
-        return null;
+        MethodHandles.Lookup lookup = MethodHandles.lookup();
+        MethodType mt = MethodType.methodType(clazz, String.class);
+        try {
+            MethodHandle valueOf = lookup.findStatic(clazz, "valueOf", mt);
+            return (T) valueOf.invoke(new String(bytes, StandardCharsets.UTF_8));
+        } catch (Throwable e) {
+            throw new RedisSerializeException(e);
+        }
     }
 
 }
