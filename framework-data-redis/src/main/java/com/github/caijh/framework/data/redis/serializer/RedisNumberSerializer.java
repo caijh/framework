@@ -4,6 +4,7 @@ import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
 import java.nio.charset.StandardCharsets;
+import javax.annotation.Nullable;
 
 import com.github.caijh.framework.data.redis.exception.RedisSerializeException;
 import org.springframework.data.redis.serializer.RedisSerializer;
@@ -28,8 +29,12 @@ public class RedisNumberSerializer<T extends Number> implements RedisSerializer<
     }
 
     @SuppressWarnings("unchecked")
+    @Nullable
     @Override
     public T deserialize(byte[] bytes) throws SerializationException {
+        if (bytes == null || bytes.length == 0) {
+            return null;
+        }
         MethodHandles.Lookup lookup = MethodHandles.lookup();
         MethodType mt = MethodType.methodType(clazz, String.class);
         try {
