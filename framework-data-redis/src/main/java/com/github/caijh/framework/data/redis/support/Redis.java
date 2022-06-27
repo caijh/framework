@@ -54,6 +54,18 @@ public class Redis {
         return valueSerializer.deserialize(rawValue);
     }
 
+    public <T> T get(String key, String hashKey, RedisSerializer<T> valueSerializer) {
+        byte[] rawKey = this.keySerializer.serialize(key);
+        @SuppressWarnings("unchecked")
+        RedisSerializer<String> hashKeySerializer = (RedisSerializer<String>) getRedisTemplate().getHashKeySerializer();
+        byte[] rawHashKey = hashKeySerializer.serialize(hashKey);
+        Assert.notNull(rawKey, "key must not null");
+        Assert.notNull(rawHashKey, "hash key must not null");
+
+        byte[] bytes = redisTemplate.execute((RedisConnection redisConnection) -> redisConnection.hashCommands().hGet(rawKey, rawHashKey));
+        return valueSerializer.deserialize(bytes);
+    }
+
     /**
      * get cache object.
      *
