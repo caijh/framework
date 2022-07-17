@@ -36,11 +36,15 @@ public class PageReqBody implements ReqBody {
     private List<Sort> sorts;
 
     public Integer getPageNo() {
-        return this.pageNo - 1;
+        return this.pageNo;
     }
 
     public void setPageNo(Integer pageNo) {
         this.pageNo = pageNo;
+    }
+
+    public Integer getPage() {
+        return getPageNo() - 1;
     }
 
     public Integer getPageSize() {
@@ -60,7 +64,7 @@ public class PageReqBody implements ReqBody {
     }
 
     public Integer getOffset() {
-        return getPageNo() * this.pageSize;
+        return getPage() * this.pageSize;
     }
 
     public Integer getLimit() {
@@ -93,11 +97,11 @@ public class PageReqBody implements ReqBody {
             }
 
             return this.column.contains("_")
-                    ? this.column.substring(0, this.column.indexOf("_"))
-                    + Arrays.stream(this.column.substring(this.column.indexOf("_") + 1).split("_"))
-                            .map(s -> Character.toUpperCase(s.charAt(0)) + s.substring(1))
-                            .collect(Collectors.joining())
-                    : this.column;
+                ? this.column.substring(0, this.column.indexOf("_"))
+                + Arrays.stream(this.column.substring(this.column.indexOf("_") + 1).split("_"))
+                        .map(s -> Character.toUpperCase(s.charAt(0)) + s.substring(1))
+                        .collect(Collectors.joining())
+                : this.column;
         }
 
     }
