@@ -191,7 +191,7 @@ public class Redis {
 
     public void scan(final String pattern, Consumer<byte[]> consumer) {
         this.redisTemplate.execute((RedisConnection connection) -> {
-            try (Cursor<byte[]> cursor = connection.scan(ScanOptions.scanOptions().count(2000).match(pattern).build())) {
+            try (Cursor<byte[]> cursor = connection.scan(ScanOptions.scanOptions().match(pattern).build())) {
                 cursor.forEachRemaining(consumer);
                 return null;
             } catch (Exception e) {
