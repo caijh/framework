@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public class ValidatorUtils {
 
-    public static final String REGEX_NUMBER = "-?\\d+(\\.\\d)?";
+    public static final String REGEX_NUMBER = "-?\\d+(\\.\\d+)?";
 
     /**
      * 正则表达式：验证汉字
@@ -42,6 +42,10 @@ public class ValidatorUtils {
 
     private ValidatorUtils() {
 
+    }
+
+    public static boolean isNumeric(String number) {
+        return Pattern.matches(ValidatorUtils.REGEX_NUMBER, number);
     }
 
     /**

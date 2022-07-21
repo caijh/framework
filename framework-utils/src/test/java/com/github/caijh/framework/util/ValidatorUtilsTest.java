@@ -8,6 +8,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class ValidatorUtilsTest {
 
     @Test
+    void isNumeric() {
+        assertTrue(ValidatorUtils.isNumeric("9.1111"));
+    }
+
+    @Test
     void isUsername() {
         assertTrue(ValidatorUtils.isUsername("caijunhui"));
     }
