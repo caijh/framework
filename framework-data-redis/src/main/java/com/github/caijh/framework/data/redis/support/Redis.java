@@ -200,6 +200,44 @@ public class Redis {
         });
     }
 
+    public void scan(final String pattern, int offset, int limit, Consumer<byte[]> consumer) {
+        this.redisTemplate.execute((RedisConnection connection) -> {
+            try (Cursor<byte[]> cursor = connection.scan(ScanOptions.scanOptions().match(pattern).build())) {
+                int index = -1;
+                while (cursor.hasNext()) {
+                    index++;
+                    if (index >= offset && index < (offset + limit)) {
+                        consumer.accept(cursor.next());
+                    }
+                    if (index >= (offset + limit)) {
+                        break;
+                    }
+                }
+                return null;
+            } catch (Exception e) {
+                throw new RedisScanException(e);
+            }
+        });
+    }
+
+    public Set<String> keys(String pattern) {
+        Set<String> keys = new HashSet<>();
+        this.scan(pattern, bytes -> {
+            String key = this.keySerializer.deserialize(bytes);
+            keys.add(key);
+        });
+        return keys;
+    }
+
+    public Set<String> keys(String pattern, int offset, int limit) {
+        Set<String> keys = new HashSet<>();
+        this.scan(pattern, offset, limit, bytes -> {
+            String key = this.keySerializer.deserialize(bytes);
+            keys.add(key);
+        });
+        return keys;
+    }
+
     /**
      * delete keys.
      *
