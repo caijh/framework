@@ -2,6 +2,7 @@ package com.github.caijh.framework.data.redis.support;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -200,18 +201,24 @@ public class Redis {
         });
     }
 
-    public void scan(final String pattern, int offset, int limit, Consumer<byte[]> consumer) {
+    public void scan(final String pattern, int offset, int limit, Consumer<byte[]> consumer, TotalCounter counter) {
         this.redisTemplate.execute((RedisConnection connection) -> {
             try (Cursor<byte[]> cursor = connection.scan(ScanOptions.scanOptions().match(pattern).build())) {
-                int index = -1;
+                int start = -1;
+                int end = offset + limit;
+                boolean calcTotal = counter != null && counter.calcTotal();
                 while (cursor.hasNext()) {
-                    index++;
-                    if (index >= offset && index < (offset + limit)) {
-                        consumer.accept(cursor.next());
+                    start++;
+                    byte[] next = cursor.next();
+                    if (start >= offset && start < end) {
+                        consumer.accept(next);
                     }
-                    if (index >= (offset + limit)) {
+                    if (!calcTotal && start >= end) {
                         break;
                     }
+                }
+                if (calcTotal) {
+                    counter.setTotal(start + 1L);
                 }
                 return null;
             } catch (Exception e) {
@@ -221,7 +228,7 @@ public class Redis {
     }
 
     public Set<String> keys(String pattern) {
-        Set<String> keys = new HashSet<>();
+        Set<String> keys = new LinkedHashSet<>();
         this.scan(pattern, bytes -> {
             String key = this.keySerializer.deserialize(bytes);
             keys.add(key);
@@ -229,12 +236,12 @@ public class Redis {
         return keys;
     }
 
-    public Set<String> keys(String pattern, int offset, int limit) {
-        Set<String> keys = new HashSet<>();
+    public Set<String> keys(String pattern, int offset, int limit, TotalCounter totalCounter) {
+        Set<String> keys = new LinkedHashSet<>();
         this.scan(pattern, offset, limit, bytes -> {
             String key = this.keySerializer.deserialize(bytes);
             keys.add(key);
-        });
+        }, totalCounter);
         return keys;
     }
 
