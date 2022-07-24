@@ -1,6 +1,9 @@
 package com.github.caijh.framework.data.redis.support;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -289,6 +292,15 @@ public class Redis {
 
     public RedisLock getLock() {
         return this.redisLock;
+    }
+
+    public Date getExpiredAt(String key) {
+        long expire = Optional.ofNullable(getRedisTemplate().getExpire(key)).orElse(-1L);
+        Date expiredAt = null;
+        if (expire >= 0) {
+            expiredAt = Date.from(LocalDateTime.now().plusSeconds(expire).atZone(ZoneId.systemDefault()).toInstant());
+        }
+        return expiredAt;
     }
 
     public static class Expired {
