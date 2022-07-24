@@ -7,9 +7,9 @@ import javax.annotation.Nonnull;
 import com.github.caijh.framework.web.autoconfigure.CorsAutoConfiguration;
 import com.github.caijh.framework.web.autoconfigure.JacksonAutoConfiguration;
 import com.github.caijh.framework.web.filter.ThreadLocalStoreFilter;
+import com.github.caijh.framework.web.interceptor.GlobalApplicationContextInterceptor;
 import com.github.caijh.framework.web.interceptor.ThreadLocalStoreInterceptor;
 import com.github.caijh.framework.web.interceptor.TraceIdInterceptor;
-import com.github.caijh.framework.web.interceptor.UserContextInterceptor;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
@@ -56,8 +56,13 @@ public class FrameworkWebAutoConfiguration implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new TraceIdInterceptor());
-        registry.addInterceptor(new UserContextInterceptor());
+        registry.addInterceptor(new GlobalApplicationContextInterceptor());
         registry.addInterceptor(new ThreadLocalStoreInterceptor());
+    }
+
+    @Override
+    public void configureMessageConverters(@Nonnull List<HttpMessageConverter<?>> converters) {
+        converters.add(charsetConverter());
     }
 
     @Bean
@@ -71,11 +76,6 @@ public class FrameworkWebAutoConfiguration implements WebMvcConfigurer {
     @ConfigurationProperties(prefix = "server")
     public ServerProperties serverProperties() {
         return new ServerProperties();
-    }
-
-    @Override
-    public void configureMessageConverters(@Nonnull List<HttpMessageConverter<?>> converters) {
-        converters.add(charsetConverter());
     }
 
 }

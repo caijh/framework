@@ -9,7 +9,7 @@ import org.springframework.web.servlet.AsyncHandlerInterceptor;
 
 import static com.github.caijh.framework.web.threadlocal.GlobalApplicationContext.X_USER_ID;
 
-public class UserContextInterceptor implements AsyncHandlerInterceptor {
+public class GlobalApplicationContextInterceptor implements AsyncHandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, @Nonnull HttpServletResponse response, @Nonnull Object handler) throws Exception {
