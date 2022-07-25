@@ -11,6 +11,7 @@ public class GlobalApplicationContext {
 
     public static final String X_USER_ID = "X-User-Id";
     private static final String X_REQUEST_IP = "X-Request-Ip";
+    private static final String X_CONTROLLER_ENTER_TIME = "X-Controller-Enter-Time";
 
     private GlobalApplicationContext() {}
 
@@ -36,12 +37,12 @@ public class GlobalApplicationContext {
         ThreadLocalStore.put(X_REQUEST_IP, RequestUtils.getIp(request));
     }
 
-    public static void setControllerEnterTime() {
-        ThreadLocalStore.put("X-Controller-Enter-Time", new Date());
+    public static Date getControllerEnterTime() {
+        return ThreadLocalStore.get(X_CONTROLLER_ENTER_TIME);
     }
 
-    public static Date getControllerEnterTime() {
-        return ThreadLocalStore.get("X-Controller-Enter-Time");
+    public static void setControllerEnterTime(Date date) {
+        ThreadLocalStore.put("X-Controller-Enter-Time", date);
     }
 
 }
