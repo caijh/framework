@@ -12,7 +12,7 @@ public class TraceLogUtils {
     }
 
     public static String getTraceId(HttpServletRequest request) {
-        String traceId = request.getHeader(TraceConstants.HTTP_HEADER_TRACE_ID);
+        String traceId = request.getHeader(TraceConstants.X_TRACE_ID);
         if (Strings.isNotBlank(traceId)) {
             return traceId;
         }

@@ -1,5 +1,6 @@
 package com.github.caijh.framework.web.threadlocal;
 
+import java.util.Date;
 import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,6 +10,7 @@ import org.springframework.lang.Nullable;
 public class GlobalApplicationContext {
 
     public static final String X_USER_ID = "X-User-Id";
+    private static final String X_REQUEST_IP = "X-Request-Ip";
 
     private GlobalApplicationContext() {}
 
@@ -27,11 +29,19 @@ public class GlobalApplicationContext {
     }
 
     public static String getIp() {
-        return ThreadLocalStore.get("X-Request-Ip");
+        return ThreadLocalStore.get(X_REQUEST_IP);
     }
 
     public static void setIp(HttpServletRequest request) {
-        ThreadLocalStore.put("X-Request-Ip", RequestUtils.getIp(request));
+        ThreadLocalStore.put(X_REQUEST_IP, RequestUtils.getIp(request));
+    }
+
+    public static void setControllerEnterTime() {
+        ThreadLocalStore.put("X-Controller-Enter-Time", new Date());
+    }
+
+    public static Date getControllerEnterTime() {
+        return ThreadLocalStore.get("X-Controller-Enter-Time");
     }
 
 }

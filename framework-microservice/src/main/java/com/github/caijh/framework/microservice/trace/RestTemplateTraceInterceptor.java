@@ -18,7 +18,7 @@ public class RestTemplateTraceInterceptor implements ClientHttpRequestIntercepto
     public ClientHttpResponse intercept(@Nonnull HttpRequest request, @Nonnull byte[] body, @Nonnull ClientHttpRequestExecution execution) throws IOException {
         String traceId = MDC.get(TraceConstants.TRACE_ID);
         if (StringUtils.hasLength(traceId)) {
-            request.getHeaders().add(TraceConstants.HTTP_HEADER_TRACE_ID, traceId);
+            request.getHeaders().add(TraceConstants.X_TRACE_ID, traceId);
         }
         return execution.execute(request, body);
     }

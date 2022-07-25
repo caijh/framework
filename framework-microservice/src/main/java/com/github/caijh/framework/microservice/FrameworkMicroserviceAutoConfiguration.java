@@ -27,7 +27,7 @@ public class FrameworkMicroserviceAutoConfiguration {
         return template -> {
             String traceId = MDC.get(TraceConstants.TRACE_ID);
             if (traceId != null) {
-                template.header(TraceConstants.HTTP_HEADER_TRACE_ID, traceId);
+                template.header(TraceConstants.X_TRACE_ID, traceId);
             }
         };
     }

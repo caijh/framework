@@ -18,6 +18,7 @@ public class GlobalApplicationContextInterceptor implements AsyncHandlerIntercep
             GlobalApplicationContext.setCurrentUserId(Long.valueOf(userId));
         }
         GlobalApplicationContext.setIp(request);
+        GlobalApplicationContext.setControllerEnterTime();
         return AsyncHandlerInterceptor.super.preHandle(request, response, handler);
     }
 
