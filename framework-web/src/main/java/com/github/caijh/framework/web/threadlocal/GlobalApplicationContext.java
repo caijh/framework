@@ -42,7 +42,7 @@ public class GlobalApplicationContext {
     }
 
     public static void setControllerEnterTime(Date date) {
-        ThreadLocalStore.put("X-Controller-Enter-Time", date);
+        ThreadLocalStore.put(X_CONTROLLER_ENTER_TIME, date);
     }
 
 }
