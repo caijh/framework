@@ -40,10 +40,10 @@ public class ValidateExceptionHandler {
     @ResponseBody
     public ResponseEntity<R<Void>> validExceptionHandler(Exception e) {
         BindingResult bindingResult = null;
-        if (e instanceof MethodArgumentNotValidException) {
-            bindingResult = ((MethodArgumentNotValidException) e).getBindingResult();
-        } else if (e instanceof BindException) {
-            bindingResult = ((BindException) e).getBindingResult();
+        if (e instanceof MethodArgumentNotValidException methodArgumentNotValidException) {
+            bindingResult = methodArgumentNotValidException.getBindingResult();
+        } else if (e instanceof BindException bindException) {
+            bindingResult = bindException.getBindingResult();
         }
         R<Void> result = new R<>();
         if (bindingResult != null) {
