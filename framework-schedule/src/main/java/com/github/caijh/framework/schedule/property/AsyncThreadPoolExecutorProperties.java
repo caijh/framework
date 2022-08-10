@@ -1,6 +1,5 @@
 package com.github.caijh.framework.schedule.property;
 
-
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -8,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Data
 public class AsyncThreadPoolExecutorProperties {
 
-    public static final String PREFIX = "aysnc.executor";
+    public static final String PREFIX = "async.executor";
 
     private int corePoolSize;
     private int maxPoolSize;
