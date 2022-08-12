@@ -1,6 +1,5 @@
 package com.github.caijh.framework.web.threadlocal;
 
-import java.util.Date;
 import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,7 +10,6 @@ public class GlobalApplicationContext {
 
     public static final String X_USER_ID = "X-User-Id";
     private static final String X_REQUEST_IP = "X-Request-Ip";
-    private static final String X_CONTROLLER_ENTER_TIME = "X-Controller-Enter-Time";
 
     private GlobalApplicationContext() {}
 
@@ -35,14 +33,6 @@ public class GlobalApplicationContext {
 
     public static void setIp(HttpServletRequest request) {
         ThreadLocalStore.put(X_REQUEST_IP, RequestUtils.getIp(request));
-    }
-
-    public static Date getControllerEnterTime() {
-        return ThreadLocalStore.get(X_CONTROLLER_ENTER_TIME);
-    }
-
-    public static void setControllerEnterTime(Date date) {
-        ThreadLocalStore.put(X_CONTROLLER_ENTER_TIME, date);
     }
 
 }

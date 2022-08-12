@@ -1,6 +1,5 @@
 package com.github.caijh.framework.web.interceptor;
 
-import java.util.Date;
 import javax.annotation.Nonnull;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +18,6 @@ public class GlobalApplicationContextInterceptor implements AsyncHandlerIntercep
             GlobalApplicationContext.setCurrentUserId(Long.valueOf(userId));
         }
         GlobalApplicationContext.setIp(request);
-        GlobalApplicationContext.setControllerEnterTime(new Date());
         return AsyncHandlerInterceptor.super.preHandle(request, response, handler);
     }
 
