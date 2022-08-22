@@ -80,9 +80,9 @@ public class RequestUtils {
         long ipNum = RequestUtils.getIpNum(ipAddress);
 
         return RequestUtils.isInner(ipNum, RequestUtils.getIpNum("10.0.0.0"), RequestUtils.getIpNum("10.255.255.255"))
-                || RequestUtils.isInner(ipNum, RequestUtils.getIpNum("172.16.0.0"), RequestUtils.getIpNum("172.31.255.255"))
-                || RequestUtils.isInner(ipNum, RequestUtils.getIpNum("192.168.0.0"), RequestUtils.getIpNum("192.168.255.255"))
-                || ipAddress.equals("127.0.0.1");
+            || RequestUtils.isInner(ipNum, RequestUtils.getIpNum("172.16.0.0"), RequestUtils.getIpNum("172.31.255.255"))
+            || RequestUtils.isInner(ipNum, RequestUtils.getIpNum("192.168.0.0"), RequestUtils.getIpNum("192.168.255.255"))
+            || "127.0.0.1".equals(ipAddress);
     }
 
     private static long getIpNum(String ipAddress) {
