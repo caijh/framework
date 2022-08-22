@@ -7,9 +7,6 @@ import javax.annotation.Nonnull;
 import com.github.caijh.framework.web.autoconfigure.CorsAutoConfiguration;
 import com.github.caijh.framework.web.autoconfigure.JacksonAutoConfiguration;
 import com.github.caijh.framework.web.filter.ThreadLocalStoreFilter;
-import com.github.caijh.framework.web.interceptor.GlobalApplicationContextInterceptor;
-import com.github.caijh.framework.web.interceptor.ThreadLocalStoreInterceptor;
-import com.github.caijh.framework.web.interceptor.TraceIdInterceptor;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
@@ -23,7 +20,6 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
@@ -51,13 +47,6 @@ public class FrameworkWebAutoConfiguration implements WebMvcConfigurer {
         registration.addUrlPatterns("/*");
         registration.setOrder(Integer.MIN_VALUE);
         return registration;
-    }
-
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new TraceIdInterceptor());
-        registry.addInterceptor(new GlobalApplicationContextInterceptor());
-        registry.addInterceptor(new ThreadLocalStoreInterceptor());
     }
 
     @Override
