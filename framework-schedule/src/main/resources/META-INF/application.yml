@@ -1,7 +1,7 @@
 async:
   executor:
-    core-pool-size: 10
-    max-pool-size: 10
+    core-pool-size: 8
+    max-pool-size: 16
     queue-capacity: 1000
     name-prefix: async-task-pool-
 schedule:

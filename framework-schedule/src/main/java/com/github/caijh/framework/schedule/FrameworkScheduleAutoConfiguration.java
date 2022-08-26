@@ -18,7 +18,7 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 
 @Configuration
 @EnableScheduling
-@EnableAsync
+@EnableAsync(proxyTargetClass = true)
 @EnableConfigurationProperties({ScheduleThreadPoolExecutorProperties.class, AsyncThreadPoolExecutorProperties.class})
 public class FrameworkScheduleAutoConfiguration implements SchedulingConfigurer, AsyncConfigurer {
 
