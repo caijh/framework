@@ -77,6 +77,9 @@ public class RequestUtils {
      * @return 是否是内网地址
      */
     public static boolean isInnerIP(String ipAddress) {
+        if ("0:0:0:0:0:0:0:1".equals(ipAddress)) {
+            return true;
+        }
         long ipNum = RequestUtils.getIpNum(ipAddress);
 
         return RequestUtils.isInner(ipNum, RequestUtils.getIpNum("10.0.0.0"), RequestUtils.getIpNum("10.255.255.255"))
