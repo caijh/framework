@@ -20,7 +20,9 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.util.UrlPathHelper;
 
 @Configuration
 @ComponentScan
@@ -47,6 +49,14 @@ public class FrameworkWebAutoConfiguration implements WebMvcConfigurer {
         registration.addUrlPatterns("/*");
         registration.setOrder(Integer.MIN_VALUE);
         return registration;
+    }
+
+    @Override
+    public void configurePathMatch(PathMatchConfigurer configurer) {
+        UrlPathHelper urlPathHelper = new UrlPathHelper();
+        urlPathHelper.setDefaultEncoding(StandardCharsets.UTF_8.name());
+        urlPathHelper.setUrlDecode(false);
+        configurer.setUrlPathHelper(urlPathHelper);
     }
 
     @Override
