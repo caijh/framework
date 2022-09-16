@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import com.github.caijh.framework.data.redis.support.Redis;
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.core.GenericTypeResolver;
 import org.springframework.data.redis.connection.stream.Consumer;
 import org.springframework.data.redis.connection.stream.ObjectRecord;
@@ -17,7 +18,7 @@ import org.springframework.data.redis.connection.stream.StreamOffset;
 import org.springframework.data.redis.stream.StreamListener;
 import org.springframework.data.redis.stream.StreamMessageListenerContainer;
 
-public abstract class AbstractStreamListener<T> implements StreamListener<String, ObjectRecord<String, T>>, Closeable {
+public abstract class AbstractStreamListener<T> implements StreamListener<String, ObjectRecord<String, T>>, Closeable, DisposableBean {
 
     private final Class<T> clazz;
     private StreamMessageListenerContainer<String, ObjectRecord<String, T>> container;
@@ -67,6 +68,11 @@ public abstract class AbstractStreamListener<T> implements StreamListener<String
         if (container != null) {
             container.stop();
         }
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        close();
     }
 
 }
