@@ -1,6 +1,7 @@
 package com.github.caijh.framework.data.redis.listener;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.time.Duration;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
@@ -15,6 +16,7 @@ import org.springframework.data.redis.connection.stream.ObjectRecord;
 import org.springframework.data.redis.connection.stream.ReadOffset;
 import org.springframework.data.redis.connection.stream.StreamInfo;
 import org.springframework.data.redis.connection.stream.StreamOffset;
+import org.springframework.data.redis.connection.stream.StreamRecords;
 import org.springframework.data.redis.stream.StreamListener;
 import org.springframework.data.redis.stream.StreamMessageListenerContainer;
 
@@ -43,7 +45,7 @@ public abstract class AbstractStreamListener<T> implements StreamListener<String
     public abstract String getConsumerName();
 
     @PostConstruct
-    private void registerConsumerListener() {
+    private void registerConsumerListener() throws Exception {
         logger.debug("Create StreamListener {} on queue {} group {}", clazz.getName(), getQueueName(), getGroupName());
         StreamMessageListenerContainer.StreamMessageListenerContainerOptions<String, ObjectRecord<String, T>> options = StreamMessageListenerContainer
             .StreamMessageListenerContainerOptions
@@ -62,7 +64,9 @@ public abstract class AbstractStreamListener<T> implements StreamListener<String
         container.start();
     }
 
-    private void prepareQueueGroup(String queue, String group) {
+    private void prepareQueueGroup(String queue, String group) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        ObjectRecord<String, T> objectRecord = StreamRecords.newRecord().ofObject(clazz.getDeclaredConstructor().newInstance()).withStreamKey(queue);
+        redis.getRedisTemplate().opsForStream().add(objectRecord);
         StreamInfo.XInfoGroups groups = redis.getRedisTemplate().opsForStream().groups(queue);
         if (groups.stream().noneMatch(xInfoGroup -> group.equals(xInfoGroup.groupName()))) {
             redis.getRedisTemplate().opsForStream().createGroup(queue, ReadOffset.from("0-0"), group);
