@@ -36,7 +36,7 @@ public class RestBizExceptionHandler extends ResponseEntityExceptionHandler {
         } else {
             result.setMessage(exception.getLocalizedMessage());
         }
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        return new ResponseEntity<>(result, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }
