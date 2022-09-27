@@ -2,7 +2,7 @@ package com.github.caijh.framework.data.redis.support;
 
 import java.util.concurrent.locks.Lock;
 
-import com.github.caijh.framework.core.DistributedLock;
+import com.github.caijh.framework.core.lock.DistributedLock;
 import org.redisson.RedissonRedLock;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
