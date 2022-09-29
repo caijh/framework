@@ -43,7 +43,7 @@ public class BizException extends RuntimeException {
         this.params = null;
     }
 
-    private BizException(String code, Object... params) {
+    public BizException(String code, Object... params) {
         this.code = code;
         this.params = params;
     }
