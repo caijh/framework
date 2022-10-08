@@ -48,6 +48,12 @@ public class BizException extends RuntimeException {
         this.params = params;
     }
 
+    public BizException(Throwable cause, String code, Object... params) {
+        super(cause);
+        this.code = code;
+        this.params = params;
+    }
+
     public static BizException of(String code, Object... params) {
         return new BizException(code, params);
     }
