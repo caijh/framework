@@ -64,7 +64,8 @@ public abstract class AbstractStreamListener<T> implements StreamListener<String
         container.start();
     }
 
-    private void prepareQueueGroup(String queue, String group) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    private void prepareQueueGroup(String queue, String group)
+        throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         ObjectRecord<String, T> objectRecord = StreamRecords.newRecord().ofObject(clazz.getDeclaredConstructor().newInstance()).withStreamKey(queue);
         redis.getRedisTemplate().opsForStream().add(objectRecord);
         StreamInfo.XInfoGroups groups = redis.getRedisTemplate().opsForStream().groups(queue);
