@@ -1,5 +1,6 @@
-package com.github.caijh.framework.core.annotations;
+package com.github.caijh.framework.core.aspect;
 
+import com.github.caijh.framework.core.annotations.Retry;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
