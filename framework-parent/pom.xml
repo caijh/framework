@@ -269,11 +269,6 @@
             </dependency>
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
-                <artifactId>framework-wechat</artifactId>
-                <version>${framework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-global-id</artifactId>
                 <version>${framework.version}</version>
             </dependency>
