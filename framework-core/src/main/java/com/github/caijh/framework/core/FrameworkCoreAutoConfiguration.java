@@ -9,10 +9,12 @@ import org.springframework.retry.annotation.EnableRetry;
 import org.springframework.retry.backoff.FixedBackOffPolicy;
 import org.springframework.retry.policy.TimeoutRetryPolicy;
 import org.springframework.retry.support.RetryTemplate;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 @Configuration
 @ComponentScan
 @EnableRetry
+@EnableAsync
 public class FrameworkCoreAutoConfiguration {
 
     @Bean

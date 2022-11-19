@@ -1,4 +1,4 @@
-package com.github.caijh.framework.core.context;
+package com.github.caijh.framework.core.initializer;
 
 import com.github.caijh.framework.core.util.SpringContextUtils;
 import org.springframework.context.ApplicationContextInitializer;

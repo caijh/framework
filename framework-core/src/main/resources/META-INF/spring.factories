@@ -1,6 +1,6 @@
 # Initializers
 org.springframework.context.ApplicationContextInitializer=\
-com.github.caijh.framework.core.context.SpringBeanUtilsApplicationContextInitializer
+com.github.caijh.framework.core.initializer.SpringBeanUtilsApplicationContextInitializer
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   com.github.caijh.framework.core.FrameworkCoreAutoConfiguration
 
