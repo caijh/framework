@@ -16,8 +16,8 @@
     <version>2.7.5-0.0.3-SNAPSHOT</version>
 
     <modules>
-        <module>../framework-model</module>
         <module>../framework-core</module>
+        <module>../framework-model</module>
         <module>../framework-data-jpa</module>
         <module>../framework-data-mybatis</module>
         <module>../framework-data-redis</module>
@@ -30,6 +30,7 @@
         <module>../framework-message-kafka</module>
         <module>../framework-message-websocket</module>
         <module>../framework-schedule</module>
+        <module>../framework-config</module>
         <module>../framework-config-configcenter</module>
         <module>../framework-config-nacos</module>
         <module>../framework-config-eureka</module>
@@ -193,7 +194,7 @@
             </dependency>
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
-                <artifactId>framework-config-apollo</artifactId>
+                <artifactId>framework-config</artifactId>
                 <version>${framework.version}</version>
             </dependency>
             <dependency>
