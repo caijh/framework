@@ -1,6 +1,6 @@
 package com.github.caijh.framework.core.request.model;
 
-import java.util.*;
+import java.util.List;
 
 import lombok.Data;
 

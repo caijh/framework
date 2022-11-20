@@ -26,4 +26,5 @@ package framework-doc {
 [framework-schedule]
 [framework-utils]
 [framework-web]
+[framework-cache-redis]
 @enduml
