@@ -2,7 +2,9 @@ package com.github.caijh.framework.config.processor;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.Enumeration;
+import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -40,7 +42,7 @@ public class ConfigFileEnvironmentPostProcessor implements EnvironmentPostProces
 
     private static synchronized String getLastPropertySourceName(ConfigurableEnvironment environment) {
         return ConfigFileEnvironmentPostProcessor.LAST_PROPERTY_SOURCE_NAME_MAP
-                .computeIfAbsent(environment, env -> ConfigFileEnvironmentPostProcessor.DEFAULT_PROPERTIES);
+            .computeIfAbsent(environment, env -> ConfigFileEnvironmentPostProcessor.DEFAULT_PROPERTIES);
     }
 
     @Override
@@ -58,7 +60,7 @@ public class ConfigFileEnvironmentPostProcessor implements EnvironmentPostProces
                     PropertiesPropertySource propertySource;
                     if (propertySources.contains(ConfigFileEnvironmentPostProcessor.DEFAULT_PROPERTIES)) {
                         String propertySourceName = ConfigFileEnvironmentPostProcessor.DEFAULT_PROPERTIES + "-" + ConfigFileEnvironmentPostProcessor
-                                .getIndex(environment).getAndIncrement();
+                            .getIndex(environment).getAndIncrement();
                         propertySource = new PropertiesPropertySource(propertySourceName, properties);
                         propertySources.addAfter(ConfigFileEnvironmentPostProcessor.getLastPropertySourceName(environment), propertySource);
                         ConfigFileEnvironmentPostProcessor.setLastPropertySourceName(environment, propertySourceName);

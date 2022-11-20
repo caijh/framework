@@ -1,6 +1,7 @@
 package com.github.caijh.framework.data.jpa;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
 

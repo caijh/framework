@@ -1,6 +1,6 @@
 package com.github.caijh.framework.data.util;
 
-import java.util.*;
+import java.util.List;
 import javax.annotation.Nonnull;
 
 import com.github.caijh.framework.data.request.model.PageReqBody;

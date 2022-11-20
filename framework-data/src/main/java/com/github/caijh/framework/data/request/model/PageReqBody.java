@@ -2,7 +2,9 @@ package com.github.caijh.framework.data.request.model;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import lombok.AllArgsConstructor;

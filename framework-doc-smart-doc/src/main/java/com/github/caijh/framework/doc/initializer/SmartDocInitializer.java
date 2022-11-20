@@ -1,6 +1,7 @@
 package com.github.caijh.framework.doc.initializer;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.power.common.enums.HttpCodeEnum;
 import com.power.doc.builder.HtmlApiDocBuilder;

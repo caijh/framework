@@ -1,6 +1,6 @@
 package com.github.caijh.framework.data.mybatis.util;
 
-import java.util.*;
+import java.util.List;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
