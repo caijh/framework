@@ -15,12 +15,27 @@
     <dependencies>
         <dependency>
             <groupId>com.github.caijh.framework</groupId>
-            <artifactId>framework-model</artifactId>
+            <artifactId>framework-config</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.caijh.framework</groupId>
+            <artifactId>framework-data</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.vladmihalcea</groupId>
+            <artifactId>hibernate-types-52</artifactId>
         </dependency>
 
         <dependency>
@@ -32,20 +47,6 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.vladmihalcea</groupId>
-            <artifactId>hibernate-types-52</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.caijh.framework</groupId>
-            <artifactId>framework-core</artifactId>
-        </dependency>
     </dependencies>
 
 </project>

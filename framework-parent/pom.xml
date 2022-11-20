@@ -17,7 +17,7 @@
 
     <modules>
         <module>../framework-core</module>
-        <module>../framework-model</module>
+        <module>../framework-data</module>
         <module>../framework-data-jpa</module>
         <module>../framework-data-mybatis</module>
         <module>../framework-data-redis</module>
@@ -25,8 +25,9 @@
         <module>../framework-web</module>
         <module>../framework-microservice</module>
         <module>../framework-logging</module>
-        <module>../framework-doc</module>
-        <module>../framework-cache</module>
+        <module>../framework-doc-smart-doc</module>
+        <module>../framework-doc-swagger</module>
+        <module>../framework-cache-redis</module>
         <module>../framework-message-kafka</module>
         <module>../framework-message-websocket</module>
         <module>../framework-schedule</module>
@@ -35,7 +36,6 @@
         <module>../framework-config-nacos</module>
         <module>../framework-config-eureka</module>
         <module>../framework-global-id</module>
-        <module>../framework-sentinel</module>
     </modules>
 
     <properties>
@@ -184,11 +184,6 @@
             </dependency>
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
-                <artifactId>framework-model</artifactId>
-                <version>${framework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-core</artifactId>
                 <version>${framework.version}</version>
             </dependency>
@@ -200,6 +195,11 @@
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-config-nacos</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.caijh.framework</groupId>
+                <artifactId>framework-data</artifactId>
                 <version>${framework.version}</version>
             </dependency>
             <dependency>
@@ -224,7 +224,7 @@
             </dependency>
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
-                <artifactId>framework-cache</artifactId>
+                <artifactId>framework-cache-redis</artifactId>
                 <version>${framework.version}</version>
             </dependency>
             <dependency>
@@ -249,7 +249,12 @@
             </dependency>
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
-                <artifactId>framework-doc</artifactId>
+                <artifactId>framework-doc-smart-doc</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.caijh.framework</groupId>
+                <artifactId>framework-doc-swagger</artifactId>
                 <version>${framework.version}</version>
             </dependency>
             <dependency>
@@ -270,11 +275,6 @@
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-global-id</artifactId>
-                <version>${framework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.caijh.framework</groupId>
-                <artifactId>framework-sentinel</artifactId>
                 <version>${framework.version}</version>
             </dependency>
             <dependency>

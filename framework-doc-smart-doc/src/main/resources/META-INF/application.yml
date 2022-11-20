@@ -1,0 +1,4 @@
+framework:
+  doc:
+    smart-doc:
+      enabled: true

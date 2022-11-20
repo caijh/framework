@@ -1,10 +1,11 @@
-async:
-  executor:
-    core-pool-size: 8
-    max-pool-size: 16
-    queue-capacity: 1000
-    name-prefix: async-task-pool-
-schedule:
-  executor:
-    pool-size: 8
-    name-prefix: schedule-task-pool-
+framework:
+  async:
+    executor:
+      core-pool-size: 8
+      max-pool-size: 16
+      queue-capacity: 1000
+      name-prefix: async-task-pool-
+  schedule:
+    executor:
+      pool-size: 8
+      name-prefix: schedule-task-pool-

@@ -1,14 +1,12 @@
 package com.github.caijh.framework.web.handler;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import javax.validation.ValidationException;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.caijh.framework.core.model.R;
+import com.github.caijh.framework.core.request.model.Result;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,14 +36,14 @@ public class ValidateExceptionHandler {
 
     @ExceptionHandler(value = {BindException.class, MethodArgumentNotValidException.class, ValidationException.class})
     @ResponseBody
-    public ResponseEntity<R<Void>> validExceptionHandler(Exception e) {
+    public ResponseEntity<Result<Void>> validExceptionHandler(Exception e) {
         BindingResult bindingResult = null;
         if (e instanceof MethodArgumentNotValidException methodArgumentNotValidException) {
             bindingResult = methodArgumentNotValidException.getBindingResult();
         } else if (e instanceof BindException bindException) {
             bindingResult = bindException.getBindingResult();
         }
-        R<Void> result = new R<>();
+        Result<Void> result = new Result<>();
         if (bindingResult != null) {
             List<FieldError> fieldErrors = bindingResult.getFieldErrors();
             Map<String, String> errMsg = new HashMap<>();

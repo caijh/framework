@@ -17,16 +17,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.caijh.framework</groupId>
-            <artifactId>framework-model</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>istack-commons-runtime</artifactId>
-                    <groupId>com.sun.istack</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
             <groupId>org.ow2.asm</groupId>
             <artifactId>asm</artifactId>
             <version>${asm.version}</version>
@@ -47,6 +37,11 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

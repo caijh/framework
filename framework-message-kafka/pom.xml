@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>com.github.caijh.framework</groupId>
-            <artifactId>framework-core</artifactId>
+            <artifactId>framework-config</artifactId>
         </dependency>
 
         <dependency>

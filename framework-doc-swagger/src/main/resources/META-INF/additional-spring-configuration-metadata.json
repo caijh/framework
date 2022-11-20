@@ -1,0 +1,9 @@
+{
+    "properties": [
+        {
+            "name": "framework.doc.swagger.enable",
+            "type": "java.lang.Boolean",
+            "description": "Set true to enable swagger."
+        }
+    ]
+}

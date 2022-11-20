@@ -1,0 +1,13 @@
+framework:
+  doc:
+    swagger:
+      enabled: true
+      title: ${spring.application.name}
+      description: ${spring.application.name}
+springfox:
+  documentation:
+    enabled: ${framework.doc.swagger.enabled}
+    open-api:
+      enabled: ${framework.doc.swagger.enabled}
+
+

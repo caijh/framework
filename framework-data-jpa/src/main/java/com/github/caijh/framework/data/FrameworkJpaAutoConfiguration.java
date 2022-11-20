@@ -1,5 +1,6 @@
 package com.github.caijh.framework.data;
 
+import com.github.caijh.framework.data.jpa.BaseService;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;

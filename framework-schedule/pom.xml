@@ -11,4 +11,10 @@
 
     <artifactId>framework-schedule</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.github.caijh.framework</groupId>
+            <artifactId>framework-config</artifactId>
+        </dependency>
+    </dependencies>
 </project>

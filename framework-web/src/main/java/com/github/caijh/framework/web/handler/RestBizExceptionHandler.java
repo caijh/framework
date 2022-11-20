@@ -3,7 +3,7 @@ package com.github.caijh.framework.web.handler;
 import javax.inject.Inject;
 
 import com.github.caijh.framework.core.exceptions.BizException;
-import com.github.caijh.framework.core.model.R;
+import com.github.caijh.framework.core.request.model.Result;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.core.annotation.Order;
@@ -27,8 +27,8 @@ public class RestBizExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = BizException.class)
     @ResponseBody
-    public ResponseEntity<R<Void>> handleBizException(BizException exception) {
-        R<Void> result = new R<>();
+    public ResponseEntity<Result<Void>> handleBizException(BizException exception) {
+        Result<Void> result = new Result<>();
         String code = exception.getCode();
         if (code != null) {
             String message = this.messageSource.getMessage(code, exception.getParams(), LocaleContextHolder.getLocale());
