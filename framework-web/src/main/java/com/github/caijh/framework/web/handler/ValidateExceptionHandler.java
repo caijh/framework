@@ -8,7 +8,7 @@ import javax.validation.ValidationException;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.caijh.framework.core.request.model.Result;
+import com.github.caijh.framework.core.model.request.Result;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

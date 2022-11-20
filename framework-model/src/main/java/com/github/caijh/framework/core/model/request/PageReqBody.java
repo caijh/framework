@@ -1,4 +1,4 @@
-package com.github.caijh.framework.data.request.model;
+package com.github.caijh.framework.core.model.request;
 
 import java.io.Serial;
 import java.io.Serializable;

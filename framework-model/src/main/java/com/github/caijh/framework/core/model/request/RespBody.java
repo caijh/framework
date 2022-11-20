@@ -1,4 +1,4 @@
-package com.github.caijh.framework.core.request.model;
+package com.github.caijh.framework.core.model.request;
 
 /**
  * 代表返回的前端的响应体对象.

@@ -3,7 +3,7 @@ package com.github.caijh.framework.web.handler;
 import javax.inject.Inject;
 
 import com.github.caijh.framework.core.exceptions.BizException;
-import com.github.caijh.framework.core.request.model.Result;
+import com.github.caijh.framework.core.model.request.Result;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.core.annotation.Order;

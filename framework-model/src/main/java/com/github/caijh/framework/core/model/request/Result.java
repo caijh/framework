@@ -1,4 +1,4 @@
-package com.github.caijh.framework.core.request.model;
+package com.github.caijh.framework.core.model.request;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
