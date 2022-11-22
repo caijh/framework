@@ -2,7 +2,7 @@ spring:
   aop:
     proxy-target-class: true
   datasource:
-    url: jdbc:mysql://${DB_HOST:127.0.0.1}:${DB_PORT:3306}/${DB_NAME}?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+    url: ${DB_URL}
     username: ${DB_USER:root}
     password: ${DB_PASSWORD:123456}
     driver-class-name: ${DB_DRIVER:com.mysql.cj.jdbc.Driver}
@@ -13,4 +13,4 @@ spring:
         implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
     properties:
       hibernate.jdbc.lob.non_contextual_creation: true
-      hibernate.dialect: com.github.caijh.framework.data.dialect.mysql.CustomMySqlDialect
+      hibernate.dialect: ${DB_DIALECT:com.github.caijh.framework.data.dialect.mysql.CustomMySqlDialect}
