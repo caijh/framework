@@ -4,11 +4,11 @@ spring:
       discovery:
         enabled: true
         register-enabled: true
-        server-addr: http://127.0.0.1:8848
+        server-addr: ${NACOS_SERVER:http://127.0.0.1:8848}
         username: nacos
         password: nacos
       config:
-        server-addr: http://127.0.0.1:8848
+        server-addr: ${NACOS_SERVER:http://127.0.0.1:8848}
         username: nacos
         password: nacos
         file-extension: yaml
