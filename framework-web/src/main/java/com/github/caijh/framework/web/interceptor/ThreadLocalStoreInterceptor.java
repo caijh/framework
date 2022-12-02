@@ -1,9 +1,9 @@
 package com.github.caijh.framework.web.interceptor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import com.github.caijh.framework.web.threadlocal.ThreadLocalStore;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.lang.NonNull;
 import org.springframework.web.servlet.AsyncHandlerInterceptor;
 

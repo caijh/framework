@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.time.Duration;
 import java.util.Objects;
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import com.github.caijh.framework.core.util.LoggerUtils;
 import com.github.caijh.framework.data.redis.support.Redis;
 import org.slf4j.Logger;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.core.GenericTypeResolver;
 import org.springframework.data.redis.connection.stream.Consumer;
 import org.springframework.data.redis.connection.stream.ObjectRecord;
@@ -25,7 +25,7 @@ import org.springframework.data.redis.stream.StreamMessageListenerContainer;
  *
  * @param <T> Redis Steam Object Type.
  */
-public abstract class AbstractStreamListener<T> implements StreamListener<String, ObjectRecord<String, T>>, AutoCloseable {
+public abstract class AbstractStreamListener<T> implements StreamListener<String, ObjectRecord<String, T>>, AutoCloseable, InitializingBean {
 
     private final Class<T> clazz;
     private final Logger logger = LoggerUtils.getLogger(getClass());
@@ -44,7 +44,6 @@ public abstract class AbstractStreamListener<T> implements StreamListener<String
 
     public abstract String getConsumerName();
 
-    @PostConstruct
     private void registerConsumerListener() throws Exception {
         logger.debug("Create StreamListener {} on queue {} group {}", clazz.getName(), getQueueName(), getGroupName());
         StreamMessageListenerContainer.StreamMessageListenerContainerOptions<String, ObjectRecord<String, T>> options = StreamMessageListenerContainer
@@ -79,6 +78,11 @@ public abstract class AbstractStreamListener<T> implements StreamListener<String
         if (container != null) {
             container.stop();
         }
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        registerConsumerListener();
     }
 
 }

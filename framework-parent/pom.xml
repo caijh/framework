@@ -6,14 +6,14 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.5</version>
+        <version>3.0.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <groupId>com.github.caijh.framework</groupId>
     <artifactId>framework-parent</artifactId>
     <packaging>pom</packaging>
-    <version>2.7.5-0.0.3-SNAPSHOT</version>
+    <version>3.0.0-0.0.3-SNAPSHOT</version>
 
     <modules>
         <module>../framework-model</module>
@@ -40,7 +40,7 @@
     </modules>
 
     <properties>
-        <framework.version>2.7.5-0.0.3-SNAPSHOT</framework.version>
+        <framework.version>3.0.0-0.0.3-SNAPSHOT</framework.version>
         <jsr305.version>3.0.2</jsr305.version>
         <lombok.version>1.18.24</lombok.version>
         <maven.compiler.source>17</maven.compiler.source>

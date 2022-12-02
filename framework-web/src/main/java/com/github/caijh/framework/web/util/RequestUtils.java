@@ -1,10 +1,10 @@
 package com.github.caijh.framework.web.util;
 
 import java.util.Arrays;
-import javax.servlet.http.HttpServletRequest;
 
 import com.github.caijh.framework.web.constant.Constants;
-import io.micrometer.core.instrument.util.StringUtils;
+import io.micrometer.common.util.StringUtils;
+import jakarta.servlet.http.HttpServletRequest;
 
 public class RequestUtils {
 
