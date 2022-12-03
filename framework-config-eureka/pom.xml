@@ -17,9 +17,22 @@
             <artifactId>framework-config</artifactId>
         </dependency>
 
+        <!-- delete when spring cloud update -->
+        <dependency>
+            <groupId>com.netflix.eureka</groupId>
+            <artifactId>eureka-core</artifactId>
+            <version>1.10.18</version>
+        </dependency>
+        <dependency>
+            <groupId>com.netflix.eureka</groupId>
+            <artifactId>eureka-client</artifactId>
+            <version>1.10.18</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <version>3.1.4</version>
             <exclusions>
                 <exclusion>
                     <artifactId>HdrHistogram</artifactId>
