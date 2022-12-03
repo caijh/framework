@@ -6,8 +6,8 @@ import javax.inject.Inject;
 
 import com.github.caijh.framework.schedule.autoconfigure.properties.AsyncThreadPoolExecutorProperties;
 import com.github.caijh.framework.schedule.autoconfigure.properties.ScheduleThreadPoolExecutorProperties;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -16,7 +16,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 
-@Configuration
+@AutoConfiguration
 @EnableScheduling
 @EnableAsync(proxyTargetClass = true)
 @EnableConfigurationProperties({ScheduleThreadPoolExecutorProperties.class, AsyncThreadPoolExecutorProperties.class})

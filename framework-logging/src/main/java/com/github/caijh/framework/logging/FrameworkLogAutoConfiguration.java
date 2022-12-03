@@ -1,7 +1,7 @@
 package com.github.caijh.framework.logging;
 
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 
-@Configuration
+@AutoConfiguration
 public class FrameworkLogAutoConfiguration {
 }

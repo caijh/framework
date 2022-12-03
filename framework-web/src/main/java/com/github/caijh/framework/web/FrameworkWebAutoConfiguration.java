@@ -7,6 +7,7 @@ import javax.annotation.Nonnull;
 import com.github.caijh.framework.web.autoconfigure.CorsAutoConfiguration;
 import com.github.caijh.framework.web.autoconfigure.JacksonAutoConfiguration;
 import com.github.caijh.framework.web.filter.ThreadLocalStoreFilter;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
@@ -15,7 +16,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
@@ -24,7 +24,7 @@ import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.util.UrlPathHelper;
 
-@Configuration
+@AutoConfiguration
 @ComponentScan
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableConfigurationProperties(ServerProperties.class)

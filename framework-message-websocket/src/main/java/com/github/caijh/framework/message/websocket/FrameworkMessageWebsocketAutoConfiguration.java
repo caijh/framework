@@ -1,10 +1,10 @@
 package com.github.caijh.framework.message.websocket;
 
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
-@Configuration
+@AutoConfiguration
 public class FrameworkMessageWebsocketAutoConfiguration {
 
     @Bean

@@ -1,9 +1,9 @@
 package com.github.caijh.framework.message.kafka;
 
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.kafka.annotation.EnableKafka;
 
-@Configuration
+@AutoConfiguration
 @EnableKafka
 public class FrameworkMessageKafkaAutoConfiguration {
 }
