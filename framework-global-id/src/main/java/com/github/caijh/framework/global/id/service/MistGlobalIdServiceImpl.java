@@ -2,9 +2,9 @@ package com.github.caijh.framework.global.id.service;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Lock;
-import javax.inject.Inject;
 
 import com.github.caijh.framework.data.redis.support.Redis;
+import jakarta.inject.Inject;
 import lombok.SneakyThrows;
 import org.redisson.api.RBoundedBlockingQueue;
 import org.springframework.beans.factory.InitializingBean;

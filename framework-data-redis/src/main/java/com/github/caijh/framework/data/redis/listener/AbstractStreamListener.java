@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.time.Duration;
 import java.util.Objects;
-import javax.inject.Inject;
 
 import com.github.caijh.framework.core.util.LoggerUtils;
 import com.github.caijh.framework.data.redis.support.Redis;
+import jakarta.inject.Inject;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.core.GenericTypeResolver;

@@ -1,8 +1,8 @@
 package com.github.caijh.framework.data.redis.producer;
 
-import javax.inject.Inject;
 
 import com.github.caijh.framework.data.redis.support.Redis;
+import jakarta.inject.Inject;
 import org.springframework.data.redis.connection.stream.ObjectRecord;
 import org.springframework.data.redis.connection.stream.StreamRecords;
 import org.springframework.stereotype.Component;
