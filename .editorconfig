@@ -1,0 +1,34 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 4
+indent_style = space
+insert_final_newline = false
+max_line_length = 120
+tab_width = 4
+ij_continuation_indent_size = 4
+ij_formatter_off_tag = @formatter:off
+ij_formatter_on_tag = @formatter:on
+ij_formatter_tags_enabled = false
+ij_smart_tabs = false
+ij_visual_guides = none
+ij_wrap_on_typing = false
+
+[*.java]
+max_line_length = 160
+ij_java_imports_layout = |, java.**, javax.**, |, *, |, $*
+ij_java_class_count_to_use_import_on_demand = 9999
+ij_java_use_single_class_imports = true
+
+[{*.ts,*.tsx}]
+ij_typescript_spaces_within_imports = true
+ij_typescript_spaces_within_object_literal_braces = true
+ij_typescript_spaces_within_object_type_braces = true
+
+[{*.yaml, *.yml,*.puml}]
+indent_size = 2
+
+[*.ftl]
+max_line_length = 160
