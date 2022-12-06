@@ -3,8 +3,8 @@ package com.github.caijh.framework.data.jpa;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nonnull;
-import javax.inject.Inject;
 
+import jakarta.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Example;

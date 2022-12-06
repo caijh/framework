@@ -2,10 +2,10 @@ package com.github.caijh.framework.schedule;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
-import javax.inject.Inject;
 
 import com.github.caijh.framework.schedule.autoconfigure.properties.AsyncThreadPoolExecutorProperties;
 import com.github.caijh.framework.schedule.autoconfigure.properties.ScheduleThreadPoolExecutorProperties;
+import jakarta.inject.Inject;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
