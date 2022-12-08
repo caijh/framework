@@ -22,13 +22,5 @@ ij_java_imports_layout = |, java.**, javax.**, |, *, |, $*
 ij_java_class_count_to_use_import_on_demand = 9999
 ij_java_use_single_class_imports = true
 
-[{*.ts,*.tsx}]
-ij_typescript_spaces_within_imports = true
-ij_typescript_spaces_within_object_literal_braces = true
-ij_typescript_spaces_within_object_type_braces = true
-
 [{*.yaml, *.yml,*.puml}]
 indent_size = 2
-
-[*.ftl]
-max_line_length = 160
