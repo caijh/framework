@@ -1,4 +1,4 @@
-package com.github.caijh.framework.data.jpa.type;
+package com.github.caijh.framework.data.type;
 
 public class TypeMapping {
 
