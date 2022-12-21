@@ -48,7 +48,7 @@
         <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
         <spring-cloud.version>2022.0.0-RC2</spring-cloud.version>
         <redisson.version>3.16.0</redisson.version>
-        <hibernate-types.version>2.20.0</hibernate-types.version>
+        <hibernate-types.version>2.21.0</hibernate-types.version>
         <hibernate-core.version>6.1.5.Final</hibernate-core.version>
         <java.version>17</java.version>
         <snakeyaml.version>1.33</snakeyaml.version>
