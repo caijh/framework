@@ -4,9 +4,9 @@ import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
 import java.nio.charset.StandardCharsets;
-import javax.annotation.Nullable;
 
 import com.github.caijh.framework.data.redis.exception.RedisSerializeException;
+import jakarta.annotation.Nullable;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.SerializationException;
 

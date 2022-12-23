@@ -3,7 +3,8 @@ package com.github.caijh.framework.core.enums;
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
-import javax.annotation.Nonnull;
+
+import jakarta.annotation.Nonnull;
 
 /**
  * 有索引顺序的enum.

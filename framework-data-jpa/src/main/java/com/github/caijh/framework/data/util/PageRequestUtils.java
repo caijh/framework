@@ -1,9 +1,9 @@
 package com.github.caijh.framework.data.util;
 
 import java.util.List;
-import javax.annotation.Nonnull;
 
 import com.github.caijh.framework.core.model.request.PageReqBody;
+import jakarta.annotation.Nonnull;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 

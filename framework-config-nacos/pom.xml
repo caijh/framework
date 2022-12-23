@@ -10,15 +10,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>framework-config-nacos</artifactId>
-    <properties>
-        <spring.cloud.nacos.version>2021.1</spring.cloud.nacos.version>
-    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.github.caijh.framework</groupId>
             <artifactId>framework-config</artifactId>
         </dependency>
-
 
         <!--Nacos作为配置中心报错：Param ‘serviceName‘ is illegal, serviceName is blank-->
         <!--Nacos config的配置信息要存至bootstrap.yml文件中-->
@@ -36,24 +33,6 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
             <version>${spring.cloud.nacos.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>HdrHistogram</artifactId>
-                    <groupId>org.hdrhistogram</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jsr305</artifactId>
-                    <groupId>com.google.code.findbugs</groupId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.google.guava</groupId>
-                    <artifactId>guava</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>commons-io</groupId>
-                    <artifactId>commons-io</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.alibaba.cloud</groupId>

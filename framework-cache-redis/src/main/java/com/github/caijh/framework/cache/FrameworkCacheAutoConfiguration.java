@@ -1,11 +1,11 @@
 package com.github.caijh.framework.cache;
 
 import java.time.Duration;
-import javax.annotation.Nonnull;
 
 import com.github.caijh.framework.cache.exception.CacheConfigException;
 import com.github.caijh.framework.cache.manager.RedisWithTtlCacheManager;
 import com.github.caijh.framework.data.redis.FrameworkRedisAutoConfiguration;
+import jakarta.annotation.Nonnull;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

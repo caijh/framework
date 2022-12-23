@@ -1,8 +1,8 @@
 package com.github.caijh.framework.cache.manager;
 
 import java.time.Duration;
-import javax.annotation.Nonnull;
 
+import jakarta.annotation.Nonnull;
 import org.springframework.data.redis.cache.RedisCache;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
