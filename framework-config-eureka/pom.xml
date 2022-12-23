@@ -11,26 +11,10 @@
 
     <artifactId>framework-config-eureka</artifactId>
 
-    <properties>
-        <eureka.version>2.0.0</eureka.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.github.caijh.framework</groupId>
             <artifactId>framework-config</artifactId>
-        </dependency>
-
-        <!-- delete when spring cloud update -->
-        <dependency>
-            <groupId>com.netflix.eureka</groupId>
-            <artifactId>eureka-core</artifactId>
-            <version>${eureka.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.netflix.eureka</groupId>
-            <artifactId>eureka-client</artifactId>
-            <version>${eureka.version}</version>
         </dependency>
 
         <dependency>
