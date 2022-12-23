@@ -34,7 +34,7 @@ steps:
 
   - task: Maven@3
     inputs:
-      mavenPomFile: 'framework-parent/pom.xml'
+      mavenPomFile: 'pom.xml'
       goals: 'deploy'
       options: '-DskipTests=true'
       publishJUnitResults: true
