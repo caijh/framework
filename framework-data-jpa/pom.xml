@@ -6,7 +6,7 @@
         <groupId>com.github.caijh.framework</groupId>
         <artifactId>framework-parent</artifactId>
         <version>3.0.0-0.0.3-SNAPSHOT</version>
-        <relativePath>../framework-parent/pom.xml</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>framework-data-jpa</artifactId>
