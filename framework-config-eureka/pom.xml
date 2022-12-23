@@ -11,6 +11,10 @@
 
     <artifactId>framework-config-eureka</artifactId>
 
+    <properties>
+        <eureka.version>2.0.0</eureka.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.github.caijh.framework</groupId>
@@ -21,18 +25,18 @@
         <dependency>
             <groupId>com.netflix.eureka</groupId>
             <artifactId>eureka-core</artifactId>
-            <version>1.10.18</version>
+            <version>${eureka.version}</version>
         </dependency>
         <dependency>
             <groupId>com.netflix.eureka</groupId>
             <artifactId>eureka-client</artifactId>
-            <version>1.10.18</version>
+            <version>${eureka.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-            <version>3.1.4</version>
+            <version>4.0.0</version>
             <exclusions>
                 <exclusion>
                     <artifactId>HdrHistogram</artifactId>
