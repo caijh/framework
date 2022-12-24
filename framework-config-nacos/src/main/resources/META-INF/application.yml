@@ -7,8 +7,10 @@ spring:
         server-addr: ${NACOS_SERVER:http://127.0.0.1:8848}
         username: nacos
         password: nacos
+        namespace: public
       config:
         server-addr: ${NACOS_SERVER:http://127.0.0.1:8848}
         username: nacos
         password: nacos
+        namespace: public
         file-extension: yaml
