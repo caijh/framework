@@ -5,6 +5,7 @@ import com.github.caijh.framework.microservice.trace.TraceIdThreadPoolTaskExecut
 import feign.Logger;
 import feign.RequestInterceptor;
 import org.slf4j.MDC;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -34,7 +35,8 @@ public class FrameworkMicroserviceAutoConfiguration {
 
     @Bean
     @ConditionalOnBean(ThreadPoolTaskExecutor.class)
-    public TraceIdThreadPoolTaskExecutorDecorator traceIdThreadPoolTaskExecutor(ThreadPoolTaskExecutor threadPoolTaskExecutor) {
+    public TraceIdThreadPoolTaskExecutorDecorator traceIdThreadPoolTaskExecutor(
+        @Qualifier("applicationTaskExecutor") ThreadPoolTaskExecutor threadPoolTaskExecutor) {
         return new TraceIdThreadPoolTaskExecutorDecorator(threadPoolTaskExecutor);
     }
 
