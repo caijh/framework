@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.github.caijh.commons.util.Asserts;
+import com.github.caijh.commons.util.Lists;
 import com.github.caijh.commons.util.reflection.invoker.GetFieldInvoker;
-import com.google.common.collect.Lists;
 
 public interface ObjectFieldComparator {
 

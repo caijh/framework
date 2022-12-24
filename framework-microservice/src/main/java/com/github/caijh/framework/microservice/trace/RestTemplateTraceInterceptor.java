@@ -1,9 +1,9 @@
 package com.github.caijh.framework.microservice.trace;
 
 import java.io.IOException;
-import javax.annotation.Nonnull;
 
 import com.github.caijh.framework.core.constant.TraceConstants;
+import jakarta.annotation.Nonnull;
 import org.slf4j.MDC;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;

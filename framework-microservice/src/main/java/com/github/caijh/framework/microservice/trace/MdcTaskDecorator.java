@@ -2,8 +2,8 @@ package com.github.caijh.framework.microservice.trace;
 
 import java.util.Map;
 import java.util.UUID;
-import javax.annotation.Nonnull;
 
+import jakarta.annotation.Nonnull;
 import org.apache.logging.log4j.util.Strings;
 import org.slf4j.MDC;
 import org.springframework.core.task.TaskDecorator;

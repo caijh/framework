@@ -2,11 +2,11 @@ package com.github.caijh.framework.web;
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import javax.annotation.Nonnull;
 
 import com.github.caijh.framework.web.autoconfigure.CorsAutoConfiguration;
 import com.github.caijh.framework.web.autoconfigure.JacksonAutoConfiguration;
 import com.github.caijh.framework.web.filter.ThreadLocalStoreFilter;
+import jakarta.annotation.Nonnull;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
