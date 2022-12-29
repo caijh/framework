@@ -198,6 +198,16 @@
             </dependency>
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
+                <artifactId>framework-config-configcenter</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.caijh.framework</groupId>
+                <artifactId>framework-config-eureka</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-data</artifactId>
                 <version>${framework.version}</version>
             </dependency>
