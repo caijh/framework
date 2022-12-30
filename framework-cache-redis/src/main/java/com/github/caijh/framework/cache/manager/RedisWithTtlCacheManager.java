@@ -2,11 +2,11 @@ package com.github.caijh.framework.cache.manager;
 
 import java.time.Duration;
 
-import jakarta.annotation.Nonnull;
 import org.springframework.data.redis.cache.RedisCache;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.cache.RedisCacheWriter;
+import org.springframework.lang.NonNull;
 import org.springframework.util.StringUtils;
 
 public class RedisWithTtlCacheManager extends RedisCacheManager {
@@ -15,9 +15,9 @@ public class RedisWithTtlCacheManager extends RedisCacheManager {
         super(cacheWriter, defaultCacheConfiguration);
     }
 
-    @Nonnull
+    @NonNull
     @Override
-    protected RedisCache createRedisCache(@Nonnull String name, RedisCacheConfiguration cacheConfig) {
+    protected RedisCache createRedisCache(@NonNull String name, RedisCacheConfiguration cacheConfig) {
         String[] array = StringUtils.delimitedListToStringArray(name, "#");
         name = array[0];
         if (array.length > 1) {
