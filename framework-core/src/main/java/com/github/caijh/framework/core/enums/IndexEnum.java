@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import jakarta.annotation.Nonnull;
+import org.springframework.lang.NonNull;
 
 /**
  * 有索引顺序的enum.
@@ -20,7 +20,7 @@ public interface IndexEnum {
      * @return IndexEnum instance
      * @throws NoSuchElementException if index enum not found.
      */
-    @Nonnull
+    @NonNull
     static <T extends IndexEnum> T valueOf(int index, Class<T> typeClass) {
         for (T t : typeClass.getEnumConstants()) {
             if (t.getIndex() == index) {
