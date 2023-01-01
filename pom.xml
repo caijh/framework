@@ -24,7 +24,6 @@
         <module>framework-data-redis</module>
         <module>framework-utils</module>
         <module>framework-web</module>
-        <module>framework-microservice</module>
         <module>framework-logging</module>
         <module>framework-doc-smart-doc</module>
         <module>framework-doc-swagger</module>

@@ -21,8 +21,10 @@ package framework-doc {
 }
 [framework-global-id]
 [framework-logging]
-[framework-message-kafka]
-[framework-message-websocket]
+package framework-message {
+  [framework-message-kafka]
+  [framework-message-websocket]
+}
 [framework-microservice]
 [framework-schedule]
 [framework-utils]
