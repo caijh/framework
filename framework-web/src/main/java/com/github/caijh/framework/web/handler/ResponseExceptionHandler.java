@@ -1,6 +1,6 @@
 package com.github.caijh.framework.web.handler;
 
-import com.github.caijh.framework.core.exceptions.ServiceException;
+import com.github.caijh.framework.core.exceptions.LocalizedException;
 import com.github.caijh.framework.core.model.request.Result;
 import jakarta.inject.Inject;
 import org.springframework.context.MessageSource;
@@ -19,19 +19,19 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
  */
 @Order(1)
 @RestControllerAdvice(annotations = RestController.class)
-public class RestBizExceptionHandler extends ResponseEntityExceptionHandler {
+public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Inject
     private MessageSource messageSource;
 
-    @ExceptionHandler(value = {ServiceException.class})
+    @ExceptionHandler(value = Exception.class)
     @ResponseBody
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-    public Result<Void> handleBizException(ServiceException exception) {
+    public Result<Void> handleBizException(Exception exception) {
         Result<Void> result = new Result<>();
-        String code = exception.getCode();
-        if (code != null) { // 查找国际化消息
-            String message = this.messageSource.getMessage(code, exception.getParams(), code, LocaleContextHolder.getLocale());
+        if (exception instanceof LocalizedException localizedException) {
+            String code = localizedException.getCode();
+            String message = this.messageSource.getMessage(code, localizedException.getParams(), code, LocaleContextHolder.getLocale());
             result.setCode(code).setMessage(message);
         } else {
             result.setMessage(exception.getLocalizedMessage());

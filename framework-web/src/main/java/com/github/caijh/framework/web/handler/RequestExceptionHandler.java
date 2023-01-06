@@ -27,18 +27,18 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 @RestControllerAdvice(annotations = Controller.class)
 @Order(1)
-public class ValidateExceptionHandler {
+public class RequestExceptionHandler {
 
     private final ObjectMapper mapper;
 
-    public ValidateExceptionHandler() {
+    public RequestExceptionHandler() {
         this.mapper = new ObjectMapper();
         this.mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
     }
 
     @ExceptionHandler(value = {BindException.class, MethodArgumentNotValidException.class, ValidationException.class})
     @ResponseBody
-    public ResponseEntity<Result<Void>> validExceptionHandler(Exception e) {
+    public ResponseEntity<Result<Void>> handle(Exception e) {
         BindingResult bindingResult = null;
         if (e instanceof MethodArgumentNotValidException methodArgumentNotValidException) {
             bindingResult = methodArgumentNotValidException.getBindingResult();
