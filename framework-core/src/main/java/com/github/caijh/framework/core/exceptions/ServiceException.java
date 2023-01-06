@@ -3,9 +3,14 @@ package com.github.caijh.framework.core.exceptions;
 /**
  * service base exception.
  */
-public abstract class ServiceException extends RuntimeException {
+public abstract class ServiceException extends LocalizedException {
 
-    protected ServiceException() {
+    protected ServiceException(String code, Object[] params) {
+        super(code, params);
+    }
+
+    protected ServiceException(String code, Object[] params, Throwable cause) {
+        super(code, params, cause);
     }
 
     protected ServiceException(String message) {
@@ -17,11 +22,7 @@ public abstract class ServiceException extends RuntimeException {
     }
 
     protected ServiceException(Throwable cause) {
-        super(cause);
-    }
-
-    protected ServiceException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
+        super(null, null, cause);
     }
 
 }
