@@ -3,9 +3,14 @@ package com.github.caijh.framework.core.exceptions;
 /**
  * data access base exception.
  */
-public abstract class DaoException extends RuntimeException {
+public abstract class DaoException extends LocalizedException {
 
-    protected DaoException() {
+    protected DaoException(String code, Object[] params) {
+        super(code, params);
+    }
+
+    protected DaoException(String code, Object[] params, Throwable cause) {
+        super(code, params, cause);
     }
 
     protected DaoException(String message) {
@@ -17,11 +22,7 @@ public abstract class DaoException extends RuntimeException {
     }
 
     protected DaoException(Throwable cause) {
-        super(cause);
-    }
-
-    protected DaoException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
+        super(null, null, cause);
     }
 
 }
