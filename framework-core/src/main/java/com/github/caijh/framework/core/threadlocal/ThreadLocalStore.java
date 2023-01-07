@@ -1,4 +1,4 @@
-package com.github.caijh.framework.web.threadlocal;
+package com.github.caijh.framework.core.threadlocal;
 
 import java.util.HashMap;
 import java.util.Map;

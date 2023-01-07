@@ -2,7 +2,7 @@ package com.github.caijh.framework.web.filter;
 
 import java.io.IOException;
 
-import com.github.caijh.framework.web.threadlocal.ThreadLocalStore;
+import com.github.caijh.framework.core.threadlocal.ThreadLocalStore;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

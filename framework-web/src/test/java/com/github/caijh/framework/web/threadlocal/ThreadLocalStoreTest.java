@@ -3,6 +3,7 @@ package com.github.caijh.framework.web.threadlocal;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import com.github.caijh.framework.core.threadlocal.ThreadLocalStore;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
