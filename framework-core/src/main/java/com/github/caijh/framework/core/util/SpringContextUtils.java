@@ -2,6 +2,9 @@ package com.github.caijh.framework.core.util;
 
 import org.springframework.context.ApplicationContext;
 
+/**
+ * Util to get spring application context.
+ */
 public class SpringContextUtils {
 
     private static ApplicationContext applicationContext;
