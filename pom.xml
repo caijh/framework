@@ -30,7 +30,6 @@
         <module>framework-cache-redis</module>
         <module>framework-message-kafka</module>
         <module>framework-message-websocket</module>
-        <module>framework-schedule</module>
         <module>framework-config</module>
         <module>framework-config-configcenter</module>
         <module>framework-config-nacos</module>
@@ -273,11 +272,6 @@
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-message-websocket</artifactId>
-                <version>${framework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.caijh.framework</groupId>
-                <artifactId>framework-schedule</artifactId>
                 <version>${framework.version}</version>
             </dependency>
             <dependency>
