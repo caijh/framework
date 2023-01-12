@@ -9,7 +9,7 @@ public class ScheduleThreadPoolExecutorProperties {
 
     public static final String PREFIX = "framework.core.schedule.executor";
 
-    private int poolSize;
-    private String namePrefix;
+    private int poolSize = Runtime.getRuntime().availableProcessors();
+    private String namePrefix = "schedule-task-pool-";
 
 }

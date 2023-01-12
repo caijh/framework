@@ -9,9 +9,9 @@ public class AsyncThreadPoolExecutorProperties {
 
     public static final String PREFIX = "framework.async.executor";
 
-    private int corePoolSize;
-    private int maxPoolSize;
-    private int queueCapacity;
-    private String namePrefix;
+    private int corePoolSize = Runtime.getRuntime().availableProcessors();
+    private int maxPoolSize = Runtime.getRuntime().availableProcessors() * 2;
+    private int queueCapacity = 1000;
+    private String namePrefix = "async-task-pool-";
 
 }
