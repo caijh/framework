@@ -1,6 +1,6 @@
 package com.github.caijh.framework.web.handler;
 
-import com.github.caijh.framework.core.exceptions.LocalizedException;
+import com.github.caijh.framework.core.exception.LocalizedException;
 import com.github.caijh.framework.core.model.request.Result;
 import jakarta.inject.Inject;
 import org.springframework.context.MessageSource;

@@ -1,4 +1,4 @@
-package com.github.caijh.framework.core.exceptions;
+package com.github.caijh.framework.core.exception;
 
 /**
  * service base exception.
