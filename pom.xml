@@ -51,6 +51,7 @@
         <hibernate-core.version>6.1.5.Final</hibernate-core.version>
         <javassist.version>3.29.2-GA</javassist.version>
         <jaxb.version>4.0.1</jaxb.version>
+        <checkstyle.location>checkstyle.xml</checkstyle.location>
     </properties>
 
     <licenses>
@@ -308,7 +309,7 @@
                     </dependency>
                 </dependencies>
                 <configuration>
-                    <configLocation>checkstyle.xml</configLocation>
+                    <configLocation>${checkstyle.location}</configLocation>
                     <encoding>UTF-8</encoding>
                     <consoleOutput>true</consoleOutput>
                     <failsOnError>true</failsOnError>
