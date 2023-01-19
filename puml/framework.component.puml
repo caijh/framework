@@ -2,7 +2,6 @@
 'https://plantuml.com/component-diagram
 
 [framework-core]
-[framework-model]
 
 package "framework-config" {
   [framework-config-nacos]

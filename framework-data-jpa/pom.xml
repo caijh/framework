@@ -21,10 +21,6 @@
             <groupId>com.github.caijh.framework</groupId>
             <artifactId>framework-config</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.github.caijh.framework</groupId>
-            <artifactId>framework-model</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>com.github.caijh.framework</groupId>

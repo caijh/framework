@@ -16,7 +16,6 @@
     <version>3.0.0-0.0.3-SNAPSHOT</version>
 
     <modules>
-        <module>framework-model</module>
         <module>framework-core</module>
         <module>framework-data</module>
         <module>framework-data-jpa</module>
@@ -178,11 +177,6 @@
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-core</artifactId>
-                <version>${framework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.caijh.framework</groupId>
-                <artifactId>framework-model</artifactId>
                 <version>${framework.version}</version>
             </dependency>
             <dependency>
