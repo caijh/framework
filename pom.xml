@@ -247,11 +247,6 @@
             </dependency>
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
-                <artifactId>framework-microservice</artifactId>
-                <version>${framework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-logging</artifactId>
                 <version>${framework.version}</version>
             </dependency>
