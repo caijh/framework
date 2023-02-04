@@ -9,6 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.caijh.framework.core.model.request.Result;
+import jakarta.inject.Inject;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +34,9 @@ public class RequestExceptionHandler {
 
     private final ObjectMapper mapper;
 
+    @Inject
+    private MessageSource messageSource;
+
     public RequestExceptionHandler() {
         this.mapper = new ObjectMapper();
         this.mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
@@ -50,7 +56,7 @@ public class RequestExceptionHandler {
             List<FieldError> fieldErrors = bindingResult.getFieldErrors();
             Map<String, String> errMsg = new HashMap<>();
             for (FieldError error : fieldErrors) {
-                errMsg.put(error.getField(), error.getDefaultMessage());
+                errMsg.put(error.getField(), messageSource.getMessage(error, LocaleContextHolder.getLocale()));
             }
             try {
                 result.setMessage(this.mapper.writeValueAsString(errMsg));
