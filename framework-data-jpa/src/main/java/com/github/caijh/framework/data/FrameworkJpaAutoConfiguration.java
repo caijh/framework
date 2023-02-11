@@ -1,7 +1,7 @@
 package com.github.caijh.framework.data;
 
+import com.github.caijh.framework.data.jpa.BaseAuditorAware;
 import com.github.caijh.framework.data.jpa.BaseService;
-import com.github.caijh.framework.data.jpa.CustomizeAuditorAware;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -24,7 +24,7 @@ public class FrameworkJpaAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean(AuditorAware.class)
     public AuditorAware<Long> auditorAware() {
-        return new CustomizeAuditorAware();
+        return new BaseAuditorAware();
     }
 
 }
