@@ -33,6 +33,7 @@
         <module>framework-config-configcenter</module>
         <module>framework-config-nacos</module>
         <module>framework-config-eureka</module>
+        <module>framework-config-consul</module>
         <module>framework-global-id</module>
     </modules>
 
@@ -197,6 +198,11 @@
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-config-eureka</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.caijh.framework</groupId>
+                <artifactId>framework-config-consul</artifactId>
                 <version>${framework.version}</version>
             </dependency>
             <dependency>

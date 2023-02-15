@@ -1,0 +1,10 @@
+spring:
+  cloud:
+    consul:
+      host: ${HOST_CONSUL:127.0.0.1}
+      port: ${PORT_CONSUL:8500}
+      discovery:
+        enabled: true
+        register: true
+      config:
+        format: YAML
