@@ -1,4 +1,6 @@
 spring:
+  config:
+    import: 'optional:consul:'
   cloud:
     consul:
       host: ${HOST_CONSUL:127.0.0.1}
