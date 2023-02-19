@@ -92,7 +92,7 @@ public class Redis {
      * @param <T> obj class
      */
     public <T> void set(String key, T obj) {
-        this.set(key, obj, null);
+        this.set(key, obj, Expired.M_1_SECONDS);
     }
 
     /**
