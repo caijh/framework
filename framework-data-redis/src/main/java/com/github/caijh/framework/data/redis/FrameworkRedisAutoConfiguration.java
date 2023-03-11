@@ -77,6 +77,7 @@ public class FrameworkRedisAutoConfiguration {
                       .setClientName(redisProperties.getClientName()).setPassword(redisProperties.getPassword())
                       .setDatabase(redisProperties.getDatabase())
                       .setConnectTimeout((int) Optional.ofNullable(redisProperties.getTimeout()).orElseGet(() -> Duration.ofSeconds(10)).getSeconds() * 1000)
+                      .setConnectionMinimumIdleSize(16)
                 ;
             }
         }
