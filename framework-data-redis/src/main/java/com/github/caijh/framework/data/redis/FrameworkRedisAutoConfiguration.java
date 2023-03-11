@@ -75,7 +75,7 @@ public class FrameworkRedisAutoConfiguration {
                 }
                 config.useSingleServer().setAddress(address)
                       .setClientName(redisProperties.getClientName()).setPassword(redisProperties.getPassword())
-                      .setDatabase(redisProperties.getDatabase()).setConnectionMinimumIdleSize(16)
+                      .setDatabase(redisProperties.getDatabase()).setConnectionMinimumIdleSize(10)
                       .setConnectTimeout((int) Optional.ofNullable(redisProperties.getTimeout()).orElseGet(() -> Duration.ofSeconds(10)).getSeconds() * 1000)
                 ;
             }
