@@ -1,3 +1,12 @@
+spring:
+  aop:
+    proxy-target-class: true
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:123456}
+    driver-class-name: ${DB_DRIVER:com.mysql.cj.jdbc.Driver}
+
 mybatis-plus:
   mapper-locations: classpath*:mapper/**/*Mapper.xml #xml扫描，多个目录用逗号或者分号分隔（告诉 Mapper 所对应的 XML 文件位置）
   configuration:
