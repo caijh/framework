@@ -12,13 +12,17 @@
     <artifactId>framework-data-mybatis</artifactId>
 
     <properties>
-        <mybatis.plus.version>3.5.2</mybatis.plus.version>
+        <mybatis.plus.version>3.5.3.1</mybatis.plus.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.github.caijh.framework</groupId>
             <artifactId>framework-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.caijh.framework</groupId>
+            <artifactId>framework-data</artifactId>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
