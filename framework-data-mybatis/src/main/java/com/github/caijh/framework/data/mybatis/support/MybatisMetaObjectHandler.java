@@ -34,8 +34,11 @@ public class MybatisMetaObjectHandler implements MetaObjectHandler {
     public void updateFill(MetaObject metaObject) {
         Arrays.stream(this.updateFillFieldProvider.getFields())
               .forEach(e -> {
-                  Object value = e.getFieldValue().get();
-                  this.strictUpdateFill(metaObject, e.getFieldName(), (Class) value.getClass(), value);
+                  Object value = this.getFieldValByName(e.getFieldName(), metaObject);
+                  if (value == null) {
+                      Object newValue = e.getFieldValue().get();
+                      this.strictUpdateFill(metaObject, e.getFieldName(), (Class) newValue.getClass(), newValue);
+                  }
               });
     }
 
