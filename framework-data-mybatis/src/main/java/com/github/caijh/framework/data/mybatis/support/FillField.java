@@ -11,8 +11,6 @@ public class FillField {
 
     private String fieldName;
 
-    private Class<Object> fieldClass;
-
     private Supplier<?> fieldValue;
 
 }

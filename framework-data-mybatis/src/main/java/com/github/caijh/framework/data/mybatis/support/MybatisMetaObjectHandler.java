@@ -16,16 +16,27 @@ public class MybatisMetaObjectHandler implements MetaObjectHandler {
         this.updateFillFieldProvider = updateFillFieldProvider;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void insertFill(MetaObject metaObject) {
         Arrays.stream(this.insertFillFieldProvider.getFields())
-              .forEach(e -> this.strictInsertFill(metaObject, e.getFieldName(), e.getFieldValue(), e.getFieldClass()));
+              .forEach(e -> {
+                  Object value = this.getFieldValByName(e.getFieldName(), metaObject);
+                  if (value == null) {
+                      Object newValue = e.getFieldValue().get();
+                      this.strictInsertFill(metaObject, e.getFieldName(), (Class) newValue.getClass(), newValue);
+                  }
+              });
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void updateFill(MetaObject metaObject) {
         Arrays.stream(this.updateFillFieldProvider.getFields())
-              .forEach(e -> this.strictUpdateFill(metaObject, e.getFieldName(), e.getFieldValue(), e.getFieldClass()));
+              .forEach(e -> {
+                  Object value = e.getFieldValue().get();
+                  this.strictUpdateFill(metaObject, e.getFieldName(), (Class) value.getClass(), value);
+              });
     }
 
 }
