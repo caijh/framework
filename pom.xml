@@ -44,13 +44,13 @@
         <spring.cloud.version>2022.0.1</spring.cloud.version>
         <spring.cloud.nacos.version>2021.1</spring.cloud.nacos.version>
         <framework.version>3.0.0-0.0.3-SNAPSHOT</framework.version>
-        <lombok.version>1.18.24</lombok.version>
+        <lombok.version>1.18.26</lombok.version>
         <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
         <redisson.version>3.16.0</redisson.version>
         <hibernate-types.version>2.21.0</hibernate-types.version>
         <hibernate-core.version>6.1.5.Final</hibernate-core.version>
         <javassist.version>3.29.2-GA</javassist.version>
-        <jaxb.version>4.0.1</jaxb.version>
+        <jaxb.version>4.0.2</jaxb.version>
         <checkstyle.config.location>checkstyle.xml</checkstyle.config.location>
     </properties>
 
