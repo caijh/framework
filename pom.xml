@@ -47,7 +47,6 @@
         <lombok.version>1.18.26</lombok.version>
         <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
         <redisson.version>3.16.0</redisson.version>
-        <hibernate-types.version>2.21.0</hibernate-types.version>
         <hibernate-core.version>6.1.5.Final</hibernate-core.version>
         <javassist.version>3.29.2-GA</javassist.version>
         <jaxb.version>4.0.2</jaxb.version>
