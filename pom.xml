@@ -46,7 +46,6 @@
         <framework.version>3.0.0-0.0.3-SNAPSHOT</framework.version>
         <lombok.version>1.18.26</lombok.version>
         <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
-        <redisson.version>3.16.0</redisson.version>
         <hibernate-core.version>6.1.5.Final</hibernate-core.version>
         <javassist.version>3.29.2-GA</javassist.version>
         <jaxb.version>4.0.2</jaxb.version>
@@ -170,11 +169,6 @@
                 <version>${hibernate-core.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.vladmihalcea</groupId>
-                <artifactId>hibernate-types-60</artifactId>
-                <version>${hibernate-types.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-core</artifactId>
                 <version>${framework.version}</version>
@@ -218,11 +212,6 @@
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-data-mybatis</artifactId>
                 <version>${framework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.redisson</groupId>
-                <artifactId>redisson</artifactId>
-                <version>${redisson.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
