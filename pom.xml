@@ -42,7 +42,6 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <spring.cloud.version>2022.0.1</spring.cloud.version>
-        <spring.cloud.nacos.version>2021.1</spring.cloud.nacos.version>
         <framework.version>3.0.0-0.0.3-SNAPSHOT</framework.version>
         <lombok.version>1.18.26</lombok.version>
         <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
