@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.github.caijh.framework</groupId>
         <artifactId>framework-parent</artifactId>
-        <version>3.0.0-0.0.3-SNAPSHOT</version>
+        <version>3.0.X-0.0.3-SNAPSHOT</version>
     </parent>
 
     <artifactId>framework-config-consul</artifactId>
