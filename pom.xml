@@ -13,7 +13,7 @@
     <groupId>com.github.caijh.framework</groupId>
     <artifactId>framework-parent</artifactId>
     <packaging>pom</packaging>
-    <version>3.0.0-0.0.3-SNAPSHOT</version>
+    <version>3.0.X-0.0.3-SNAPSHOT</version>
 
     <modules>
         <module>framework-core</module>
