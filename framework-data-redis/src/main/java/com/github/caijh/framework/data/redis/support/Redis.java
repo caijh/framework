@@ -14,6 +14,7 @@ import java.util.function.Consumer;
 
 import com.github.caijh.framework.data.redis.exception.RedisScanException;
 import com.github.caijh.framework.data.redis.exception.RedisSetValueException;
+import lombok.Getter;
 import org.redisson.api.RedissonClient;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.Cursor;
@@ -29,11 +30,13 @@ import static com.github.caijh.framework.data.redis.support.Redis.Expired.LIST_E
 /**
  * Redis通用方法集对象.
  */
+@Getter
 public class Redis {
 
     private final RedisTemplate<String, Object> redisTemplate;
     private final RedisSerializer<String> keySerializer;
     private final RedisSerializer<Object> valueSerializer;
+    @Getter
     private final RedissonClient redissonClient;
     private final RedisLock redisLock;
 
@@ -49,7 +52,7 @@ public class Redis {
     public byte[] getRawValue(String key) {
         byte[] keyBytes = this.keySerializer.serialize(key);
         Assert.notNull(keyBytes, "key must not be null");
-        return this.redisTemplate.execute((RedisConnection redisConnection) -> redisConnection.get(keyBytes));
+        return this.redisTemplate.execute((RedisConnection redisConnection) -> redisConnection.stringCommands().get(keyBytes));
     }
 
     public <T> T get(String key, RedisSerializer<T> valueSerializer) {
@@ -123,19 +126,15 @@ public class Redis {
         boolean ret;
         if (expire > 0) {
             ret = Optional
-                .ofNullable(this.getRedisTemplate().execute((RedisConnection redisConnection) -> redisConnection.setEx(keyBytes, expire, serializeValue)))
-                .orElse(true);
+                    .ofNullable(getRedisTemplate().execute((RedisConnection conn) -> conn.stringCommands().setEx(keyBytes, expire, serializeValue)))
+                    .orElse(true);
         } else {
-            ret = Optional.ofNullable(this.getRedisTemplate().execute((RedisConnection redisConnection) -> redisConnection.set(keyBytes, serializeValue)))
-                          .orElse(true);
+            ret = Optional.ofNullable(getRedisTemplate().execute((RedisConnection conn) -> conn.stringCommands().set(keyBytes, serializeValue)))
+                    .orElse(true);
         }
         if (!ret) {
             throw new RedisSetValueException();
         }
-    }
-
-    public RedisTemplate<String, Object> getRedisTemplate() {
-        return this.redisTemplate;
     }
 
     /**
@@ -195,7 +194,7 @@ public class Redis {
 
     public void scan(final String pattern, Consumer<byte[]> consumer) {
         this.redisTemplate.execute((RedisConnection connection) -> {
-            try (Cursor<byte[]> cursor = connection.scan(ScanOptions.scanOptions().match(pattern).build())) {
+            try (Cursor<byte[]> cursor = connection.keyCommands().scan(ScanOptions.scanOptions().match(pattern).build())) {
                 cursor.forEachRemaining(consumer);
                 return null;
             } catch (Exception e) {
@@ -206,7 +205,7 @@ public class Redis {
 
     public void scan(final String pattern, int offset, int limit, Consumer<byte[]> consumer, TotalCounter counter) {
         this.redisTemplate.execute((RedisConnection connection) -> {
-            try (Cursor<byte[]> cursor = connection.scan(ScanOptions.scanOptions().match(pattern).build())) {
+            try (Cursor<byte[]> cursor = connection.keyCommands().scan(ScanOptions.scanOptions().match(pattern).build())) {
                 int start = -1;
                 int end = offset + limit;
                 boolean calcTotal = counter != null && counter.calcTotal();
@@ -282,12 +281,8 @@ public class Redis {
     public int bitCount(String key) {
         byte[] keyByte = this.keySerializer.serialize(key);
         Assert.notNull(keyByte, "key 不能为空");
-        Long count = this.getRedisTemplate().execute((RedisCallback<Long>) con -> con.bitCount(keyByte));
+        Long count = this.getRedisTemplate().execute((RedisCallback<Long>) con -> con.stringCommands().bitCount(keyByte));
         return count != null ? count.intValue() : 0;
-    }
-
-    public RedissonClient getRedissonClient() {
-        return this.redissonClient;
     }
 
     public RedisLock getLock() {
@@ -321,7 +316,8 @@ public class Redis {
          */
         public static final long ENTITY_EXPIRED_SECONDS = Expired.M_1_SECONDS * 60 * 24;
 
-        private Expired() {}
+        private Expired() {
+        }
 
     }
 
