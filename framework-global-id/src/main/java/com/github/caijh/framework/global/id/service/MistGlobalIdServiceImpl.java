@@ -3,6 +3,7 @@ package com.github.caijh.framework.global.id.service;
 import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Lock;
 
+import com.github.caijh.framework.core.lock.LockManager;
 import com.github.caijh.framework.data.redis.support.Redis;
 import jakarta.inject.Inject;
 import lombok.SneakyThrows;
@@ -34,6 +35,8 @@ public class MistGlobalIdServiceImpl implements GlobalIdService, InitializingBea
 
     @Inject
     private Redis redis;
+    @Inject
+    private LockManager lockManager;
 
     private RBoundedBlockingQueue<Long> blockingQueue;
 
@@ -53,7 +56,7 @@ public class MistGlobalIdServiceImpl implements GlobalIdService, InitializingBea
     @SneakyThrows
     @Override
     public void run() {
-        Lock lock = redis.getLock().get("global:id:lock");
+        Lock lock = lockManager.get("global:id:lock");
         try { // 确认顺序放入blockingQueue中
             lock.lockInterruptibly();
             if (blockingQueue.size() < MAX_SIZE) {

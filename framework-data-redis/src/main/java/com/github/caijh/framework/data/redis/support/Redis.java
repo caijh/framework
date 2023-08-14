@@ -38,13 +38,11 @@ public class Redis {
     private final RedisSerializer<Object> valueSerializer;
     @Getter
     private final RedissonClient redissonClient;
-    private final RedisLock redisLock;
 
     @SuppressWarnings("unchecked")
     public Redis(RedisTemplate<String, Object> redisTemplate, RedissonClient redissonClient) {
         this.redisTemplate = redisTemplate;
         this.redissonClient = redissonClient;
-        this.redisLock = new RedisLock(this.redissonClient);
         this.keySerializer = (RedisSerializer<String>) this.redisTemplate.getKeySerializer();
         this.valueSerializer = (RedisSerializer<Object>) this.redisTemplate.getValueSerializer();
     }
@@ -283,10 +281,6 @@ public class Redis {
         Assert.notNull(keyByte, "key 不能为空");
         Long count = this.getRedisTemplate().execute((RedisCallback<Long>) con -> con.stringCommands().bitCount(keyByte));
         return count != null ? count.intValue() : 0;
-    }
-
-    public RedisLock getLock() {
-        return this.redisLock;
     }
 
     public Date getExpiredAt(String key) {
