@@ -23,7 +23,8 @@ public class LockingConfiguration implements ImportAware {
     protected AnnotationAttributes enableLocking;
 
     @Bean
-    public BeanFactoryLockOperationSourceAdvisor beanFactoryLockOperationSourceAdvisor(LockOperationSource lockOperationSource, LockInterceptor lockInterceptor) {
+    public BeanFactoryLockOperationSourceAdvisor beanFactoryLockOperationSourceAdvisor(LockOperationSource lockOperationSource,
+                                                                                       LockInterceptor lockInterceptor) {
         BeanFactoryLockOperationSourceAdvisor advisor = new BeanFactoryLockOperationSourceAdvisor();
         advisor.setLockOperationSource(lockOperationSource);
         advisor.setAdvice(lockInterceptor);
@@ -61,10 +62,10 @@ public class LockingConfiguration implements ImportAware {
     @Override
     public void setImportMetadata(AnnotationMetadata importMetadata) {
         this.enableLocking = AnnotationAttributes.fromMap(
-            importMetadata.getAnnotationAttributes(EnableLocking.class.getName()));
+                importMetadata.getAnnotationAttributes(EnableLocking.class.getName()));
         if (this.enableLocking == null) {
             throw new IllegalArgumentException(
-                "@EnableLocking is not present on importing class " + importMetadata.getClassName());
+                    "@EnableLocking is not present on importing class " + importMetadata.getClassName());
         }
     }
 }

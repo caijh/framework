@@ -54,7 +54,8 @@ public class LockInterceptor implements MethodInterceptor, BeanFactoryAware {
             if (lockOperation != null) {
                 LockManager manager = Optional.ofNullable(lockManager).orElse(new ReentrantLockManager());
                 LockOperationMetadata lockOperationMetadata = new LockOperationMetadata(lockOperation, method, targetClass);
-                EvaluationContext evaluationContext = createEvaluationContext(method, invocation.getArguments(), target, targetClass, lockOperationMetadata.getTargetMethod(), beanFactory);
+                EvaluationContext evaluationContext = createEvaluationContext(method,
+                        invocation.getArguments(), target, targetClass, lockOperationMetadata.getTargetMethod(), beanFactory);
                 String key = lockOperation.getKey();
                 if (StringUtils.hasText(key)) {
                     key = Objects.requireNonNull(evaluator.key(key, lockOperationMetadata.getMethodKey(), evaluationContext)).toString();
@@ -103,7 +104,7 @@ public class LockInterceptor implements MethodInterceptor, BeanFactoryAware {
 
         LockExpressionRootObject rootObject = new LockExpressionRootObject(method, args, target, targetClass);
         LockEvaluationContext evaluationContext = new LockEvaluationContext(
-            rootObject, targetMethod, args, getParameterNameDiscoverer());
+                rootObject, targetMethod, args, getParameterNameDiscoverer());
         if (args == null || args.length == 0) {
             evaluationContext.addUnavailableVariable(PARAMETERS_VARIABLE);
         }

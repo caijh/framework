@@ -24,8 +24,8 @@ public class LockOperationMetadata {
         this.operation = operation;
         this.method = BridgeMethodResolver.findBridgedMethod(method);
         this.targetClass = targetClass;
-        this.targetMethod = (!Proxy.isProxyClass(targetClass) ?
-            AopUtils.getMostSpecificMethod(method, targetClass) : this.method);
+        this.targetMethod = (!Proxy.isProxyClass(targetClass)
+                ? AopUtils.getMostSpecificMethod(method, targetClass) : this.method);
         this.methodKey = new AnnotatedElementKey(this.targetMethod, targetClass);
     }
 }
