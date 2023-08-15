@@ -1,4 +1,4 @@
-package com.github.caijh.framework.core.lock;
+package com.github.caijh.framework.core.lock.aspect;
 
 import java.lang.reflect.Method;
 import java.util.Map;

@@ -1,13 +1,13 @@
 package com.github.caijh.framework.core.lock.config;
 
-import com.github.caijh.framework.core.lock.AnnotationLockOperationSource;
-import com.github.caijh.framework.core.lock.LockKeyGenerator;
-import com.github.caijh.framework.core.lock.LockManager;
-import com.github.caijh.framework.core.lock.LockOperationSource;
-import com.github.caijh.framework.core.lock.ReentrantLockManager;
 import com.github.caijh.framework.core.lock.annotation.EnableLocking;
+import com.github.caijh.framework.core.lock.aspect.AnnotationLockOperationSource;
 import com.github.caijh.framework.core.lock.aspect.BeanFactoryLockOperationSourceAdvisor;
 import com.github.caijh.framework.core.lock.aspect.LockInterceptor;
+import com.github.caijh.framework.core.lock.aspect.LockKeyGenerator;
+import com.github.caijh.framework.core.lock.aspect.LockManager;
+import com.github.caijh.framework.core.lock.aspect.LockOperationSource;
+import com.github.caijh.framework.core.lock.aspect.ReentrantLockManager;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

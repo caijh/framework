@@ -3,7 +3,7 @@ package com.github.caijh.framework.global.id.service;
 import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Lock;
 
-import com.github.caijh.framework.core.lock.LockManager;
+import com.github.caijh.framework.core.lock.aspect.LockManager;
 import com.github.caijh.framework.data.redis.support.Redis;
 import jakarta.inject.Inject;
 import lombok.SneakyThrows;

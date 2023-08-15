@@ -6,15 +6,6 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 
-import com.github.caijh.framework.core.lock.LockEvaluationContext;
-import com.github.caijh.framework.core.lock.LockExpressionRootObject;
-import com.github.caijh.framework.core.lock.LockKeyGenerator;
-import com.github.caijh.framework.core.lock.LockManager;
-import com.github.caijh.framework.core.lock.LockOperation;
-import com.github.caijh.framework.core.lock.LockOperationExpressionEvaluator;
-import com.github.caijh.framework.core.lock.LockOperationMetadata;
-import com.github.caijh.framework.core.lock.LockOperationSource;
-import com.github.caijh.framework.core.lock.ReentrantLockManager;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.aop.framework.AopProxyUtils;
@@ -30,7 +21,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
-import static com.github.caijh.framework.core.lock.LockKeyGenerator.PARAMETERS_VARIABLE;
+import static com.github.caijh.framework.core.lock.aspect.LockKeyGenerator.PARAMETERS_VARIABLE;
 
 public class LockInterceptor implements MethodInterceptor, BeanFactoryAware {
 

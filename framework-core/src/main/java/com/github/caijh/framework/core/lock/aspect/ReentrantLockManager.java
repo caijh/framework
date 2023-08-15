@@ -1,4 +1,4 @@
-package com.github.caijh.framework.core.lock;
+package com.github.caijh.framework.core.lock.aspect;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

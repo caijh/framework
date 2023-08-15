@@ -1,10 +1,9 @@
-package com.github.caijh.framework.core.lock;
+package com.github.caijh.framework.core.lock.config;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.github.caijh.framework.core.lock.annotation.EnableLocking;
-import com.github.caijh.framework.core.lock.config.LockingConfiguration;
 import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.AdviceModeImportSelector;
 import org.springframework.lang.Nullable;

@@ -1,6 +1,5 @@
 package com.github.caijh.framework.core.lock.aspect;
 
-import com.github.caijh.framework.core.lock.LockOperationSource;
 import lombok.EqualsAndHashCode;
 import org.springframework.aop.Pointcut;
 import org.springframework.aop.support.AbstractBeanFactoryPointcutAdvisor;

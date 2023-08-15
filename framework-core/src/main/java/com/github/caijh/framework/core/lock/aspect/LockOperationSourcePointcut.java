@@ -3,7 +3,6 @@ package com.github.caijh.framework.core.lock.aspect;
 import java.io.Serializable;
 import java.lang.reflect.Method;
 
-import com.github.caijh.framework.core.lock.LockOperationSource;
 import org.springframework.aop.ClassFilter;
 import org.springframework.aop.support.StaticMethodMatcherPointcut;
 import org.springframework.lang.NonNull;

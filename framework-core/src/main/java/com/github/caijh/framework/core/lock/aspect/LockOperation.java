@@ -1,4 +1,4 @@
-package com.github.caijh.framework.core.lock;
+package com.github.caijh.framework.core.lock.aspect;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
