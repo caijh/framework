@@ -12,15 +12,6 @@ public class AnnotationLockOperationSource implements LockOperationSource {
 
     private final Map<Object, LockOperation> attributeCache = new ConcurrentHashMap<>(1024);
 
-    private final LockAnnotationParser annotationParser = new LockAnnotationParser() {
-    };
-
-
-    @Override
-    public boolean isCandidateClass(Class<?> targetClass) {
-        return annotationParser.isCandidateClass(targetClass);
-    }
-
     @Nullable
     @Override
     public LockOperation getLockOperation(Method method, @Nullable Class<?> targetClass) {
@@ -34,13 +25,13 @@ public class AnnotationLockOperationSource implements LockOperationSource {
 
     private LockOperation computeLockOperation(Method method, Class<?> targetClass) {
         Method specificMethod = AopUtils.getMostSpecificMethod(method, targetClass);
-        LockOperation lockOperation = annotationParser.parseLockAnnotation(specificMethod);
+        LockOperation lockOperation = parseLockAnnotation(specificMethod);
         if (lockOperation != null) {
             return lockOperation;
         }
 
         if (specificMethod != method) {
-            lockOperation = annotationParser.parseLockAnnotation(method);
+            lockOperation = parseLockAnnotation(method);
             return lockOperation;
         }
 
