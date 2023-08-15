@@ -55,7 +55,7 @@ public class LockingConfiguration implements ImportAware {
     @Bean
     public LockInterceptor lockInterceptor(LockOperationSource lockOperationSource, LockKeyGenerator keyGenerator, LockManager lockManager) {
         LockInterceptor interceptor = new LockInterceptor();
-        interceptor.configure(keyGenerator, lockManager, lockOperationSource);
+        interceptor.configure(lockOperationSource, keyGenerator, lockManager);
         return interceptor;
     }
 

@@ -43,16 +43,16 @@ public class LockInterceptor implements MethodInterceptor, BeanFactoryAware {
             Class<?> targetClass = AopProxyUtils.ultimateTargetClass(target);
             LockOperation lockOperation = lockOperationSource.getLockOperation(method, targetClass);
             if (lockOperation != null) {
-                LockManager manager = Optional.ofNullable(lockManager).orElse(new ReentrantLockManager());
-                LockOperationMetadata lockOperationMetadata = new LockOperationMetadata(lockOperation, method, targetClass);
-                EvaluationContext evaluationContext = createEvaluationContext(method,
-                        invocation.getArguments(), target, targetClass, lockOperationMetadata.getTargetMethod(), beanFactory);
                 String key = lockOperation.getKey();
                 if (StringUtils.hasText(key)) {
+                    LockOperationMetadata lockOperationMetadata = new LockOperationMetadata(lockOperation, method, targetClass);
+                    EvaluationContext evaluationContext = createEvaluationContext(method,
+                        invocation.getArguments(), target, targetClass, lockOperationMetadata.getTargetMethod(), beanFactory);
                     key = Objects.requireNonNull(evaluator.key(key, lockOperationMetadata.getMethodKey(), evaluationContext)).toString();
                 } else {
                     key = keyGenerator.generate(target, method, invocation.getArguments()).toString();
                 }
+                LockManager manager = Optional.ofNullable(lockManager).orElse(new ReentrantLockManager());
                 Lock lock = manager.get(key);
                 if (lockOperation.getExpired() != -1) {
                     return execute(invocation, lock, lockOperation.getExpired());
@@ -84,7 +84,7 @@ public class LockInterceptor implements MethodInterceptor, BeanFactoryAware {
         }
     }
 
-    public void configure(LockKeyGenerator keyGenerator, LockManager lockManager, LockOperationSource lockOperationSource) {
+    public void configure(LockOperationSource lockOperationSource, LockKeyGenerator keyGenerator, LockManager lockManager) {
         this.keyGenerator = keyGenerator;
         this.lockManager = lockManager;
         this.lockOperationSource = lockOperationSource;
