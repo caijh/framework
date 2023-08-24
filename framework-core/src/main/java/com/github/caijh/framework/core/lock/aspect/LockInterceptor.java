@@ -48,7 +48,7 @@ public class LockInterceptor implements MethodInterceptor, BeanFactoryAware {
                     LockOperationMetadata lockOperationMetadata = new LockOperationMetadata(lockOperation, method, targetClass);
                     EvaluationContext evaluationContext = createEvaluationContext(method,
                         invocation.getArguments(), target, targetClass, lockOperationMetadata.getTargetMethod(), beanFactory);
-                    key = Objects.requireNonNull(evaluator.key(key, lockOperationMetadata.getMethodKey(), evaluationContext)).toString();
+                    key = "Lock:" + Objects.requireNonNull(evaluator.key(key, lockOperationMetadata.getMethodKey(), evaluationContext)).toString();
                 } else {
                     key = keyGenerator.generate(target, method, invocation.getArguments()).toString();
                 }
