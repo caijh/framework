@@ -10,11 +10,13 @@ import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
  * 抽象列表请求对象.
  */
+@Getter
 public class PageReqBody implements Serializable {
 
     public static final int DEFAULT_PAGE_NO = 1;
@@ -35,20 +37,12 @@ public class PageReqBody implements Serializable {
      */
     private List<Sort> sorts;
 
-    public Integer getPageNo() {
-        return this.pageNo;
-    }
-
     public void setPageNo(Integer pageNo) {
         this.pageNo = pageNo;
     }
 
     public Integer getPage() {
         return getPageNo() - 1;
-    }
-
-    public Integer getPageSize() {
-        return this.pageSize;
     }
 
     public void setPageSize(Integer pageSize) {
