@@ -9,8 +9,6 @@ import org.springframework.lang.NonNull;
 
 public class LockKeyGenerator implements KeyGenerator {
 
-    public static final String PARAMETERS_VARIABLE = "parameters";
-
 
     @NonNull
     @Override

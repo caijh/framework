@@ -21,8 +21,6 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
-import static com.github.caijh.framework.core.lock.aspect.LockKeyGenerator.PARAMETERS_VARIABLE;
-
 public class LockInterceptor implements MethodInterceptor, BeanFactoryAware {
 
     private final LockOperationExpressionEvaluator evaluator = new LockOperationExpressionEvaluator();
@@ -96,9 +94,6 @@ public class LockInterceptor implements MethodInterceptor, BeanFactoryAware {
         LockExpressionRootObject rootObject = new LockExpressionRootObject(method, args, target, targetClass);
         LockEvaluationContext evaluationContext = new LockEvaluationContext(
                 rootObject, targetMethod, args, getParameterNameDiscoverer());
-        if (args == null || args.length == 0) {
-            evaluationContext.addUnavailableVariable(PARAMETERS_VARIABLE);
-        }
 
         if (beanFactory != null) {
             evaluationContext.setBeanResolver(new BeanFactoryResolver(beanFactory));
