@@ -47,7 +47,7 @@
         <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
         <hibernate-core.version>6.1.5.Final</hibernate-core.version>
         <javassist.version>3.29.2-GA</javassist.version>
-        <jaxb.version>4.0.2</jaxb.version>
+        <jaxb.version>4.0.4</jaxb.version>
         <checkstyle.config.location>checkstyle.xml</checkstyle.config.location>
     </properties>
 
