@@ -3,6 +3,7 @@ package com.github.caijh.framework.data.jpa;
 import java.util.List;
 import java.util.Optional;
 
+import com.github.caijh.framework.core.service.ListCurdService;
 import jakarta.annotation.Nonnull;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -16,7 +17,7 @@ import org.springframework.data.jpa.domain.Specification;
  * @param <T> 实体对象类
  * @param <I> 实体对象id类型
  */
-public interface BaseService<T, I> {
+public interface BaseService<T, I> extends ListCurdService<T, I> {
 
     List<T> findAll();
 
