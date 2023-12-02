@@ -3,6 +3,7 @@ package com.github.caijh.framework.doc.initializer;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.caijh.framework.doc.autoconfigure.properties.SmartDocProperties;
 import com.power.common.enums.HttpCodeEnum;
 import com.power.doc.builder.HtmlApiDocBuilder;
 import com.power.doc.model.ApiConfig;
@@ -17,6 +18,12 @@ import org.springframework.context.ApplicationListener;
 public class SmartDocInitializer implements ApplicationListener<WebServerInitializedEvent> {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    private final SmartDocProperties smartDocProperties;
+
+    public SmartDocInitializer(SmartDocProperties smartDocProperties) {
+        this.smartDocProperties = smartDocProperties;
+    }
 
     @Override
     public void onApplicationEvent(WebServerInitializedEvent event) {
@@ -36,7 +43,7 @@ public class SmartDocInitializer implements ApplicationListener<WebServerInitial
         config.setProjectName(applicationContext.getApplicationName());
         WebServer webServer = applicationContext.getWebServer();
         config.setServerUrl("http://127.0.0.1:" + webServer.getPort());
-        config.setOutPath("doc/api");
+        config.setOutPath(smartDocProperties.getOutPath());
         List<ApiErrorCode> errorCodeList = new ArrayList<>();
         for (HttpCodeEnum codeEnum : HttpCodeEnum.values()) {
             ApiErrorCode errorCode = new ApiErrorCode();

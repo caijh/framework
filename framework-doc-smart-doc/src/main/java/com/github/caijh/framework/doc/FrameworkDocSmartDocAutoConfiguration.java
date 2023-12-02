@@ -14,8 +14,8 @@ public class FrameworkDocSmartDocAutoConfiguration {
 
     @Bean
     @ConditionalOnProperty(prefix = SmartDocProperties.PREFIX, value = "enabled")
-    public SmartDocInitializer docInitializer() {
-        return new SmartDocInitializer();
+    public SmartDocInitializer smartDocInitializer(SmartDocProperties smartDocProperties) {
+        return new SmartDocInitializer(smartDocProperties);
     }
 
 }

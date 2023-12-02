@@ -11,4 +11,6 @@ public class SmartDocProperties {
 
     private boolean enabled;
 
+    private String outPath = "doc/api";
+
 }
