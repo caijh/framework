@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.13</version>
+        <version>3.1.8</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -41,9 +41,9 @@
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <spring.cloud.version>2022.0.1</spring.cloud.version>
+        <spring.cloud.version>2022.0.5</spring.cloud.version>
         <framework.version>3.0.X-0.0.3-SNAPSHOT</framework.version>
-        <lombok.version>1.18.26</lombok.version>
+        <lombok.version>1.18.30</lombok.version>
         <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
         <hibernate-core.version>6.1.5.Final</hibernate-core.version>
         <javassist.version>3.29.2-GA</javassist.version>
