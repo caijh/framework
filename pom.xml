@@ -49,6 +49,8 @@
         <javassist.version>3.29.2-GA</javassist.version>
         <jaxb.version>4.0.4</jaxb.version>
         <checkstyle.config.location>checkstyle.xml</checkstyle.config.location>
+        <sonar.organization>bytebinary</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
     <licenses>
