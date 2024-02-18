@@ -16,8 +16,12 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 @EnableAsync(proxyTargetClass = true)
 public class FrameworkCoreAsyncAutoConfiguration implements AsyncConfigurer {
 
-    @Inject
     private AsyncThreadPoolExecutorProperties asyncThreadPoolExecutorProperties;
+
+    @Inject
+    public void setAsyncThreadPoolExecutorProperties(AsyncThreadPoolExecutorProperties asyncThreadPoolExecutorProperties) {
+        this.asyncThreadPoolExecutorProperties = asyncThreadPoolExecutorProperties;
+    }
 
     @Override
     public Executor getAsyncExecutor() {
