@@ -34,12 +34,16 @@ public class RequestExceptionHandler {
 
     private final ObjectMapper mapper;
 
-    @Inject
     private MessageSource messageSource;
 
     public RequestExceptionHandler() {
         this.mapper = new ObjectMapper();
         this.mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+    }
+
+    @Inject
+    public void setMessageSource(MessageSource messageSource) {
+        this.messageSource = messageSource;
     }
 
     @ExceptionHandler(value = {BindException.class, MethodArgumentNotValidException.class, ValidationException.class})

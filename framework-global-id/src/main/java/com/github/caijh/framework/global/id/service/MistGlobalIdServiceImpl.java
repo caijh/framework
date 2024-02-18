@@ -33,12 +33,19 @@ public class MistGlobalIdServiceImpl implements GlobalIdService, InitializingBea
 
     private static final int MAX_SIZE = 100;
 
-    @Inject
     private Redis redis;
-    @Inject
     private LockManager lockManager;
-
     private RBoundedBlockingQueue<Long> blockingQueue;
+
+    @Inject
+    public void setRedis(Redis redis) {
+        this.redis = redis;
+    }
+
+    @Inject
+    public void setLockManager(LockManager lockManager) {
+        this.lockManager = lockManager;
+    }
 
     @SneakyThrows
     @Override

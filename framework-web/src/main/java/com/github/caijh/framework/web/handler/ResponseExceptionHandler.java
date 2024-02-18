@@ -21,8 +21,13 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @RestControllerAdvice(annotations = RestController.class)
 public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @Inject
     private MessageSource messageSource;
+
+    @Inject
+    @Override
+    public void setMessageSource(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
 
     @ExceptionHandler(value = Exception.class)
     @ResponseBody

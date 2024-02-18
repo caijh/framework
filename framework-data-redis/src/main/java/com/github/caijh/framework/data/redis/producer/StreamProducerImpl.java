@@ -10,8 +10,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class StreamProducerImpl implements StreamProducer {
 
-    @Inject
     private Redis redis;
+
+    @Inject
+    public void setRedis(Redis redis) {
+        this.redis = redis;
+    }
 
     @Override
     public <T> void send(String queue, T payload) {

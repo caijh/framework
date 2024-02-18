@@ -30,8 +30,12 @@ public abstract class AbstractStreamListener<T> implements StreamListener<String
     private final Class<T> clazz;
     private final Logger logger = LoggerUtils.getLogger(getClass());
     private StreamMessageListenerContainer<String, ObjectRecord<String, T>> container;
-    @Inject
     private Redis redis;
+
+    @Inject
+    public void setRedis(Redis redis) {
+        this.redis = redis;
+    }
 
     @SuppressWarnings("unchecked")
     protected AbstractStreamListener() {

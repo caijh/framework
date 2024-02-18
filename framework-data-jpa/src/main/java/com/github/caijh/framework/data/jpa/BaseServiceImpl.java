@@ -21,10 +21,14 @@ import org.springframework.data.jpa.domain.Specification;
  */
 public abstract class BaseServiceImpl<T, I> implements BaseService<T, I> {
 
-    @Inject
     protected BaseRepository<T, I> repository;
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
+
+    @Inject
+    public void setRepository(BaseRepository<T, I> repository) {
+        this.repository = repository;
+    }
 
     /**
      * 将注入BaseRepository转化实际继承了BaseRepository的类.

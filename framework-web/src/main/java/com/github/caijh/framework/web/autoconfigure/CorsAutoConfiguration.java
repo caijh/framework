@@ -15,8 +15,12 @@ import org.springframework.web.filter.CorsFilter;
 @Configuration
 public class CorsAutoConfiguration {
 
-    @Inject
     private CorsEndpointProperties properties;
+
+    @Inject
+    public void setProperties(CorsEndpointProperties properties) {
+        this.properties = properties;
+    }
 
     private CorsConfiguration corsConfiguration() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
