@@ -14,8 +14,12 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 @EnableConfigurationProperties({ScheduleThreadPoolExecutorProperties.class})
 public class FrameworkCoreScheduleAutoConfiguration implements SchedulingConfigurer {
 
-    @Inject
     private ScheduleThreadPoolExecutorProperties scheduleThreadPoolExecutorProperties;
+
+    @Inject
+    public void setScheduleThreadPoolExecutorProperties(ScheduleThreadPoolExecutorProperties scheduleThreadPoolExecutorProperties) {
+        this.scheduleThreadPoolExecutorProperties = scheduleThreadPoolExecutorProperties;
+    }
 
     @Override
     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
