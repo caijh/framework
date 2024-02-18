@@ -24,8 +24,12 @@ import springfox.documentation.spring.web.plugins.Docket;
 @EnableConfigurationProperties({SwaggerProperties.class})
 public class FrameworkDocSwaggerAutoConfiguration {
 
-    @Autowired(required = false)
     private BuildProperties buildProperties;
+
+    @Autowired(required = false)
+    public void setBuildProperties(BuildProperties buildProperties) {
+        this.buildProperties = buildProperties;
+    }
 
     @Bean
     @ConditionalOnProperty(prefix = SwaggerProperties.PREFIX, value = "enabled")
