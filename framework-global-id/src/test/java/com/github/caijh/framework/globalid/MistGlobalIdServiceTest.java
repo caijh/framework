@@ -4,8 +4,9 @@ import com.github.caijh.framework.global.id.service.GlobalIdService;
 import com.github.caijh.framework.global.id.service.MistGlobalIdServiceImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-public class MistGlobalIdServiceTest {
+class MistGlobalIdServiceTest {
 
     @BeforeEach
     public void setUp() {
@@ -17,7 +18,9 @@ public class MistGlobalIdServiceTest {
 
     }
 
-    public void generate() {
+
+    @Test
+    void generate() {
         GlobalIdService globalIdService = new MistGlobalIdServiceImpl();
         for (long i = 0; i < 1000; i++) {
             long id = globalIdService.generate(i);
