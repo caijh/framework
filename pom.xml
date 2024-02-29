@@ -40,8 +40,8 @@
 
     <properties>
         <java.version>17</java.version>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
         <framework.version>3.0.X-0.0.3-SNAPSHOT</framework.version>
         <checkstyle.config.location>checkstyle.xml</checkstyle.config.location>
         <sonar.organization>bytebinary</sonar.organization>
