@@ -16,6 +16,7 @@
     <version>3.0.X-0.0.3-SNAPSHOT</version>
 
     <modules>
+        <module>framework-dependencies</module>
         <module>framework-core</module>
         <module>framework-data</module>
         <module>framework-data-jpa</module>
@@ -41,13 +42,7 @@
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <spring.cloud.version>2022.0.5</spring.cloud.version>
         <framework.version>3.0.X-0.0.3-SNAPSHOT</framework.version>
-        <lombok.version>1.18.30</lombok.version>
-        <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
-        <hibernate-core.version>6.1.5.Final</hibernate-core.version>
-        <javassist.version>3.29.2-GA</javassist.version>
-        <jaxb.version>4.0.4</jaxb.version>
         <checkstyle.config.location>checkstyle.xml</checkstyle.config.location>
         <sonar.organization>bytebinary</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -97,37 +92,30 @@
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-core</artifactId>
-            <version>${jaxb.version}</version>
         </dependency>
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-impl</artifactId>
-            <version>${jaxb.version}</version>
         </dependency>
         <dependency>
             <groupId>javax.activation</groupId>
             <artifactId>activation</artifactId>
-            <version>1.1.1</version>
         </dependency>
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
-            <version>2.0.1.Final</version>
         </dependency>
         <dependency>
             <groupId>jakarta.inject</groupId>
             <artifactId>jakarta.inject-api</artifactId>
-            <version>2.0.1.MR</version>
         </dependency>
         <dependency>
             <groupId>org.javassist</groupId>
             <artifactId>javassist</artifactId>
-            <version>${javassist.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -158,16 +146,11 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring.cloud.version}</version>
+                <groupId>com.github.caijh.framework</groupId>
+                <artifactId>framework-dependencies</artifactId>
+                <version>${framework.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate.orm</groupId>
-                <artifactId>hibernate-core</artifactId>
-                <version>${hibernate-core.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.caijh.framework</groupId>
@@ -263,16 +246,6 @@
                 <groupId>com.github.caijh.framework</groupId>
                 <artifactId>framework-global-id</artifactId>
                 <version>${framework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mapstruct</groupId>
-                <artifactId>mapstruct</artifactId>
-                <version>${org.mapstruct.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mapstruct</groupId>
-                <artifactId>mapstruct-processor</artifactId>
-                <version>${org.mapstruct.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
