@@ -1,5 +1,8 @@
 package com.github.caijh.framework.core.exception;
 
+import lombok.Getter;
+
+@Getter
 public class LocalizedException extends RuntimeException {
 
     /**
@@ -33,14 +36,6 @@ public class LocalizedException extends RuntimeException {
         super(message, cause);
         this.code = null;
         this.params = null;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public Object[] getParams() {
-        return params;
     }
 
 }
