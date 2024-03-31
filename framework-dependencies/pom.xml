@@ -15,7 +15,7 @@
         <hibernate-core.version>6.1.5.Final</hibernate-core.version>
         <javassist.version>3.29.2-GA</javassist.version>
         <jaxb.version>4.0.4</jaxb.version>
-        <commons-utils.version>2.0.5</commons-utils.version>
+        <commons-utils.version>2.0.6</commons-utils.version>
     </properties>
 
     <dependencyManagement>
