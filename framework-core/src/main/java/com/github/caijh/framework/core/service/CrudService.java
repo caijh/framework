@@ -1,11 +1,12 @@
 package com.github.caijh.framework.core.service;
 
-import jakarta.annotation.Nonnull;
+
+import org.springframework.lang.NonNull;
 
 public interface CrudService<T, I> {
-    T getOneOrNull(@Nonnull I id);
+    T getOneOrNull(@NonNull I id);
 
-    <S extends T> S save(@Nonnull S entity);
+    <S extends T> S save(@NonNull S entity);
 
-    void deleteById(@Nonnull I id);
+    void deleteById(@NonNull I id);
 }

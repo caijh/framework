@@ -51,7 +51,7 @@ public interface BaseService<T, I> extends ListCurdService<T, I> {
 
     T getOne(@Nonnull I id);
 
-    default T getOneOrNull(I id) {
+    default T getOneOrNull(@Nonnull I id) {
         return this.findById(id).orElse(null);
     }
 
