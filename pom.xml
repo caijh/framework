@@ -27,7 +27,6 @@
         <module>framework-logging</module>
         <module>framework-doc-smart-doc</module>
         <module>framework-doc-swagger</module>
-        <module>framework-cache-redis</module>
         <module>framework-message-kafka</module>
         <module>framework-message-websocket</module>
         <module>framework-config</module>

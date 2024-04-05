@@ -42,7 +42,7 @@ public class FrameworkCacheAutoConfiguration implements EnvironmentAware {
                 .serializeValuesWith(RedisSerializationContext.SerializationPair
                         .fromSerializer(redisTemplate.getValueSerializer()))
                 .entryTtl(Duration.ofMinutes(1))
-                .computePrefixWith(cacheName -> "APP:" + appName + ":CACHE:" + cacheName);
+            .computePrefixWith(cacheName -> "APP:" + appName + ":" + cacheName);
 
         RedisConnectionFactory connectionFactory = redisTemplate.getConnectionFactory();
         if (connectionFactory == null) {

@@ -3,7 +3,6 @@ package com.github.caijh.framework.data.redis;
 import java.time.Duration;
 import java.util.Optional;
 
-import com.github.caijh.framework.data.redis.serializer.RedisProtobufSerializer;
 import com.github.caijh.framework.data.redis.support.Redis;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
@@ -20,7 +19,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializer;
 
 @AutoConfiguration(after = RedisAutoConfiguration.class)
 @EnableConfigurationProperties(RedisProperties.class)
@@ -33,10 +32,10 @@ public class FrameworkRedisAutoConfiguration {
     public RedisTemplate<String, Object> stringObjectRedisTemplate(RedisConnectionFactory redisConnectionFactory) {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
-        redisTemplate.setKeySerializer(new StringRedisSerializer());
-        redisTemplate.setValueSerializer(new RedisProtobufSerializer());
-        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
-        redisTemplate.setHashValueSerializer(new StringRedisSerializer()); // fix: redis stream object record must StringRedisSerializer.
+        redisTemplate.setKeySerializer(RedisSerializer.string());
+        redisTemplate.setValueSerializer(RedisSerializer.json());
+        redisTemplate.setHashKeySerializer(RedisSerializer.string());
+        redisTemplate.setHashValueSerializer(RedisSerializer.json()); // fix: redis stream object record must StringRedisSerializer.
         redisTemplate.setEnableTransactionSupport(true);
         redisTemplate.afterPropertiesSet();
         return redisTemplate;
