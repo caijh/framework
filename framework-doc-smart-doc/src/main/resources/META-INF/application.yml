@@ -6,4 +6,5 @@ framework:
       allInOne: true
       coverOld: true
       isStrict: true
+      adoc: true
       projectName: ${spring.application.name}

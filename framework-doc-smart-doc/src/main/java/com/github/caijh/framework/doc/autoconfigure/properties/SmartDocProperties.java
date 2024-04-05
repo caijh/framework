@@ -15,7 +15,7 @@ public class SmartDocProperties {
 
     private Boolean allInOne = true;
     private Boolean coverOld = true;
-    private Boolean aDoc = true;
+    private Boolean adoc = true;
     private Boolean isStrict = true;
     private String projectName;
 }

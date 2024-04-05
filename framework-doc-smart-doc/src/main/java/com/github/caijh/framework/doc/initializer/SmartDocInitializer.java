@@ -38,7 +38,7 @@ public class SmartDocInitializer implements ApplicationListener<WebServerInitial
         ApiConfig config = new ApiConfig();
         config.setAllInOne(smartDocProperties.getAllInOne());
         config.setCoverOld(smartDocProperties.getCoverOld());
-        config.setAdoc(smartDocProperties.getADoc());
+        config.setAdoc(smartDocProperties.getAdoc());
         config.setStrict(smartDocProperties.getIsStrict());
         config.setProjectName(smartDocProperties.getProjectName());
         WebServer webServer = applicationContext.getWebServer();
