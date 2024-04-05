@@ -2,7 +2,6 @@ package com.github.caijh.framework.core.lock.aspect;
 
 import java.lang.reflect.Method;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 
@@ -25,8 +24,8 @@ public class LockInterceptor implements MethodInterceptor, BeanFactoryAware {
 
     private final LockOperationExpressionEvaluator evaluator = new LockOperationExpressionEvaluator();
     private final ParameterNameDiscoverer parameterNameDiscoverer = new DefaultParameterNameDiscoverer();
+    private LockManager lockManager = new ReentrantLockManager();
     private LockKeyGenerator keyGenerator;
-    private LockManager lockManager;
     private LockOperationSource lockOperationSource;
     @Nullable
     private BeanFactory beanFactory;
@@ -50,8 +49,7 @@ public class LockInterceptor implements MethodInterceptor, BeanFactoryAware {
                 } else {
                     key = keyGenerator.generate(target, method, invocation.getArguments()).toString();
                 }
-                LockManager manager = Optional.ofNullable(lockManager).orElse(new ReentrantLockManager());
-                Lock lock = manager.get(key);
+                Lock lock = lockManager.get(key);
                 if (lockOperation.getExpired() != -1) {
                     return execute(invocation, lock, lockOperation.getExpired());
                 } else {

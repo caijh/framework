@@ -1,27 +1,24 @@
 package com.github.caijh.framework.core.lock.aspect;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import com.github.benmanes.caffeine.cache.Caffeine;
+import com.github.benmanes.caffeine.cache.LoadingCache;
+
 public class ReentrantLockManager implements LockManager {
 
-    private static final Map<String, ReentrantLock> LOCKS = new ConcurrentHashMap<>();
-
-    static {
-        LOCKS.put("Global", new ReentrantLock());
-    }
+    private final LoadingCache<String, ReentrantLock> locks = Caffeine.newBuilder()
+        .expireAfterAccess(5, TimeUnit.MINUTES).build(k -> new ReentrantLock());
 
     @Override
     public Lock get() {
-        return LOCKS.get("Global");
+        return locks.get("Global");
     }
 
     @Override
     public Lock get(String key) {
-        synchronized (ReentrantLockManager.class) {
-            return LOCKS.computeIfAbsent(key, s -> new ReentrantLock());
-        }
+        return locks.get(key);
     }
 }

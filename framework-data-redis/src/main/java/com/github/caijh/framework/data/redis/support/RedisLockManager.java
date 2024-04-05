@@ -3,8 +3,6 @@ package com.github.caijh.framework.data.redis.support;
 import java.util.concurrent.locks.Lock;
 
 import com.github.caijh.framework.core.lock.aspect.LockManager;
-import org.redisson.RedissonRedLock;
-import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.util.StringUtils;
 
@@ -27,8 +25,7 @@ public class RedisLockManager implements LockManager {
         if (!StringUtils.hasText(key)) {
             key = LOCK;
         }
-        RLock lock = this.redissonClient.getLock(key);
-        return new RedissonRedLock(lock);
+        return this.redissonClient.getLock(key);
     }
 
 }
