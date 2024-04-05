@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.caijh.framework.doc.autoconfigure.properties.SmartDocProperties;
+import com.ly.doc.builder.HtmlApiDocBuilder;
+import com.ly.doc.model.ApiConfig;
+import com.ly.doc.model.ApiErrorCode;
 import com.power.common.enums.HttpCodeEnum;
-import com.power.doc.builder.HtmlApiDocBuilder;
-import com.power.doc.model.ApiConfig;
-import com.power.doc.model.ApiErrorCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.web.context.WebServerApplicationContext;
@@ -36,11 +36,11 @@ public class SmartDocInitializer implements ApplicationListener<WebServerInitial
 
     public void init(WebServerApplicationContext applicationContext) {
         ApiConfig config = new ApiConfig();
-        config.setAllInOne(true);
-        config.setCoverOld(true);
-        config.setAdoc(true);
-        config.setStrict(true);
-        config.setProjectName(applicationContext.getApplicationName());
+        config.setAllInOne(smartDocProperties.getAllInOne());
+        config.setCoverOld(smartDocProperties.getCoverOld());
+        config.setAdoc(smartDocProperties.getADoc());
+        config.setStrict(smartDocProperties.getIsStrict());
+        config.setProjectName(smartDocProperties.getProjectName());
         WebServer webServer = applicationContext.getWebServer();
         config.setServerUrl("http://127.0.0.1:" + webServer.getPort());
         config.setOutPath(smartDocProperties.getOutPath());

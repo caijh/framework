@@ -13,4 +13,9 @@ public class SmartDocProperties {
 
     private String outPath = "doc/api";
 
+    private Boolean allInOne = true;
+    private Boolean coverOld = true;
+    private Boolean aDoc = true;
+    private Boolean isStrict = true;
+    private String projectName;
 }

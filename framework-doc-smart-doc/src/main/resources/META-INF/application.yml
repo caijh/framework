@@ -2,3 +2,8 @@ framework:
   doc:
     smart-doc:
       enabled: true
+      outPath: "doc/api"
+      allInOne: true
+      coverOld: true
+      isStrict: true
+      projectName: ${spring.application.name}
