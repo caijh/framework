@@ -18,7 +18,7 @@ public class RedisWithTtlCacheManager extends RedisCacheManager {
     @NonNull
     @Override
     protected RedisCache createRedisCache(@NonNull String name, RedisCacheConfiguration cacheConfig) {
-        String[] array = StringUtils.delimitedListToStringArray(name, "#");
+        String[] array = StringUtils.delimitedListToStringArray(name, ":");
         name = array[0];
         if (array.length > 1) {
             long ttl = Long.parseLong(array[1]);
