@@ -1,28 +1,26 @@
 package com.github.caijh.framework.core.exception;
 
+import org.springframework.lang.Nullable;
+
 /**
  * data access base exception.
  */
-public abstract class DaoException extends LocalizedException {
+public class DaoException extends LocalizedException {
 
-    protected DaoException(String code, Object[] params) {
-        super(code, params);
+    public DaoException(String code, Object[] params) {
+        super(code, params, null, null);
     }
 
-    protected DaoException(String code, Object[] params, Throwable cause) {
-        super(code, params, cause);
+    public DaoException(String code, Object[] params, String defaultMessage) {
+        super(code, params, defaultMessage, null);
     }
 
-    protected DaoException(String message) {
-        super(message);
+    public DaoException(String code, Object[] params, Throwable cause) {
+        super(code, params, null, cause);
     }
 
-    protected DaoException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    protected DaoException(Throwable cause) {
-        super(null, null, cause);
+    public DaoException(String code, Object[] params, @Nullable String defaultMessage, @Nullable Throwable cause) {
+        super(code, params, defaultMessage, cause);
     }
 
 }
