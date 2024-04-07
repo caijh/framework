@@ -37,7 +37,8 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
         Result<Void> result = new Result<>();
         if (exception instanceof LocalizedException localizedException) {
             String code = localizedException.getCode();
-            String message = this.messageSource.getMessage(code, localizedException.getParams(), localizedException.getMessage(), LocaleContextHolder.getLocale());
+            String message = this.messageSource.getMessage(code, localizedException.getParams(), localizedException.getMessage(),
+                LocaleContextHolder.getLocale());
             result.setCode(code).setMessage(message);
         } else {
             result.setMessage(exception.getMessage());
