@@ -8,5 +8,8 @@ spring:
       discovery:
         enabled: true
         register: true
+        heartbeat:
+          enabled: true
+          ttl: 10s
       config:
         format: YAML
