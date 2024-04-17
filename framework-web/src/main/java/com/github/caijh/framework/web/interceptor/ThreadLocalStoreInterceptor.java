@@ -11,7 +11,7 @@ public class ThreadLocalStoreInterceptor implements AsyncHandlerInterceptor {
 
     @Override
     public void afterCompletion(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull Object handler, Exception ex) {
-        ThreadLocalStore.reset();
+        ThreadLocalStore.clear();
     }
 
 }

@@ -30,7 +30,7 @@ public class ThreadLocalStore {
         return ((T) result);
     }
 
-    public static void reset() {
+    public static void clear() {
         STORE.remove();
     }
 

@@ -13,7 +13,7 @@ public class ThreadLocalStoreFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        ThreadLocalStore.reset();
+        ThreadLocalStore.clear();
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
