@@ -8,8 +8,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @AutoConfiguration
 @ImportAutoConfiguration({
     FrameworkCoreRetryAutoConfiguration.class,
-    FrameworkCoreScheduleAutoConfiguration.class,
-    FrameworkCoreAsyncAutoConfiguration.class
 })
 @EnableAsync
 @EnableLocking
