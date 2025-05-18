@@ -1,14 +1,13 @@
 package com.github.caijh.framework.global.id.service;
 
-import java.util.concurrent.Executors;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.locks.Lock;
 
 import com.github.caijh.framework.core.lock.aspect.LockManager;
 import com.github.caijh.framework.data.redis.support.Redis;
 import jakarta.inject.Inject;
 import lombok.SneakyThrows;
-import org.redisson.api.RBoundedBlockingQueue;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
 
 /*
@@ -16,7 +15,7 @@ import org.springframework.stereotype.Service;
  *
  * 1      2                                                     48         56       64
  * +------+-----------------------------------------------------+----------+----------+
- * retain | increas                                             | salt     | sequence |
+ * retain | increase                                             | salt     | sequence |
  * +------+-----------------------------------------------------+----------+----------+
  * 0      | 0000000000 0000000000 0000000000 0000000000 0000000 | 00000000 | 00000000 |
  * +------+-----------------------------------------------------+------------+--------+
@@ -29,13 +28,10 @@ import org.springframework.stereotype.Service;
  * 编号上限为百万亿级，上限值计算为 140737488355327 即 int64(1 << 47 - 1)，假设每天取值 10 亿，能使用 385+ 年
  */
 @Service
-public class MistGlobalIdServiceImpl implements GlobalIdService, InitializingBean, Runnable {
-
-    private static final int MAX_SIZE = 100;
+public class MistGlobalIdServiceImpl implements GlobalIdService {
 
     private Redis redis;
     private LockManager lockManager;
-    private RBoundedBlockingQueue<Long> blockingQueue;
 
     @Inject
     public void setRedis(Redis redis) {
@@ -47,34 +43,41 @@ public class MistGlobalIdServiceImpl implements GlobalIdService, InitializingBea
         this.lockManager = lockManager;
     }
 
-    @SneakyThrows
     @Override
     public long nextId() {
-        return blockingQueue.take();
+        return generate_id("default");
     }
 
     @Override
-    public void afterPropertiesSet() {
-        blockingQueue = redis.getRedissonClient().getBoundedBlockingQueue("global:id:seq");
-        blockingQueue.trySetCapacity(MAX_SIZE);
-        Executors.newFixedThreadPool(1).execute(this);
+    public long nextId(String table) {
+        return generate_id(table);
     }
+
+    @Override
+    public List<Long> nextIds(int n) {
+        return nextIds("default", n);
+    }
+
 
     @SneakyThrows
     @Override
-    public void run() {
-        Lock lock = lockManager.get("global:id:lock");
-        try { // 确认顺序放入blockingQueue中
+    public List<Long> nextIds(String table, int n) {
+        Lock lock = lockManager.get("global:id:lock:" + table);
+        try {
             lock.lockInterruptibly();
-            if (blockingQueue.size() < MAX_SIZE) {
-                Long increase = redis.getRedisTemplate().opsForValue().increment("global:id", 1L);
-                if (increase != null) {
-                    blockingQueue.put(generate(increase));
-                }
+            List<Long> ids = new ArrayList<>();
+            for (int i = 0; i < n; i++) {
+                ids.add(generate_id(table));
             }
+            return ids;
         } finally {
             lock.unlock();
         }
+    }
+
+    private long generate_id(String table) {
+        Long increase = redis.getRedisTemplate().opsForValue().increment("global:id:" + table, 1L);
+        return generate(increase);
     }
 
 }

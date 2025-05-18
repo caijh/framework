@@ -1,6 +1,7 @@
 package com.github.caijh.framework.global.id.service;
 
 import java.security.SecureRandom;
+import java.util.List;
 
 public interface GlobalIdService {
 
@@ -11,5 +12,11 @@ public interface GlobalIdService {
     }
 
     long nextId();
+
+    long nextId(String table);
+
+    List<Long> nextIds(int n);
+
+    List<Long> nextIds(String table, int n);
 
 }
