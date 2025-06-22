@@ -4,8 +4,8 @@ logging:
     name: "${logging.file.path}/${spring.application.name:app}.log"
   pattern:
     dateformat: "yyyy-MM-dd HH:mm:ss.SSS"
-    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{36} - [%class{2}.%method.%line] [traceId=%X{traceId:-0}] [spanId=%X{spanId:-0}] - %msg%n"
-    file: "%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39} - [%class{2}.%method.%line] [traceId=%X{traceId:-0}] [spanId=%X{spanId:-0}] : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{36} - [%class{2}.%method.%line] [traceId=%X{traceId:-0} spanId=%X{spanId:-0}] - %msg%n"
+    file: "%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39} - [%class{2}.%method.%line] [traceId=%X{traceId:-0} spanId=%X{spanId:-0}] : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
   logback:
     rollingpolicy:
       max-history: 7
