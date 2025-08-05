@@ -8,14 +8,17 @@ import com.github.caijh.framework.core.lock.aspect.LockKeyGenerator;
 import com.github.caijh.framework.core.lock.aspect.LockManager;
 import com.github.caijh.framework.core.lock.aspect.LockOperationSource;
 import com.github.caijh.framework.core.lock.aspect.ReentrantLockManager;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportAware;
+import org.springframework.context.annotation.Role;
 import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.lang.Nullable;
 
+@Role(BeanDefinition.ROLE_INFRASTRUCTURE)
 @Configuration
 public class LockingConfiguration implements ImportAware {
 
@@ -23,8 +26,7 @@ public class LockingConfiguration implements ImportAware {
     protected AnnotationAttributes enableLocking;
 
     @Bean
-    public BeanFactoryLockOperationSourceAdvisor beanFactoryLockOperationSourceAdvisor(LockOperationSource lockOperationSource,
-                                                                                       LockInterceptor lockInterceptor) {
+    public BeanFactoryLockOperationSourceAdvisor beanFactoryLockOperationSourceAdvisor(LockOperationSource lockOperationSource, LockInterceptor lockInterceptor) {
         BeanFactoryLockOperationSourceAdvisor advisor = new BeanFactoryLockOperationSourceAdvisor();
         advisor.setLockOperationSource(lockOperationSource);
         advisor.setAdvice(lockInterceptor);
@@ -61,11 +63,9 @@ public class LockingConfiguration implements ImportAware {
 
     @Override
     public void setImportMetadata(AnnotationMetadata importMetadata) {
-        this.enableLocking = AnnotationAttributes.fromMap(
-                importMetadata.getAnnotationAttributes(EnableLocking.class.getName()));
+        this.enableLocking = AnnotationAttributes.fromMap(importMetadata.getAnnotationAttributes(EnableLocking.class.getName()));
         if (this.enableLocking == null) {
-            throw new IllegalArgumentException(
-                    "@EnableLocking is not present on importing class " + importMetadata.getClassName());
+            throw new IllegalArgumentException("@EnableLocking is not present on importing class " + importMetadata.getClassName());
         }
     }
 }
