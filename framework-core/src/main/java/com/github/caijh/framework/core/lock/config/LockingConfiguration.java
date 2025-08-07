@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportAware;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Role;
 import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.type.AnnotationMetadata;
@@ -25,8 +26,10 @@ public class LockingConfiguration implements ImportAware {
     @Nullable
     protected AnnotationAttributes enableLocking;
 
+    @Lazy
     @Bean
-    public BeanFactoryLockOperationSourceAdvisor beanFactoryLockOperationSourceAdvisor(LockOperationSource lockOperationSource, LockInterceptor lockInterceptor) {
+    public BeanFactoryLockOperationSourceAdvisor beanFactoryLockOperationSourceAdvisor(LockOperationSource lockOperationSource,
+                                                                                       LockInterceptor lockInterceptor) {
         BeanFactoryLockOperationSourceAdvisor advisor = new BeanFactoryLockOperationSourceAdvisor();
         advisor.setLockOperationSource(lockOperationSource);
         advisor.setAdvice(lockInterceptor);
