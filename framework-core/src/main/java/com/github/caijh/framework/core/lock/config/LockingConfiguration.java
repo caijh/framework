@@ -8,25 +8,44 @@ import com.github.caijh.framework.core.lock.aspect.LockKeyGenerator;
 import com.github.caijh.framework.core.lock.aspect.LockManager;
 import com.github.caijh.framework.core.lock.aspect.LockOperationSource;
 import com.github.caijh.framework.core.lock.aspect.ReentrantLockManager;
-import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportAware;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.context.annotation.Role;
 import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.lang.Nullable;
 
-@Role(BeanDefinition.ROLE_INFRASTRUCTURE)
 @Configuration
 public class LockingConfiguration implements ImportAware {
 
     @Nullable
     protected AnnotationAttributes enableLocking;
 
-    @Lazy
+    @Bean
+    public LockOperationSource lockOperationSource() {
+        return new AnnotationLockOperationSource();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public LockKeyGenerator lockKeyGenerator() {
+        return new LockKeyGenerator();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public LockManager lockManager() {
+        return new ReentrantLockManager();
+    }
+
+    @Bean
+    public LockInterceptor lockInterceptor(LockOperationSource lockOperationSource, LockKeyGenerator keyGenerator, LockManager lockManager) {
+        LockInterceptor interceptor = new LockInterceptor();
+        interceptor.configure(lockOperationSource, keyGenerator, lockManager);
+        return interceptor;
+    }
+
     @Bean
     public BeanFactoryLockOperationSourceAdvisor beanFactoryLockOperationSourceAdvisor(LockOperationSource lockOperationSource,
                                                                                        LockInterceptor lockInterceptor) {
@@ -39,30 +58,6 @@ public class LockingConfiguration implements ImportAware {
         return advisor;
     }
 
-    @Bean
-    public LockOperationSource lockOperationSource() {
-        return new AnnotationLockOperationSource();
-    }
-
-    @Bean
-    @ConditionalOnMissingBean
-    public LockManager lockManager() {
-        return new ReentrantLockManager();
-    }
-
-
-    @Bean
-    @ConditionalOnMissingBean
-    public LockKeyGenerator lockKeyGenerator() {
-        return new LockKeyGenerator();
-    }
-
-    @Bean
-    public LockInterceptor lockInterceptor(LockOperationSource lockOperationSource, LockKeyGenerator keyGenerator, LockManager lockManager) {
-        LockInterceptor interceptor = new LockInterceptor();
-        interceptor.configure(lockOperationSource, keyGenerator, lockManager);
-        return interceptor;
-    }
 
     @Override
     public void setImportMetadata(AnnotationMetadata importMetadata) {

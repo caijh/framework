@@ -40,7 +40,7 @@
     <properties>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <framework.version>3.0.X-0.0.3-SNAPSHOT</framework.version>
+        <framework.version>1.0.0-SNAPSHOT</framework.version>
         <checkstyle.config.location>checkstyle.xml</checkstyle.config.location>
         <sonar.organization>bytebinary</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
