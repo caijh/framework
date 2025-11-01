@@ -47,11 +47,11 @@ public class PageReqBody implements Serializable {
         return this.sorts != null ? this.sorts : Collections.emptyList();
     }
 
-    public Integer getOffset() {
+    public final Integer getOffset() {
         return getPage() * this.pageSize;
     }
 
-    public Integer getLimit() {
+    public final Integer getLimit() {
         return this.pageSize;
     }
 
