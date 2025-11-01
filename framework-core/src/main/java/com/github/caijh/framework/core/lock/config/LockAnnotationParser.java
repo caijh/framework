@@ -5,9 +5,9 @@ import java.lang.reflect.Method;
 
 import com.github.caijh.framework.core.lock.annotation.Locking;
 import com.github.caijh.framework.core.lock.aspect.LockOperation;
+import jakarta.annotation.Nullable;
 import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.core.annotation.AnnotationUtils;
-import org.springframework.lang.Nullable;
 
 public interface LockAnnotationParser extends Serializable {
     default boolean isCandidateClass(Class<?> targetClass) {

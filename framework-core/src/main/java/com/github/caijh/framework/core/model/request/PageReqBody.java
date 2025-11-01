@@ -12,10 +12,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * 抽象列表请求对象.
  */
+@Setter
 @Getter
 public class PageReqBody implements Serializable {
 
@@ -37,24 +39,12 @@ public class PageReqBody implements Serializable {
      */
     private List<Sort> sorts;
 
-    public void setPageNo(Integer pageNo) {
-        this.pageNo = pageNo;
-    }
-
     public Integer getPage() {
         return getPageNo() - 1;
     }
 
-    public void setPageSize(Integer pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public List<Sort> getSorts() {
         return this.sorts != null ? this.sorts : Collections.emptyList();
-    }
-
-    public void setSorts(List<Sort> sorts) {
-        this.sorts = sorts;
     }
 
     public Integer getOffset() {
