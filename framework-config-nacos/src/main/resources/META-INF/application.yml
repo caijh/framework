@@ -5,12 +5,12 @@ spring:
         enabled: true
         register-enabled: true
         server-addr: ${NACOS_SERVER:http://127.0.0.1:8848}
-        username: nacos
-        password: nacos
-        namespace: public
+        username: ${NACOS_USER:nacos}
+        password: ${NACOS_PASSWORD:nacos}
+        namespace: ${NACOS_NAMESPACE:public}
       config:
         server-addr: ${NACOS_SERVER:http://127.0.0.1:8848}
-        username: nacos
-        password: nacos
-        namespace: public
+        username: ${NACOS_USER:nacos}
+        password: ${NACOS_PASSWORD:nacos}
+        namespace: ${NACOS_NAMESPACE:public}
         file-extension: yaml
