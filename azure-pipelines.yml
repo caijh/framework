@@ -32,7 +32,7 @@ steps:
         mkdir ${HOME}/.m2
         cp "$(settingsXml.secureFilePath)" "${HOME}/.m2"
 
-  - task: Maven@3
+  - task: Maven@4
     inputs:
       mavenPomFile: 'pom.xml'
       goals: 'deploy'
