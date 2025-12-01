@@ -12,7 +12,6 @@
         <spring.cloud.version>2025.0.0</spring.cloud.version>
         <lombok.version>1.18.32</lombok.version>
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
-        <hibernate-core.version>6.1.5.Final</hibernate-core.version>
         <javassist.version>3.29.2-GA</javassist.version>
         <jaxb.version>4.0.4</jaxb.version>
         <caffeine.version>3.1.8</caffeine.version>
@@ -74,7 +73,6 @@
             <dependency>
                 <groupId>org.hibernate.orm</groupId>
                 <artifactId>hibernate-core</artifactId>
-                <version>${hibernate-core.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.mapstruct</groupId>
